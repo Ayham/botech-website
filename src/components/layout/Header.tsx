@@ -4,6 +4,7 @@ import { Container } from '../ui/Container';
 import { Button } from '../ui/Button';
 import { useI18n } from '../../i18n';
 import { localeNames } from '../../i18n/config';
+import { siteConfig } from '../../config/site';
 
 const navigation = [
   { key: 'home', href: '/', labelKey: 'nav.home' },
@@ -54,11 +55,11 @@ export function Header() {
           <div className="flex items-center justify-between h-16 lg:h-20">
             {/* Logo */}
             <NavLink to="/" className="flex items-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 rounded-lg" aria-label={t.common.backToHome}>
-              <svg className="w-8 h-8 text-primary-600" viewBox="0 0 32 32" fill="none" aria-hidden="true">
-                <circle cx="16" cy="16" r="14" stroke="#375378" strokeWidth="2"/>
-                <path d="M16 6v20M6 16h20" stroke="#375378" strokeWidth="2" strokeLinecap="round"/>
-                <circle cx="16" cy="16" r="6" stroke="#375378" strokeWidth="1.5"/>
-              </svg>
+              <img 
+                src={siteConfig.logo} 
+                alt="Blue Orbit Technologies" 
+                className="w-8 h-8"
+              />
               <span className="font-bold text-xl text-neutral-900 hidden sm:block">Blue Orbit Technologies</span>
               <span className="font-bold text-xl text-neutral-900 sm:hidden">BOTech</span>
             </NavLink>

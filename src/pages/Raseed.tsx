@@ -58,6 +58,19 @@ export function RaseedPage() {
                 </a>
                 <a href="/contact" className="btn btn-outline w-full sm:w-auto">{t.raseed.hero.ctaContact}</a>
               </div>
+
+              {/* Social */}
+              <div className="mt-6 flex items-center gap-4">
+                <a 
+                  href={product.social?.facebook} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 text-sm text-neutral-600 hover:text-primary-600 transition-colors"
+                >
+                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+                  <span>{locale === 'ar' ? 'فيسبوك رصيد' : 'Raseed Facebook'}</span>
+                </a>
+              </div>
             </div>
 
             {/* Phone Mockup */}

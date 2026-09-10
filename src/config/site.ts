@@ -11,6 +11,7 @@ export const siteConfig = {
   },
   url: 'https://botech-live.com',
   ogImage: '/assets/brand/og-image.jpg',
+  logo: '/assets/brand/logo.png',
   founder: {
     name: {
       ar: 'المهندس أيهم سيف',
@@ -27,19 +28,10 @@ export const siteConfig = {
     },
   },
   contact: {
-    email: 'info@botech-live.com',
-    whatsapp: '+966500000000',
-    phone: '+966500000000',
-    address: {
-      ar: 'الرياض، المملكة العربية السعودية',
-      en: 'Riyadh, Saudi Arabia',
-    },
+    email: 'aslive@live.com',
+    whatsapp: 'https://wa.me/963940716331',
     social: {
-      facebook: 'https://facebook.com/botechlive',
-      youtube: 'https://youtube.com/@botechlive',
-      linkedin: 'https://linkedin.com/company/botechlive',
-      twitter: 'https://x.com/botechlive',
-      github: 'https://github.com/botechlive',
+      raseedFacebook: 'https://www.facebook.com/RaseedApp',
     },
   },
   navigation: {
@@ -124,6 +116,9 @@ export const siteConfig = {
       downloadLinks: {
         android: 'https://play.google.com/store/apps/details?id=com.botech.raseed',
         apk: 'https://botech-live.com/downloads/raseed.apk',
+      },
+      social: {
+        facebook: 'https://www.facebook.com/RaseedApp',
       },
       screenshots: [
         '/assets/raseed/screenshot-1.png',
@@ -296,7 +291,7 @@ export const siteConfig = {
       type: { ar: 'منتج — تطبيق جوال', en: 'Product — Mobile App' },
       description: { ar: 'تطبيق تحويل الرصيد لنقاط البيع', en: 'Balance transfer app for retail points' },
       image: '/assets/raseed/cover.jpg',
-      url: '/raseed',
+      url: '/raseid',
     },
     {
       key: 'clover',
