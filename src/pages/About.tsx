@@ -6,6 +6,7 @@ import { siteConfig } from '@/config/site';
 import { useI18n } from '@/i18n';
 import { pageSEO } from '@/config/seo';
 import { Reveal, RevealStagger } from '@/components/ui/Reveal';
+import { OrbitBackground } from '@/components/ui/OrbitBackground';
 
 export function About() {
   const { t, locale } = useI18n();
@@ -32,6 +33,8 @@ export function About() {
           <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-white/5 rounded-full blur-3xl animate-pulse-soft" style={{ animationDelay: '1.5s' }} />
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-primary-700 rounded-full blur-3xl opacity-10" />
         </div>
+
+        <OrbitBackground variant="about" />
         
         <Container>
           <RevealStagger direction="up" delayStep={100} className="max-w-4xl mx-auto text-center relative">
@@ -51,7 +54,7 @@ export function About() {
             <Reveal delay={200}>
               <p className="body-lg text-primary-100 mb-8 max-w-2xl mx-auto text-balance">
                 {locale === 'ar'
-                  ? 'نحن في شركة أوربيت للتقنيات، نؤمن بأن التقنية أداة عملية لحل المشكلات real problems، لا غاية بحد ذاتها. منذ تأسيسنا، نلتزم بتحويل الأفكار إلى حلول Technological concrete solutions تخدم احتياجات الأعمال الحقيقية.'
+                  ? 'نحن في بلو أوربيت، نؤمن بأن التقنية أداة عملية لحل المشكلات الحقيقية، وليست غاية بحد ذاتها. ومنذ تأسيسنا، نلتزم بتحويل الأفكار إلى حلول تقنية ملموسة تلبي احتياجات الأعمال الحقيقية.'
                   : 'At Blue Orbit Technologies, we believe technology should be a practical tool for solving real problems, not an end in itself. Since our founding, we have been committed to transforming ideas into concrete solutions that serve real business needs.'}
               </p>
             </Reveal>
@@ -197,6 +200,7 @@ export function About() {
           <div className="absolute top-0 left-1/4 w-72 h-72 bg-white/10 rounded-full blur-3xl" />
           <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-white/5 rounded-full blur-3xl" />
         </div>
+        <OrbitBackground variant="cta" />
         <Container>
           <RevealStagger direction="up" delayStep={100} className="max-w-3xl mx-auto text-center relative">
             <Reveal>

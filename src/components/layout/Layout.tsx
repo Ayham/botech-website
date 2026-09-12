@@ -6,6 +6,7 @@ import { useI18n } from '../../i18n';
 import { siteConfig } from '../../config/site';
 import { BackToTop } from '../ui/BackToTop';
 import { ScrollProgress } from '../ui/ScrollProgress';
+import { ParallaxDriver } from '../../hooks/useParallax';
 
 interface LayoutProps {
   children: ReactNode;
@@ -64,6 +65,7 @@ export function Layout({
         <meta name="twitter:image" content={pageOgImage} />
       </Helmet>
 
+      <ParallaxDriver />
       <ScrollProgress />
       <div className="min-h-screen flex flex-col">
         <Header />

@@ -3,6 +3,7 @@ import { Button } from '../ui/Button';
 import { Container } from '../ui/Container';
 import { Section } from '../ui/Section';
 import { Reveal, RevealStagger } from '../ui/Reveal';
+import { OrbitBackground } from '../ui/OrbitBackground';
 
 export function Hero() {
   const { t } = useI18n();
@@ -16,7 +17,9 @@ export function Hero() {
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary-50 rounded-full blur-3xl opacity-20" />
       </div>
 
-      <Container>
+      <OrbitBackground variant="hero" />
+
+      <Container className="relative">
         <RevealStagger direction="up" delayStep={100} className="max-w-4xl mx-auto text-center">
           <Reveal delay={0}>
             <span className="inline-flex items-center gap-2 px-4 py-2 bg-primary-50 text-primary-700 rounded-full text-sm font-medium mb-6 border border-primary-100">
@@ -28,14 +31,14 @@ export function Hero() {
           </Reveal>
           
           <Reveal delay={100}>
-            <h1 className="heading-1 text-neutral-950 mb-6 gradient-text">
+            <h1 className="text-2xl sm:text-4xl md:text-5xl font-bold text-neutral-950 mb-6 gradient-text">             
               {t.hero.subtitle.split(' ').slice(0, 3).join(' ')} <br />
               <span className="text-neutral-900">{t.hero.subtitle.split(' ').slice(3).join(' ')}</span>
             </h1>
           </Reveal>
           
           <Reveal delay={200}>
-            <p className="body-lg text-neutral-600 mb-10 max-w-3xl mx-auto text-balance">
+            <p className="text-xs sm:text-sm leading-relaxed text-neutral-600 mb-10 max-w-3xl mx-auto text-balance">
               {t.hero.subtitle}
             </p>
           </Reveal>

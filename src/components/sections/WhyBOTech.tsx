@@ -4,6 +4,7 @@ import { Card } from '../ui/Card';
 import { Container } from '../ui/Container';
 import { Section, SectionHeader } from '../ui/Section';
 import { Reveal, RevealStagger } from '../ui/Reveal';
+import { OrbitBackground } from '../ui/OrbitBackground';
 
 const whyIcons: Record<string, React.ReactNode> = {
   tailored: <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M10 20l4-16m4 16l4-16M6 9a4 4 0 014-4h2a4 4 0 014 4v11a2 2 0 01-2 2H6a2 2 0 01-2-2V9z" /></svg>,
@@ -17,8 +18,9 @@ export function WhyBOTech() {
   const { t, locale } = useI18n();
 
   return (
-    <Section size="lg" background="white">
-      <Container>
+    <Section size="lg" background="white" className="relative overflow-hidden">
+      <OrbitBackground variant="minimal" />
+      <Container className="relative">
         <SectionHeader
           title={t.whyBotech.title}
           subtitle={t.whyBotech.subtitle}

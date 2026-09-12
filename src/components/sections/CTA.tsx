@@ -5,6 +5,7 @@ import { Section } from '../ui/Section';
 import { NavLink } from 'react-router-dom';
 import { Button } from '../ui/Button';
 import { Reveal, RevealStagger } from '../ui/Reveal';
+import { OrbitBackground } from '../ui/OrbitBackground';
 
 export function CTA() {
   const { t } = useI18n();
@@ -16,6 +17,8 @@ export function CTA() {
         <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-white/5 rounded-full blur-3xl animate-pulse-soft" style={{ animationDelay: '1.5s' }} />
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-primary-700 rounded-full blur-3xl opacity-10" />
       </div>
+
+      <OrbitBackground variant="cta" />
       
       <Container>
         <RevealStagger direction="up" delayStep={100} className="relative max-w-3xl mx-auto text-center">

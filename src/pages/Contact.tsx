@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Layout } from '@/components/layout/Layout';
 import { Section, Container, Input, Textarea, Button } from '@/components/ui';
@@ -7,6 +7,21 @@ import { useI18n } from '@/i18n';
 import { pageSEO } from '@/config/seo';
 import { useLocation } from 'react-router-dom';
 import { Reveal, RevealStagger } from '@/components/ui/Reveal';
+import { OrbitBackground } from '@/components/ui/OrbitBackground';
+
+const RECAPTCHA_SITE_KEY = siteConfig.contact.recaptchaSiteKey;
+
+interface RecaptchaApi {
+  render: (container: string, options: Record<string, unknown>) => void;
+  getResponse: () => string;
+  reset: () => void;
+}
+
+declare global {
+  interface Window {
+    grecaptcha?: RecaptchaApi;
+  }
+}
 
 export function Contact() {
   const { t, locale } = useI18n();
@@ -24,6 +39,58 @@ export function Contact() {
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
   const [touched, setTouched] = useState<Record<string, boolean>>({});
+  const [captchaToken, setCaptchaToken] = useState('');
+  const [captchaRendered, setCaptchaRendered] = useState(false);
+  const [captchaError, setCaptchaError] = useState('');
+
+  const captchaRequired = RECAPTCHA_SITE_KEY !== '';
+  const captchaRenderedRef = useRef(false);
+
+  useEffect(() => {
+    if (!RECAPTCHA_SITE_KEY || captchaRenderedRef.current) return;
+
+    const renderWidget = () => {
+      if (captchaRenderedRef.current || !window.grecaptcha) return;
+      const container = document.getElementById('recaptcha-container');
+      if (!container) return;
+      window.grecaptcha.render('recaptcha-container', {
+        sitekey: RECAPTCHA_SITE_KEY,
+        hl: locale === 'ar' ? 'ar' : 'en',
+        callback: () => {
+          setCaptchaToken(window.grecaptcha!.getResponse());
+          setCaptchaError('');
+        },
+        'expired-callback': () => setCaptchaToken(''),
+        'error-callback': () => setCaptchaToken(''),
+      });
+      captchaRenderedRef.current = true;
+      setCaptchaRendered(true);
+    };
+
+    if (window.grecaptcha) {
+      renderWidget();
+      return;
+    }
+
+    const existing = document.querySelector<HTMLScriptElement>('script[src*="recaptcha/api.js"]');
+    if (existing) {
+      const timer = window.setInterval(() => {
+        if (window.grecaptcha) {
+          window.clearInterval(timer);
+          renderWidget();
+        }
+      }, 300);
+      window.setTimeout(() => window.clearInterval(timer), 15000);
+      return;
+    }
+
+    const script = document.createElement('script');
+    script.src = `https://www.google.com/recaptcha/api.js?render=explicit&hl=${locale === 'ar' ? 'ar' : 'en'}`;
+    script.async = true;
+    script.defer = true;
+    script.onload = renderWidget;
+    document.head.appendChild(script);
+  }, [locale]);
 
   useEffect(() => {
     if (location.hash === '#form') {
@@ -89,28 +156,35 @@ export function Contact() {
     e.preventDefault();
     if (!validate()) return;
 
+    const endpoint = siteConfig.contact.formEndpoint;
+
+    if (captchaRequired && !captchaToken) {
+      setCaptchaError(locale === 'ar' ? 'أكّد أنك لست روبوتاً' : 'Please confirm you are not a robot');
+      return;
+    }
+
     setStatus('submitting');
 
     try {
-      const response = await fetch(
-        `https://formsubmit.co/ajax/${siteConfig.contact.email}`,
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            Accept: 'application/json',
-          },
-          body: JSON.stringify({
-            _captcha: 'false',
-            _subject: `[BOTech Website] ${formData.subject || (locale === 'ar' ? 'رسالة جديدة' : 'New message')}`,
-            name: formData.name,
-            email: formData.email,
-            phone: formData.phone,
-            company: formData.company,
-            message: formData.message,
-          }),
-        }
-      );
+      if (!endpoint) {
+        throw new Error('form endpoint not configured');
+      }
+
+      const response = await fetch(endpoint, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'text/plain;charset=utf-8',
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          company: formData.company,
+          subject: formData.subject || (locale === 'ar' ? 'رسالة جديدة' : 'New message'),
+          message: formData.message,
+          recaptcha: captchaToken,
+        }),
+      });
 
       const text = await response.text();
       let data: any = null;
@@ -120,20 +194,24 @@ export function Contact() {
         data = null;
       }
 
-      const succeeded =
-        response.ok &&
-        (data?.success === 'true' || data?.success === true);
-
-      if (succeeded) {
+      if (response.ok && data?.success === true) {
         setStatus('success');
         setFormData({ name: '', email: '', phone: '', company: '', subject: '', message: '' });
         setTouched({});
+        setCaptchaToken('');
+        if (window.grecaptcha && captchaRendered) {
+          window.grecaptcha.reset();
+        }
         setTimeout(() => setStatus('idle'), 5000);
       } else {
-        throw new Error(data?.message || 'send failed');
+        throw new Error(data?.error || 'send failed');
       }
     } catch {
       setStatus('error');
+      if (window.grecaptcha && captchaRendered) {
+        window.grecaptcha.reset();
+        setCaptchaToken('');
+      }
     }
   };
 
@@ -151,9 +229,10 @@ export function Contact() {
       </Helmet>
 
       {/* Contact Form & Info */}
-      <Section size="xl" background="white" id="contact-form">
+      <Section size="xl" background="white" id="contact-form" className="relative overflow-hidden">
+        <OrbitBackground variant="contact" />
         <Container>
-          <div className="grid lg:grid-cols-3 gap-12">
+          <div className="grid lg:grid-cols-3 gap-12 relative">
             <Reveal delay={0} className="lg:col-span-1">
               {/* Contact Info */}
               <div className="space-y-8">
@@ -255,7 +334,7 @@ export function Contact() {
                           onBlur={handleBlur}
                           error={touched.name ? errors.name : undefined}
                           required
-                          placeholder={locale === 'ar' ? 'أحمد محمد' : 'Ahmed Mohammed'}
+                          placeholder={locale === 'ar' ? 'رامي سعيد' : 'Rami Saeed'}
                           hint={locale === 'ar' ? 'اسمك الكامل' : 'Your full name'}
                         />
                         <Input
@@ -267,7 +346,7 @@ export function Contact() {
                           onBlur={handleBlur}
                           error={touched.email ? errors.email : undefined}
                           required
-                          placeholder="ahmed@example.com"
+                          placeholder="rami@example.com"
                           hint={locale === 'ar' ? 'بريدك الإلكتروني للتواصل' : 'Your email for reply'}
                         />
                       </div>
@@ -317,7 +396,19 @@ export function Contact() {
                         hint={locale === 'ar' ? '20 حرف على الأقل' : 'Minimum 20 characters'}
                       />
                     </RevealStagger>
-                    
+
+                    {captchaRequired && (
+                      <div className="min-h-[82px]">
+                        <div id="recaptcha-container" />
+                        <p className="text-sm text-neutral-500 mt-1">
+                          {locale === 'ar' ? 'حماية من الرسائل الآلية (spam)' : 'Protected from spam'}
+                        </p>
+                        {captchaError && (
+                          <p className="text-sm text-red-600 mt-1 font-medium">{captchaError}</p>
+                        )}
+                      </div>
+                    )}
+
                     <Button type="submit" fullWidth loading={status === 'submitting'} className="mt-auto pt-4">
                       {status === 'submitting' ? t.common.sending : t.common.submit}
                     </Button>

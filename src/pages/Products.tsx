@@ -5,6 +5,7 @@ import { siteConfig } from '@/config/site';
 import { useI18n } from '@/i18n';
 import { pageSEO } from '@/config/seo';
 import { NavLink } from 'react-router-dom';
+import { OrbitBackground } from '@/components/ui/OrbitBackground';
 
 export function ProductsPage() {
   const { t, locale } = useI18n();
@@ -99,9 +100,10 @@ export function ProductsPage() {
       </Section>
 
       {/* CTA */}
-      <Section size="lg" background="primary">
+      <Section size="lg" background="primary" className="relative overflow-hidden">
+        <OrbitBackground variant="cta" />
         <Container>
-          <div className="max-w-3xl mx-auto text-center">
+          <div className="max-w-3xl mx-auto text-center relative">
             <h2 className="heading-2 text-white mb-4">{t.contact.cta}</h2>
             <p className="body-lg text-primary-100 mb-8">{t.contact.ctaDesc}</p>
             <NavLink to="/contact#form">

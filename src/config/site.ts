@@ -21,14 +21,16 @@ export const siteConfig = {
       ar: 'مؤسس',
       en: 'Founder',
     },
-    experience: '12+ years',
+    experience: '12+ سنة',
     bio: {
-      ar: 'يتمتع بخبرة تزيد عن 12 عامًا في هندسة البرمجيات، هندسة الحلول، تطوير الأنظمة، القيادة التقنية، البنية التحتية، DevOps، وقواعد البيانات، مع خبرة عملية في بناء وإدارة البرمجيات من تحليل المتطلبات وتصميم الحلول إلى التطوير والاختبار والنشر والتشغيل والدعم المستمر.',
+      ar: 'يتمتع بخبرة تزيد عن 12 عامًا في هندسة البرمجيات، هندسة الحلول، تطوير الأنظمة، القيادة التقنية، البنية التحتية، وقواعد البيانات، مع خبرة عملية في بناء وإدارة البرمجيات من تحليل المتطلبات وتصميم الحلول إلى التطوير والاختبار والنشر والتشغيل والدعم المستمر.',
       en: 'With over 12 years of experience in software engineering, solution architecture, system development, technical leadership, infrastructure, DevOps, and databases—hands-on across the full software lifecycle from requirements analysis and solution design through development, testing, deployment, operations, and continuous support.',
     },
   },
   contact: {
     email: 'aslive@live.com',
+    formEndpoint: 'https://script.google.com/macros/s/AKfycbxY-4Ap6dVDpUup4js46EqtMY4v64HChn7uJL-YfKZREz9PEbdqjIFL6crLT-v_bMmS/exec',
+    recaptchaSiteKey: '6Lduj7ctAAAAAM9Md-zQzBNgqQoHuTjyn-BXihGX',
     phone: '+963 940 716 331',
     phoneRaw: '963940716331',
     whatsapp: 'https://wa.me/963940716331',

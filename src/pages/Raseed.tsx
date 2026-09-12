@@ -9,6 +9,7 @@ import { ProductHowItWorks } from '@/components/product/ProductHowItWorks';
 import { ProductFAQ } from '@/components/product/ProductFAQ';
 import { pageSEO } from '@/config/seo';
 import { NavLink } from 'react-router-dom';
+import { OrbitBackground } from '@/components/ui/OrbitBackground';
 
 export function RaseedPage() {
   const { t, locale } = useI18n();
@@ -39,8 +40,9 @@ export function RaseedPage() {
 
       {/* Hero */}
       <section className="relative pt-28 pb-16 lg:pt-36 lg:pb-24 overflow-hidden" style={{ background: 'linear-gradient(135deg, #f0f5fa 0%, #ffffff 100%)' }}>
+        <OrbitBackground variant="raseed" />
         <Container>
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center relative">
             <div className="max-w-xl">
               <div className="flex items-center gap-4 mb-6">
                 <img
@@ -327,6 +329,7 @@ export function RaseedPage() {
           <div className="absolute top-0 left-1/4 w-72 h-72 bg-white/10 rounded-full blur-3xl" />
           <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-white/5 rounded-full blur-3xl" />
         </div>
+        <OrbitBackground variant="cta" />
         <Container>
           <div className="relative max-w-3xl mx-auto text-center">
             <h2 className="heading-2 text-white mb-4">{text.download.title}</h2>

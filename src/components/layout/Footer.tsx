@@ -3,6 +3,7 @@ import { Container } from '../ui/Container';
 import { siteConfig } from '../../config/site';
 import { useI18n } from '../../i18n';
 import { Reveal, RevealStagger } from '../ui/Reveal';
+import { OrbitBackground } from '../ui/OrbitBackground';
 
 export function Footer() {
   const { t, locale } = useI18n();
@@ -11,9 +12,10 @@ export function Footer() {
   const footerNav = siteConfig.navigation.footer;
 
   return (
-    <footer className="bg-neutral-900 text-neutral-300" role="contentinfo">
+    <footer className="bg-neutral-900 text-neutral-300 relative overflow-hidden" role="contentinfo">
+      <OrbitBackground variant="footer" />
       <Container className="py-16 lg:py-24">
-        <RevealStagger direction="up" delayStep={80} className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8 lg:gap-12">
+        <RevealStagger direction="up" delayStep={80} className="relative grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8 lg:gap-12">
           <Reveal>
             <div className="col-span-2 lg:col-span-1 space-y-4">
               <NavLink to="/" className="inline-block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-900 rounded-lg tap-scale" aria-label={t.common.backToHome}>
@@ -125,7 +127,7 @@ export function Footer() {
           </Reveal>
         </RevealStagger>
 
-        <Reveal delay={400} className="mt-12 pt-8 border-t border-neutral-800 flex flex-col md:flex-row items-center justify-between gap-4">
+        <Reveal delay={400} className="relative mt-12 pt-8 border-t border-neutral-800 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-sm text-neutral-500">
             &copy; {currentYear} {siteConfig.name}. {t.footer.copyright}.
           </p>

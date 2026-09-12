@@ -12,6 +12,7 @@ import { TermsPage } from './pages/Terms';
 import { RaseedPage } from './pages/Raseed';
 import { CloverPage } from './pages/Clover';
 import { ScrollToTopWrapper } from './components/ui/ScrollToTop';
+import { PageLoader } from './components/ui/PageLoader';
 
 // Reads locale from `/en/*` path, sets it, and redirects to the clean path.
 function LocaleRedirect() {
@@ -64,6 +65,7 @@ const router = createBrowserRouter([
 export function AppRoutes() {
   return (
     <I18nProvider>
+      <PageLoader />
       <RouterProvider router={router} />
     </I18nProvider>
   );

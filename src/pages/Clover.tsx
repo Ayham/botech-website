@@ -5,6 +5,7 @@ import { siteConfig } from '@/config/site';
 import { useI18n } from '@/i18n';
 import { pageSEO } from '@/config/seo';
 import { NavLink } from 'react-router-dom';
+import { OrbitBackground } from '@/components/ui/OrbitBackground';
 
 export function CloverPage() {
   const { t, locale } = useI18n();
@@ -34,6 +35,7 @@ export function CloverPage() {
           <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary-600/20 rounded-full blur-3xl" />
           <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-primary-500/10 rounded-full blur-3xl" />
         </div>
+        <OrbitBackground variant="dark" />
         <Container>
           <div className="relative max-w-2xl mx-auto text-center">
             <div className="flex justify-center mb-8">
@@ -101,6 +103,7 @@ export function CloverPage() {
           <div className="absolute top-0 left-1/4 w-72 h-72 bg-white/10 rounded-full blur-3xl" />
           <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-white/5 rounded-full blur-3xl" />
         </div>
+        <OrbitBackground variant="cta" />
         <Container>
           <div className="relative max-w-3xl mx-auto text-center">
             <h2 className="heading-2 text-white mb-4">{text.comingSoon.contactTitle}</h2>

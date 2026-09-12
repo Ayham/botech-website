@@ -461,6 +461,257 @@
   }
 }
 
+/* ==========================================================
+   Blue Orbit visual system
+   Subtle, premium orbit-inspired decoration layers driven by
+   CSS transforms only (GPU friendly, no layout shifts).
+   ========================================================== */
+
+.orbit-layer {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+/* Rotating track that carries an orbiting dot */
+.orbit-spin {
+  position: absolute;
+  border-radius: 9999px;
+  will-change: transform;
+  /* !important guards against browser-level reduced-motion
+     collapsing animation-duration/count to ~0s; per-dot values
+     come from --orbit-dur / --orbit-delay custom properties. */
+  animation-name: orbit-rotate !important;
+  animation-timing-function: linear !important;
+  animation-iteration-count: infinite !important;
+  animation-duration: var(--orbit-dur, 40s) !important;
+  animation-delay: var(--orbit-delay, 0s) !important;
+}
+
+.orbit-spin-rev {
+  animation-direction: reverse !important;
+}
+
+@keyframes orbit-rotate {
+  to { transform: rotate(360deg); }
+}
+
+.orbit-dot {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 9999px;
+  background: var(--orbit-dot, rgba(28, 74, 127, 0.4));
+  box-shadow: 0 0 6px 0 var(--orbit-dot, rgba(28, 74, 127, 0.4));
+}
+
+/* Gentle vertical drift */
+.orbit-float {
+  will-change: transform;
+  animation: orbit-float 14s ease-in-out infinite;
+}
+
+@keyframes orbit-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-14px); }
+}
+
+/* Parallax depth layers updated via --drift-* custom props */
+.orbit-parallax {
+  will-change: transform;
+}
+
+.orbit-p-slow {
+  transform: translate3d(0, var(--drift-slow, 0px), 0);
+}
+
+.orbit-p-mid {
+  transform: translate3d(0, var(--drift-mid, 0px), 0);
+}
+
+.orbit-p-fast {
+  transform: translate3d(0, var(--drift-fast, 0px), 0);
+}
+
+/* Ghost brand wordmark */
+.orbit-wordmark {
+  display: block;
+  color: rgba(28, 74, 127, 0.05);
+  -webkit-text-stroke: 1px rgba(28, 74, 127, 0.12);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  line-height: 1.05;
+  white-space: nowrap;
+  user-select: none;
+  font-size: clamp(4rem, 13vw, 11rem);
+}
+
+.orbit-wordmark--light {
+  color: rgba(255, 255, 255, 0.05);
+  -webkit-text-stroke-color: rgba(255, 255, 255, 0.13);
+}
+
+/* Hide the heavier decorations on small screens */
+@media (max-width: 767px) {
+  .orbit-hide-sm {
+    display: none !important;
+  }
+}
+
+/* Touch devices: further slow orbital motion to save power */
+@media (hover: none) and (pointer: coarse) {
+  .orbit-spin {
+    animation-duration: 80s !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  /* Keep the slow orbital rotation (core brand motion) but drop
+     the drifting/parallax layers that cause discomfort. */
+  .orbit-float {
+    animation: none !important;
+  }
+
+  .orbit-parallax {
+    transform: none !important;
+  }
+}
+
+/* ==========================================================
+   Branded page loader
+   ========================================================== */
+
+.page-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(1200px 640px at 50% 32%, #ffffff 0%, #f1f5fa 100%);
+  transition: opacity 0.55s ease, visibility 0.55s ease;
+}
+
+.page-loader--leaving {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.loader-stage {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loader-ring {
+  position: absolute;
+  border: 1px solid rgba(28, 74, 127, 0.28);
+  border-radius: 9999px;
+}
+
+.loader-ring--outer {
+  width: 150px;
+  height: 150px;
+  border-right-color: transparent;
+  animation: loader-rotate 2.4s linear infinite;
+}
+
+.loader-ring--inner {
+  width: 112px;
+  height: 112px;
+  border-top-color: transparent;
+  border-bottom-color: transparent;
+  animation: loader-rotate 1.8s linear infinite reverse;
+}
+
+.loader-orbit-dot {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 6px;
+  height: 6px;
+  margin: -3px 0 0 -3px;
+  border-radius: 9999px;
+  background: rgba(28, 74, 127, 0.6);
+  box-shadow: 0 0 8px 0 rgba(28, 74, 127, 0.5);
+}
+
+.loader-orbit-dot--1 {
+  animation: loader-orbit-outer 2.4s linear infinite;
+}
+
+.loader-orbit-dot--2 {
+  animation: loader-orbit-inner 1.8s linear infinite reverse;
+}
+
+@keyframes loader-rotate {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes loader-orbit-outer {
+  from { transform: rotate(0deg) translateX(75px) rotate(0deg); }
+  to { transform: rotate(360deg) translateX(75px) rotate(-360deg); }
+}
+
+@keyframes loader-orbit-inner {
+  from { transform: rotate(0deg) translateX(56px) rotate(0deg); }
+  to { transform: rotate(360deg) translateX(56px) rotate(-360deg); }
+}
+
+.loader-logo {
+  width: 72px;
+  height: 72px;
+  object-fit: contain;
+  border-radius: 16px;
+  box-shadow: 0 12px 32px -12px rgba(28, 74, 127, 0.4);
+  animation: loader-logo-in 0.7s var(--ease-out) both;
+}
+
+@keyframes loader-logo-in {
+  from { opacity: 0; transform: scale(0.92); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.loader-name {
+  margin-top: 20px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: #1c4a7f;
+  text-align: center;
+  white-space: nowrap;
+  animation: loader-name-in 0.9s 0.15s ease both;
+}
+
+.loader-tag {
+  margin-top: 6px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: #8faac9;
+  text-align: center;
+  animation: loader-name-in 0.9s 0.3s ease both;
+}
+
+@keyframes loader-name-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-loader {
+    display: none;
+  }
+}
+
 /* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 8px;

@@ -7,13 +7,15 @@ import { Container } from '../ui/Container';
 import { Section, SectionHeader } from '../ui/Section';
 import { NavLink } from 'react-router-dom';
 import { Reveal, RevealStagger } from '../ui/Reveal';
+import { OrbitBackground } from '../ui/OrbitBackground';
 
 export function Products() {
   const { t, locale } = useI18n();
 
   return (
-    <Section id="products" size="lg" background="white">
-      <Container>
+    <Section id="products" size="lg" background="white" className="relative overflow-hidden">
+      <OrbitBackground variant="products" />
+      <Container className="relative">
         <SectionHeader
           badge={t.products.title}
           title={t.products.subtitle}
@@ -26,12 +28,12 @@ export function Products() {
             return (
               <Reveal key={key} delay={index * 120}>
                 <Card key={key} variant="elevated" hover interactive className="flex flex-col h-full overflow-hidden group">
-                  <div className="relative aspect-[4/3] bg-neutral-50 overflow-hidden">
+                  <div className="relative aspect-[16/9] bg-neutral-50 overflow-hidden flex items-center justify-center">
                     {product.logo ? (
                       <img
                         src={product.logo}
                         alt={product.name}
-                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                        className="w-full h-full object-contain p-4 sm:p-6 transition-transform duration-700 group-hover:scale-105"
                         loading="lazy"
                       />
                     ) : (
