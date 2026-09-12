@@ -2,7 +2,6 @@ import type { Locale } from './config';
 
 export const translations = {
   ar: {
-    // Common
     common: {
       loading: 'جاري التحميل...',
       error: 'حدث خطأ',
@@ -39,9 +38,8 @@ export const translations = {
       subject: 'الموضوع',
       company: 'الشركة',
       website: 'الموقع الإلكتروني',
+      allProducts: 'جميع المنتجات',
     },
-
-    // Navigation
     nav: {
       home: 'الرئيسية',
       services: 'خدماتنا',
@@ -52,17 +50,13 @@ export const translations = {
       raseed: 'Raseed — رصيد',
       clover: 'Clover Flow',
     },
-
-    // Hero
     hero: {
       title: 'نحوّل الأفكار إلى حلول تقنية عملية',
       subtitle: 'نطوّر المواقع والتطبيقات والأنظمة البرمجية المصممة لتلبية احتياجات الأعمال، من الفكرة والتصميم إلى التطوير والنشر والدعم.',
       ctaPrimary: 'استكشف خدماتنا',
       ctaSecondary: 'تعرف على منتجاتنا',
-      scrollDown: 'اسحب لأسفل',
+      scrollDown: 'ابدأ التصفح',
     },
-
-    // About
     about: {
       title: 'من نحن',
       subtitle: 'Blue Orbit Technologies — شركة تقنية تبني الحلول والمنتجات البرمجية.',
@@ -81,7 +75,7 @@ export const translations = {
         name: 'المهندس أيهم سيف',
         role: 'مؤسس',
         experience: '12+ سنة خبرة',
-        bio: 'يتمتع بخبرة تزيد عن 12 عامًا في هندسة البرمجيات، هندسة الحلول، تطوير الأنظمة، القيادة التقنية، البنية التحتية، DevOps، وقواعد البيانات، مع خبرة عملية في بناء وإدارة البرمجيات من تحليل المتطلبات وتصميم الحلول إلى التطوير والاختبار والنشر والتشغيل والدعم المستمر. يمتلك خبرة واسعة في تطوير حلول وأنظمة المؤسسات، SaaS، ERP، CRM، HR، Finance، POS، E-commerce، CMS، أنظمة المصادقة، أتمتة العمليات، وتكامل الخدمات.',
+        bio: 'يتمتع بخبرة تزيد عن 12 عامًا في هندسة البرمجيات، هندسة الحلول، تطوير الأنظمة، القيادة التقنية، البنية التحتية، DevOps، وقواعد البيانات، مع خبرة عملية في بناء وإدارة البرمجيات من تحليل المتطلبات وتصميم الحلول إلى التطوير والاختبار والنشر والتشغيل والدعم المستمر.',
       },
       methodology: {
         title: 'كيف نعمل',
@@ -96,8 +90,6 @@ export const translations = {
         ],
       },
     },
-
-    // Services
     services: {
       title: 'خدماتنا',
       subtitle: 'نقدم مجموعة متكاملة من الخدمات التقنية المصممة لتلبية احتياجات الأعمال المختلفة.',
@@ -108,8 +100,6 @@ export const translations = {
         infrastructure: 'البنية التحتية',
       },
     },
-
-    // Products
     products: {
       title: 'منتجاتنا',
       subtitle: 'نطور منتجاتنا البرمجية الخاصة التي تحل مشكلات حقيقية في السوق.',
@@ -120,9 +110,8 @@ export const translations = {
       download: 'تحميل التطبيق',
       screenshots: 'لقطات من التطبيق',
       comingSoon: 'قريباً',
+      available: 'متاح الآن',
     },
-
-    // Work
     work: {
       title: 'أعمالنا',
       subtitle: 'مشاريع ومنتجات قمنا ببنائها وتطويرها.',
@@ -132,15 +121,13 @@ export const translations = {
       caseStudy: 'دراسة حالة',
       technologies: 'التقنيات المستخدمة',
     },
-
-    // Contact
     contact: {
       title: 'تواصل معنا',
       subtitle: 'نرحب بتواصلكم للاستفسارات، الشراكات، أو طلب الخدمات التقنية.',
       form: {
         title: 'أرسل رسالة',
-        success: 'تم إرسال رسالتك بنجاح، سنرد عليك في أقرب وقت.',
-        error: 'فشل الإرسال، يرجى المحاولة مرة أخرى أو التواصل المباشر.',
+        success: 'تم إرسال رسالتك بنجاح. سنرد عليك في أقرب وقت.',
+        error: 'فشل الإرسال، يرجى المحاولة مرة أخرى أو التواصل مباشرة عبر البريد الإلكتروني.',
       },
       info: {
         title: 'معلومات التواصل',
@@ -152,15 +139,14 @@ export const translations = {
       },
       cta: 'مستعد للبدء؟',
       ctaDesc: 'تواصل معنا لمناقشة مشروعك القادم.',
+      ctaHeadingStart: 'مستعد لـ',
+      ctaHeadingHighlight: 'بدء مشروعك',
+      ctaHeadingEnd: '؟',
     },
-
-    // Why BOTech
     whyBotech: {
       title: 'لماذا BOTech؟',
       subtitle: 'ما يميز نهجنا في بناء الحلول التقنية.',
     },
-
-    // Footer
     footer: {
       tagline: 'نحوّل الأفكار إلى حلول تقنية عملية',
       company: 'الشركة',
@@ -174,85 +160,127 @@ export const translations = {
       madeWith: 'صنع بـ',
       followUs: 'تابعنا',
     },
-
-    // Raseed
     raseed: {
       hero: {
-        title: 'Raseed — رصيد',
-        subtitle: 'تطبيق تحويل الرصيد لنقاط البيع',
-        description: 'تطبيق يساعد نقاط بيع الرصيد على تنفيذ عمليات التحويل بشكل أسرع وتنظيم العمليات المرتبطة بها.',
-        ctaDownload: 'تحميل للتطبيق',
-        ctaContact: 'تواصل للمبيعات',
+        subtitle: 'تطبيق إدارة تحويلات الرصيد اليومية',
+        description: 'تطبيق لإدارة تحويلات الرصيد اليومية، مصمم لنقاط بيع الرصيد ومراكز خدمة الموبايل في سوريا. يساعدك على التحويل بشكل أسرع، بأخطاء أقل، مع سجل واضح لكل التحويلات.',
+        ctaDownload: 'حمّل التطبيق مجاناً',
+        ctaContact: 'تواصل معنا',
       },
-      features: {
-        title: 'المميزات الرئيسية',
-        fastTransfer: 'تحويل سريع',
-        fastTransferDesc: 'تنفيذ عمليات تحويل الرصيد في ثوانٍ معدودة',
-        operationsLog: 'سجل العمليات',
-        operationsLogDesc: 'تتبع ومراجعة جميع عمليات التحويل بتفاصيل كاملة',
-        contacts: 'إدارة جهات الاتصال',
-        contactsDesc: 'حفظ وتنظيم أرقام العملاء والموردين للوصول السريع',
-        balance: 'متابعة الرصيد',
-        balanceDesc: 'مراقبة الأرصدة المتاحة مع تنبيهات الرصيد المنخفض',
-        offline: 'دعم العمل دون اتصال',
-        offlineDesc: 'يعمل بدون إنترنت مع مزامنة تلقائية عند توفره',
-        auth: 'مصادقة آمنة',
-        authDesc: 'حماية الحساب بـ PIN أو البصمة الحيوية',
-      },
+      stats: [
+        { value: 'مجاني', label: 'جرّبه بدون دفع مسبق' },
+        { value: 'بدون إنترنت', label: 'يعمل بعد التفعيل' },
+        { value: 'شريحتان', label: 'MTN وسيريتل' },
+        { value: 'عربي', label: 'واجهة بسيطة وواضحة' },
+      ],
+      features: { title: 'مميزات صممت لعملك' },
       howItWorks: {
         title: 'كيف يعمل',
         steps: [
-          { step: '01', title: 'تسجيل الدخول', desc: 'دخول آمن بـ PIN أو بصمة' },
-          { step: '02', title: 'اختيار العملية', desc: 'تحويل رصيد، استعلام، أو دفع' },
-          { step: '03', title: 'إدخال البيانات', desc: 'الرقم، المبلغ، والملاحظات' },
-          { step: '04', title: 'التأكيد والإرسال', desc: 'مراجعة التفاصيل وتنفيذ العملية' },
-          { step: '05', title: 'الإيصال والسجل', desc: 'حصول على إيصال وحفظ في السجل' },
+          { step: '01', title: 'حمّل التطبيق', desc: 'حمّل رصيد من هذا الموقع مباشرة على جهاز الأندرويد في محلك' },
+          { step: '02', title: 'جرّبه مجاناً', desc: 'ابدأ فوراً بالنسخة التجريبية المجانية وجرّب التحويلات والتقارير' },
+          { step: '03', title: 'اطلب التفعيل', desc: 'عندما تقرر المتابعة، أرسل طلب التفعيل من داخل التطبيق ونتواصل معك' },
         ],
       },
-      screenshots: 'لقطات الشاشة',
-      download: {
-        title: 'احصل على Raseed',
-        android: 'تحميل من متجر Google Play',
-        apk: 'تحميل APK مباشر',
-        comingSoon: 'متاح قريباً على المتجر',
+      screenshots: 'شاهد Raseed في صور',
+      screenshotsSubtitle: 'صور تعرض التطبيق بالواقع، مصممة للمشاركة والتعريف بالتطبيق',
+      screenshotsItems: [
+        { title: 'رصيد — فكرة', desc: '' },
+        { title: 'سجّل دخولك', desc: '' },
+        { title: 'تشكيلة ملونة', desc: '' },
+        { title: 'صديقك يومياً', desc: '' },
+        { title: 'حمّل الآن', desc: '' },
+      ],
+      videos: { title: 'شاهد التطبيق بالعمل' },
+      comparison: {
+        title: 'التحويل اليدوي مقابل رصيد',
+        subtitle: 'شاهد الفرق في كل خطوة من عملك اليومي',
+        manualHeader: 'التحويل اليدوي',
+        appHeader: 'مع رصيد',
+        rows: [
+          { label: 'سرعة التحويل', manual: 'كتابة الكود يدوياً', app: 'تحويل بنقرة واحدة' },
+          { label: 'اختيار الشريحة', manual: 'تبديل يدوي', app: 'تلقائي' },
+          { label: 'الاستعلام عن الرصيد', manual: 'أكواد لكل شبكة', app: 'ضغطة واحدة' },
+          { label: 'سجل المعاملات', manual: 'لا يوجد', app: 'تقارير يومية' },
+          { label: 'دون إنترنت', manual: 'لا', app: 'نعم، بعد التفعيل' },
+          { label: 'خطر الأخطاء', manual: 'عالٍ', app: 'أقل بكثير' },
+          { label: 'الواجهة', manual: 'أكواد معقدة', app: 'عربية بسيطة' },
+          { label: 'الدعم الفني', manual: 'لا يوجد', app: 'فريقنا متاح' },
+        ],
+      },
+      pricing: {
+        title: 'أسعار بسيطة وواضحة',
+        subtitle: 'اختر المدة الأنسب لعملك. النسخة التجريبية مجانية دائماً قبل الشراء.',
+        currency: 'ل.س',
+        per: 'سنة',
+        plans: [
+          {
+            name: 'سنة واحدة',
+            price: '1,200',
+            description: 'مثالي للمحلات الجديدة التي تريد تجربة رصيد بأقل تكلفة.',
+            features: ['جميع ميزات التطبيق', 'نسخة تجريبية مجانية', 'تفعيل على جهاز واحد', 'تحديثات طوال السنة'],
+          },
+          {
+            name: 'سنتان',
+            price: '2,000',
+            description: 'أفضل توازن بين السعر والقيمة على المدى الطويل.',
+            features: ['جميع ميزات التطبيق', 'دعم بأولوية', 'تحديثات طوال المدة', 'وفّر 400 ل.س'],
+            popular: true,
+          },
+          {
+            name: 'ثلاث سنوات',
+            price: '3,000',
+            description: 'الخيار الأفضل للمحلات الراسخة الباحثة عن استثمار طويل الأمد.',
+            features: ['جميع ميزات التطبيق', 'دعم بأولوية', 'السعر ثابت لثلاث سنوات', 'وفّر 600 ل.س'],
+          },
+        ],
       },
       faq: {
-        title: 'أسئلة شائعة',
+        title: 'الأسئلة الشائعة',
+        subtitle: 'كل ما تحتاج معرفته عن رصيد',
         items: [
-          { q: 'هل يعمل التطبيق بدون إنترنت؟', a: 'نعم، يعمل في وضع عدم الاتصال وتتم المزامنة عند توفر الإنترنت.' },
-          { q: 'ما أنظمة التشغيل المدعومة؟', a: 'Android 8.0 وأحدث.' },
-          { q: 'كيف تتم حماية البيانات؟', a: 'تشفير محلي، مصادقة PIN/بصمة، وعدم تخزين بيانات حساسة في السحابة.' },
+          { q: 'ما هو رصيد؟', a: 'تطبيق أندرويد لإدارة تحويلات الرصيد اليومية، مصمم خصيصاً لنقاط بيع الرصيد في سوريا. يساعدك على التحويل بشكل أسرع، بأخطاء أقل، مع سجل واضح بكل التحويلات.' },
+          { q: 'لمن هذا التطبيق؟', a: 'نقاط بيع الرصيد، مراكز خدمة الموبايل، وكل من ينجز عدداً كبيراً من التحويلات يومياً ويحتاج سرعة وتنظيم.' },
+          { q: 'هل يدعم شبكتي سيريتل و MTN؟', a: 'نعم، يدعم رصيد الشبكتين الرئيسيتين في سوريا بالكامل مع اختيار تلقائي للشريحة الصحيحة.' },
+          { q: 'هل يعمل دون إنترنت؟', a: 'بعد التفعيل يعمل التطبيق بشكل كامل دون إنترنت. الإنترنت مطلوب فقط عند التفعيل.' },
+          { q: 'كيف تعمل النسخة التجريبية؟', a: 'التطبيق يأتي مع نسخة تجريبية مجانية تتيح لك تجربة كل الميزات قبل شراء أي ترخيص.' },
+          { q: 'كيف أطلب التفعيل؟', a: 'من داخل التطبيق: أرسل طلب التفعيل، وسيصل طلبك مباشرة إلى الإدارة ونتواصل معك.' },
+          { q: 'هل التحديثات مشمولة؟', a: 'نعم، جميع التحديثات مشمولة خلال مدة الترخيص دون أي تكلفة إضافية.' },
+          { q: 'هل يمكن نقل الترخيص لجهاز آخر؟', a: 'الترخيص مرتبط بجهاز واحد. للنقل تواصل مع الدعم الفني ونساعدك.' },
+        ],
+      },
+      download: {
+        title: 'احصل على Raseed',
+        subtitle: 'جرّب رصيد مجاناً. حمّل التطبيق، جرّب النسخة المجانية، واطلب التفعيل من داخل التطبيق.',
+        ctaPrimary: 'تواصل عبر واتساب',
+        ctaContact: 'أرسل رسالة',
+      },
+      whyChoose: {
+        title: 'لماذا محلات الرصيد تختار رصيد؟',
+        subtitle: 'أدوات عملية تجعل يوم عملك أسرع وأقل أخطاء وأكثر تنظيماً',
+        items: [
+          { title: 'خدمة أسرع للزبائن', desc: 'أنجز التحويل بنقرة واحدة والزبون أمامك' },
+          { title: 'وقت انتظار أقل', desc: 'لم يعد كل زبون يستغرق دقائق بسبب كتابة الأكواد' },
+          { title: 'أخطاء أقل', desc: 'قلّل أخطاء الأرقام والشريحة الخاطئة' },
+          { title: 'استعلام أسهل', desc: 'اعرف رصيدك بدون البحث عن الأكواد' },
+          { title: 'تقارير يومية', desc: 'سجل واضح بكل تحويلات محلك بآخر اليوم' },
+          { title: 'دعم الشريحتين', desc: 'اختيار تلقائي للشريحة الصحيحة في كل مرة' },
+          { title: 'يعمل دون إنترنت', desc: 'استخدم التطبيق كاملاً دون إنترنت بعد التفعيل' },
+          { title: 'واجهة عربية بسيطة', desc: 'مصمم ليستخدمه أي مستخدم بدون تعقيد' },
         ],
       },
     },
-
-    // Clover
     clover: {
       hero: {
-        title: 'Clover Flow',
-        subtitle: 'إدارة نقاط البيع والأعمال',
-        description: 'منصة متكاملة لإدارة المبيعات، المخزون، العملاء، والفروع — مصممة للبساطة والسرعة.',
-        ctaDemo: 'جرب العرض التجريبي',
-        ctaContact: 'تواصل للمبيعات',
+        subtitle: 'قريباً',
+        description: 'منصة لإدارة نقاط البيع والأعمال، مصممة لتبسيط عمليات البيع والمخزون وإدارة العمل. نعمل حالياً على بناء Clover Flow.',
       },
-      features: {
-        title: 'المميزات الرئيسية',
-        pos: 'نقطة بيع (POS)',
-        posDesc: 'واجهة بيع سريعة تدعم النقد، البطاقات، والأجل',
-        inventory: 'إدارة المخزون',
-        inventoryDesc: 'تتبع الكميات، التنبيهات، ونقل المخزون بين الفروع',
-        products: 'إدارة المنتجات',
-        productsDesc: 'منتجات، تنويعات، باركود، وأسعار متعددة',
-        barcode: 'الباركود',
-        barcodeDesc: 'مسح وطباعة الباركود، بحث سريع بالمسح',
-        customers: 'العملاء',
-        customersDesc: 'ملفات العملاء، سجل المشتريات، والحد الائتماني',
-        stores: 'الفروع',
-        storesDesc: 'إدارة متعددة الفروع مع صلاحيات مستخدمين',
-        offline: 'Offline-First',
-        offlineDesc: 'عمل كامل دون إنترنت، مزامنة ذكية عند الاتصال',
-        reports: 'التقارير',
-        reportsDesc: 'مبيعات، مخزون، أداء، وتقارير مالية يومية/شهرية',
+      comingSoon: {
+        title: 'Clover Flow قريباً',
+        subtitle: 'نحن بصدد تطوير منصة متكاملة لإدارة نقاط البيع والأعمال. تابعونا لمعرفة موعد الإطلاق.',
+        modulesTitle: 'ما نعمل عليه',
+        modulesSubtitle: 'وهيكل النظام الأساسي',
+        contactTitle: 'هذا ما نبنيه حالياً',
       },
       modules: {
         title: 'وحدات النظام',
@@ -265,39 +293,16 @@ export const translations = {
           { name: 'الإعدادات', desc: 'الضرائب، الطابعات، النسخ الاحتياطي' },
         ],
       },
-      screenshots: 'لقطات الشاشة',
-      platforms: {
-        title: 'المنصات',
-        android: 'تطبيق Android للمبيعات الميدانية',
-        web: 'لوحة تحكم ويب للإدارة',
-      },
-      faq: {
-        title: 'أسئلة شائعة',
-        items: [
-          { q: 'هل يدعم عدة فروع؟', a: 'نعم، يدعم إدارة غير محدودة للفروع مع صلاحيات تفصيلية.' },
-          { q: 'هل يعمل بدون إنترنت؟', a: 'نعم، معمارية Offline-first مع مزامنة تلقائية عند توفر الاتصال.' },
-          { q: 'هل يمكن تخصيصه؟', a: 'نعم، نقدم تخصيصات حسب احتياج العميل المؤسسي.' },
-        ],
-      },
+      features: { title: 'المميزات الرئيسية' },
       howItWorks: {
         title: 'كيف يعمل',
-        steps: [
-          { step: '01', title: 'تسجيل الدخول', desc: 'دخول آمن ببصمة أو رمز PIN' },
-          { step: '02', title: 'اختيار الفرع', desc: 'اختر الفرع الذي ستعمل عليه' },
-          { step: '03', title: 'بدء البيع', desc: 'أضف المنتجات، اختر العميل، وطريقة الدفع' },
-          { step: '04', title: 'إتمام العملية', desc: 'اطبع الفاتورة أو أرسلها للعميل' },
-          { step: '05', title: 'المزامنة', desc: 'تتم مزامنة البيانات تلقائياً عند الاتصال' },
-        ],
+        steps: [],
       },
-      download: {
-        title: 'احصل على Clover Flow',
-        android: 'تحميل تطبيق Android',
-        web: 'الدخول للوحة التحكم',
-        comingSoon: 'متاح قريباً',
-      },
+      screenshots: 'لقطات الشاشة',
+      platforms: { title: 'المنصات', android: '', web: '' },
+      download: { title: '', android: '', web: '', comingSoon: '' },
+      faq: { title: 'الأسئلة الشائعة', items: [] },
     },
-
-    // SEO / Meta
     seo: {
       homeTitle: 'Blue Orbit Technologies | حلول تقنية وبرمجية',
       homeDesc: 'نحوّل الأفكار إلى حلول تقنية عملية. نطوّر المواقع والتطبيقات والأنظمة البرمجية المصممة لتلبية احتياجات الأعمال.',
@@ -309,15 +314,14 @@ export const translations = {
       workDesc: 'مشاريع ومنتجات Blue Orbit Technologies: Raseed، Clover Flow، وحلول تقنية مخصصة.',
       contactTitle: 'تواصل معنا | Blue Orbit Technologies',
       contactDesc: 'تواصل مع Blue Orbit Technologies للاستفسارات، الشراكات، أو طلب خدمات تقنية.',
-      raseedTitle: 'Raseed | رصيد - حلول تحويل الرصيد لنقاط البيع',
-      raseedDesc: 'تطبيق Raseed يساعد نقاط بيع الرصيد على تنفيذ عمليات التحويل بشكل أسرع وتنظيم العمليات.',
-      cloverTitle: 'Clover Flow | POS & Business Management',
+      raseedTitle: 'Raseed | رصيد — إدارة تحويلات الرصيد في سوريا',
+      raseedDesc: 'تطبيق Raseed لإدارة تحويلات الرصيد اليومية لنقاط بيع الرصيد في سوريا.',
+      cloverTitle: 'Clover Flow | إدارة نقاط البيع والأعمال — قريباً',
       cloverDesc: 'منصة لإدارة نقاط البيع والأعمال، مصممة لتبسيط عمليات البيع والمخزون وإدارة العمل.',
     },
   },
 
   en: {
-    // Common
     common: {
       loading: 'Loading...',
       error: 'An error occurred',
@@ -354,9 +358,8 @@ export const translations = {
       subject: 'Subject',
       company: 'Company',
       website: 'Website',
+      allProducts: 'All Products',
     },
-
-    // Navigation
     nav: {
       home: 'Home',
       services: 'Services',
@@ -367,17 +370,13 @@ export const translations = {
       raseed: 'Raseed',
       clover: 'Clover Flow',
     },
-
-    // Hero
     hero: {
       title: 'Turning ideas into practical technology solutions',
       subtitle: 'We build websites, applications, and software systems designed for business needs—from concept and design through development, deployment, and ongoing support.',
       ctaPrimary: 'Explore Services',
       ctaSecondary: 'View Products',
-      scrollDown: 'Scroll down',
+      scrollDown: 'Get started',
     },
-
-    // About
     about: {
       title: 'About Us',
       subtitle: 'Blue Orbit Technologies — A technology company building software solutions and products.',
@@ -396,7 +395,7 @@ export const translations = {
         name: 'Eng. Ayham Seif',
         role: 'Founder',
         experience: '12+ years experience',
-        bio: 'With over 12 years of experience in software engineering, solution architecture, system development, technical leadership, infrastructure, DevOps, and databases—hands-on across the full software lifecycle from requirements analysis and solution design through development, testing, deployment, operations, and continuous support. Extensive experience building enterprise solutions, SaaS, ERP, CRM, HR, Finance, POS, E-commerce, CMS, authentication systems, process automation, and service integration.',
+        bio: 'With over 12 years of experience in software engineering, solution architecture, system development, technical leadership, infrastructure, DevOps, and databases—hands-on across the full software lifecycle from requirements analysis and solution design through development, testing, deployment, operations, and continuous support.',
       },
       methodology: {
         title: 'How We Work',
@@ -411,8 +410,6 @@ export const translations = {
         ],
       },
     },
-
-    // Services
     services: {
       title: 'Services',
       subtitle: 'We offer a comprehensive range of technology services designed for diverse business needs.',
@@ -423,8 +420,6 @@ export const translations = {
         infrastructure: 'Infrastructure',
       },
     },
-
-    // Products
     products: {
       title: 'Our Products',
       subtitle: 'We build our own software products that solve real market problems.',
@@ -435,9 +430,8 @@ export const translations = {
       download: 'Download App',
       screenshots: 'App Screenshots',
       comingSoon: 'Coming Soon',
+      available: 'Available Now',
     },
-
-    // Work
     work: {
       title: 'Our Work',
       subtitle: 'Projects and products we have built and developed.',
@@ -447,15 +441,13 @@ export const translations = {
       caseStudy: 'Case Study',
       technologies: 'Technologies Used',
     },
-
-    // Contact
     contact: {
       title: 'Contact Us',
       subtitle: 'We welcome your inquiries, partnerships, or requests for technology services.',
       form: {
         title: 'Send a Message',
-        success: 'Your message has been sent successfully. We\'ll get back to you soon.',
-        error: 'Failed to send. Please try again or contact us directly.',
+        success: "Your message has been sent successfully. We'll get back to you soon.",
+        error: 'Failed to send. Please try again or contact us directly via email.',
       },
       info: {
         title: 'Contact Information',
@@ -467,15 +459,14 @@ export const translations = {
       },
       cta: 'Ready to start?',
       ctaDesc: 'Get in touch to discuss your next project.',
+      ctaHeadingStart: 'Ready to ',
+      ctaHeadingHighlight: 'start your project',
+      ctaHeadingEnd: '?',
     },
-
-    // Why BOTech
     whyBotech: {
       title: 'Why BOTech?',
       subtitle: 'What sets our approach to building technology solutions apart.',
     },
-
-    // Footer
     footer: {
       tagline: 'Turning ideas into practical technology solutions',
       company: 'Company',
@@ -489,85 +480,127 @@ export const translations = {
       madeWith: 'Made with',
       followUs: 'Follow us',
     },
-
-    // Raseed
     raseed: {
       hero: {
-        title: 'Raseed',
-        subtitle: 'Balance Transfer App for POS',
-        description: 'An app that helps retail balance points execute transfers faster and organize related operations.',
-        ctaDownload: 'Download App',
-        ctaContact: 'Contact Sales',
+        subtitle: 'Daily balance transfer management app',
+        description: 'A balance transfer manager built for mobile phone shops, recharge stores, and payment points in Syria. Serve customers faster, cut down mistakes, and keep your whole day organized from one Android device.',
+        ctaDownload: 'Download Free',
+        ctaContact: 'Contact Us',
       },
-      features: {
-        title: 'Key Features',
-        fastTransfer: 'Fast Transfers',
-        fastTransferDesc: 'Execute balance transfers in seconds',
-        operationsLog: 'Operations Log',
-        operationsLogDesc: 'Track and review all transfers with full details',
-        contacts: 'Contacts Management',
-        contactsDesc: 'Save and organize customer and vendor numbers',
-        balance: 'Balance Tracking',
-        balanceDesc: 'Monitor available balances with low-balance alerts',
-        offline: 'Offline Support',
-        offlineDesc: 'Works offline with automatic sync when online',
-        auth: 'Secure Authentication',
-        authDesc: 'PIN or biometric account protection',
-      },
+      stats: [
+        { value: 'Free trial', label: 'No upfront payment required' },
+        { value: 'Offline', label: 'Works after activation' },
+        { value: 'Dual SIM', label: 'MTN & Syriatel' },
+        { value: 'Arabic', label: 'Simple, clear interface' },
+      ],
+      features: { title: 'Features built for your business' },
       howItWorks: {
         title: 'How It Works',
         steps: [
-          { step: '01', title: 'Sign In', desc: 'Secure PIN or biometric login' },
-          { step: '02', title: 'Choose Action', desc: 'Transfer, inquiry, or payment' },
-          { step: '03', title: 'Enter Details', desc: 'Number, amount, and notes' },
-          { step: '04', title: 'Confirm & Send', desc: 'Review details and execute' },
-          { step: '05', title: 'Receipt & Log', desc: 'Get receipt and auto-save to log' },
+          { step: '01', title: 'Download the App', desc: 'Download Raseed straight from this website onto the Android device in your shop' },
+          { step: '02', title: 'Try It Free', desc: 'Start right away with the free trial and test transfers and reports' },
+          { step: '03', title: 'Request Activation', desc: "When you're ready, send an activation request from inside the app and we'll get in touch" },
         ],
       },
-      screenshots: 'Screenshots',
-      download: {
-        title: 'Get Raseed',
-        android: 'Download from Google Play',
-        apk: 'Direct APK Download',
-        comingSoon: 'Coming soon to store',
+      screenshots: 'See Raseed in Pictures',
+      screenshotsSubtitle: 'Promotional visuals showing the app in action, made for sharing and getting to know Raseed',
+      screenshotsItems: [
+        { title: 'Raseed — The Idea', desc: '' },
+        { title: 'Sign In', desc: '' },
+        { title: 'A Colorful Collection', desc: '' },
+        { title: 'Your Daily Buddy', desc: '' },
+        { title: 'Download Now', desc: '' },
+      ],
+      videos: { title: 'See the App in Action' },
+      comparison: {
+        title: 'Manual Transfers vs Raseed',
+        subtitle: 'See the difference in every step of your daily work',
+        manualHeader: 'Manual',
+        appHeader: 'With Raseed',
+        rows: [
+          { label: 'Transfer Speed', manual: 'Type code manually', app: 'One-tap transfer' },
+          { label: 'SIM Selection', manual: 'Manual switching', app: 'Automatic' },
+          { label: 'Balance Check', manual: 'Codes per network', app: 'One tap' },
+          { label: 'Transaction Log', manual: 'None', app: 'Daily reports' },
+          { label: 'Offline', manual: 'No', app: 'Yes, after activation' },
+          { label: 'Error Risk', manual: 'High', app: 'Much lower' },
+          { label: 'Interface', manual: 'Complex codes', app: 'Simple Arabic' },
+          { label: 'Support', manual: 'None', app: 'Our team' },
+        ],
+      },
+      pricing: {
+        title: 'Simple, Clear Pricing',
+        subtitle: 'Choose the plan that fits your work. The free trial is always available before you buy.',
+        currency: 'SYP',
+        per: '/year',
+        plans: [
+          {
+            name: 'One Year',
+            price: '1,200',
+            description: 'Ideal for new shops wanting to try Raseed at the lowest cost.',
+            features: ['All app features', 'Free trial included', 'Activation on one device', 'Updates all year'],
+          },
+          {
+            name: 'Two Years',
+            price: '2,000',
+            description: 'The best balance between price and long-term value.',
+            features: ['All app features', 'Priority support', 'Updates for full period', 'Save 400 SYP'],
+            popular: true,
+          },
+          {
+            name: 'Three Years',
+            price: '3,000',
+            description: 'Perfect for established businesses looking for the best long-term investment.',
+            features: ['All app features', 'Priority support', 'Price locked for 3 years', 'Save 600 SYP'],
+          },
+        ],
       },
       faq: {
-        title: 'FAQ',
+        title: 'Frequently Asked Questions',
+        subtitle: 'Everything you need to know about Raseed',
         items: [
-          { q: 'Does the app work offline?', a: 'Yes, works offline with automatic sync when connectivity returns.' },
-          { q: 'What OS versions are supported?', a: 'Android 8.0 and above.' },
-          { q: 'How is data protected?', a: 'Local encryption, PIN/biometric auth, no sensitive cloud storage.' },
+          { q: 'What is Raseed?', a: "An Android app for managing daily balance transfers, built specifically for mobile phone shops, recharge stores, and payment points in Syria. It helps you transfer faster, with fewer mistakes, and a clear record of every transaction." },
+          { q: 'Who is this app for?', a: "Mobile phone shops, recharge stores, balance transfer agents, payment points—anyone who handles a high volume of transfers daily and needs speed and organization." },
+          { q: 'Does it support Syriatel and MTN?', a: 'Yes, Raseed fully supports both major networks in Syria with automatic SIM selection.' },
+          { q: 'Does it work offline?', a: 'After activation, the app works completely offline. Internet is only required for activation.' },
+          { q: 'How does the free trial work?', a: 'The app includes a free trial that lets you try every feature before buying any license.' },
+          { q: 'How do I request activation?', a: 'From inside the app: send an activation request and it goes directly to the admin, who will contact you.' },
+          { q: 'Are updates included?', a: 'Yes, all updates are included for the duration of your license at no extra cost.' },
+          { q: 'Can I move my license to another device?', a: 'A license is tied to one device. If you need to move it, contact support and we will help you.' },
+        ],
+      },
+      download: {
+        title: 'Get Raseed',
+        subtitle: 'Try Raseed for free. Download the app, start the free trial, and request activation from inside the app when you are ready.',
+        ctaPrimary: 'WhatsApp',
+        ctaContact: 'Send a Message',
+      },
+      whyChoose: {
+        title: 'Why Mobile Shops Choose Raseed',
+        subtitle: 'Practical tools that make your working day faster, safer, and better organized',
+        items: [
+          { title: 'Faster Customer Service', desc: 'Complete the transfer in one tap while your customer waits' },
+          { title: 'Less Waiting Time', desc: 'No more minutes per customer spent typing codes' },
+          { title: 'Fewer Mistakes', desc: 'Cut down wrong numbers and wrong SIM mistakes' },
+          { title: 'Easier Balance Inquiry', desc: 'Check any balance in seconds without hunting for codes' },
+          { title: 'Daily Reports', desc: 'A clear record of every transfer by the end of the day' },
+          { title: 'Dual SIM Support', desc: 'Automatic selection of the right SIM every time' },
+          { title: 'Offline After Activation', desc: 'Use the app fully offline after activation' },
+          { title: 'Simple Arabic Interface', desc: 'Built so your whole shop can use it without a learning curve' },
         ],
       },
     },
-
-    // Clover
     clover: {
       hero: {
-        title: 'Clover Flow',
-        subtitle: 'POS & Business Management',
-        description: 'An integrated platform for sales, inventory, customers, and branches—designed for simplicity and speed.',
-        ctaDemo: 'Try Demo',
-        ctaContact: 'Contact Sales',
+        subtitle: 'Coming Soon',
+        description: 'A platform for POS and business management, designed to simplify sales, inventory, and operations. We are currently building Clover Flow.',
       },
-      features: {
-        title: 'Key Features',
-        pos: 'Point of Sale (POS)',
-        posDesc: 'Fast sales interface supporting cash, card, and credit',
-        inventory: 'Inventory Management',
-        inventoryDesc: 'Track quantities, alerts, and inter-branch transfers',
-        products: 'Product Management',
-        productsDesc: 'Products, variants, barcodes, and multi-pricing',
-        barcode: 'Barcode Support',
-        barcodeDesc: 'Scan and print barcodes, quick search by scan',
-        customers: 'Customers',
-        customersDesc: 'Customer profiles, purchase history, credit limits',
-        stores: 'Multi-Store',
-        storesDesc: 'Unlimited branches with granular user permissions',
-        offline: 'Offline-First',
-        offlineDesc: 'Fully functional offline, smart sync when online',
-        reports: 'Reports & Analytics',
-        reportsDesc: 'Sales, inventory, performance, daily/monthly financials',
+      comingSoon: {
+        title: 'Clover Flow Coming Soon',
+        subtitle: 'We are building an integrated platform for POS and business management. Stay tuned for launch.',
+        modulesTitle: "What we're building",
+        modulesSubtitle: 'The core system architecture',
+        contactTitle: 'This is what we are building now',
       },
       modules: {
         title: 'System Modules',
@@ -580,39 +613,16 @@ export const translations = {
           { name: 'Settings', desc: 'Taxes, printers, backup' },
         ],
       },
-      screenshots: 'Screenshots',
-      platforms: {
-        title: 'Platforms',
-        android: 'Android app for field sales',
-        web: 'Web dashboard for management',
-      },
-      faq: {
-        title: 'FAQ',
-        items: [
-          { q: 'Does it support multiple branches?', a: 'Yes, unlimited branches with granular permissions.' },
-          { q: 'Does it work offline?', a: 'Yes, offline-first architecture with automatic sync on connectivity.' },
-          { q: 'Can it be customized?', a: 'Yes, we offer customization for enterprise clients.' },
-        ],
-      },
+      features: { title: 'Key Features' },
       howItWorks: {
         title: 'How It Works',
-        steps: [
-          { step: '01', title: 'Sign In', desc: 'Secure biometric or PIN login' },
-          { step: '02', title: 'Select Branch', desc: 'Choose the branch you\'ll work on' },
-          { step: '03', title: 'Start Selling', desc: 'Add products, select customer, and payment method' },
-          { step: '04', title: 'Complete Sale', desc: 'Print receipt or send to customer' },
-          { step: '05', title: 'Sync', desc: 'Data syncs automatically when online' },
-        ],
+        steps: [],
       },
-      download: {
-        title: 'Get Clover Flow',
-        android: 'Download Android App',
-        web: 'Access Web Dashboard',
-        comingSoon: 'Coming soon',
-      },
+      screenshots: 'Screenshots',
+      platforms: { title: 'Platforms', android: '', web: '' },
+      download: { title: '', android: '', web: '', comingSoon: '' },
+      faq: { title: 'FAQ', items: [] },
     },
-
-    // SEO / Meta
     seo: {
       homeTitle: 'Blue Orbit Technologies | Technology Solutions',
       homeDesc: 'Turning ideas into practical technology solutions. We build websites, apps, and software systems for business needs.',
@@ -624,13 +634,13 @@ export const translations = {
       workDesc: 'Projects and products by Blue Orbit Technologies: Raseed, Clover Flow, and custom technology solutions.',
       contactTitle: 'Contact | Blue Orbit Technologies',
       contactDesc: 'Contact Blue Orbit Technologies for inquiries, partnerships, or technology services.',
-      raseedTitle: 'Raseed | Balance Transfer App for POS',
-      raseedDesc: 'Raseed helps retail balance points execute transfers faster and organize operations.',
-      cloverTitle: 'Clover Flow | POS & Business Management',
-      cloverDesc: 'A platform for POS and business management, designed to simplify sales, inventory, and operations.',
+      raseedTitle: 'Raseed | Balance Transfer App for Syria',
+      raseedDesc: 'Raseed helps mobile phone shops in Syria manage daily balance transfers with fewer mistakes and clear daily reports.',
+      cloverTitle: 'Clover Flow | POS & Business Management — Coming Soon',
+      cloverDesc: 'A platform for POS and business management, designed to simplify sales, inventory, and operations. Coming soon.',
     },
   },
-} as const satisfies Record<Locale, Translations>;
+} satisfies Record<Locale, Translations>;
 
 export type Translations = {
   common: {
@@ -669,6 +679,7 @@ export type Translations = {
     subject: string;
     company: string;
     website: string;
+    allProducts: string;
   };
   nav: {
     home: string;
@@ -725,6 +736,7 @@ export type Translations = {
     download: string;
     screenshots: string;
     comingSoon: string;
+    available: string;
   };
   work: {
     title: string;
@@ -753,6 +765,9 @@ export type Translations = {
     };
     cta: string;
     ctaDesc: string;
+    ctaHeadingStart: string;
+    ctaHeadingHighlight: string;
+    ctaHeadingEnd: string;
   };
   whyBotech: {
     title: string;
@@ -773,94 +788,83 @@ export type Translations = {
   };
   raseed: {
     hero: {
-      title: string;
       subtitle: string;
       description: string;
       ctaDownload: string;
       ctaContact: string;
     };
-    features: {
-      title: string;
-      fastTransfer: string;
-      fastTransferDesc: string;
-      operationsLog: string;
-      operationsLogDesc: string;
-      contacts: string;
-      contactsDesc: string;
-      balance: string;
-      balanceDesc: string;
-      offline: string;
-      offlineDesc: string;
-      auth: string;
-      authDesc: string;
-    };
+    stats: { value: string; label: string }[];
+    features: { title: string };
     howItWorks: {
       title: string;
       steps: { step: string; title: string; desc: string }[];
     };
     screenshots: string;
-    download: {
+    screenshotsSubtitle: string;
+    screenshotsItems: { title: string; desc: string }[];
+    videos: { title: string };
+    comparison: {
       title: string;
-      android: string;
-      apk: string;
-      comingSoon: string;
+      subtitle: string;
+      manualHeader: string;
+      appHeader: string;
+      rows: { label: string; manual: string; app: string }[];
+    };
+    pricing: {
+      title: string;
+      subtitle: string;
+      currency: string;
+      per: string;
+      plans: {
+        name: string;
+        price: string;
+        description: string;
+        features: string[];
+        popular?: boolean;
+      }[];
     };
     faq: {
       title: string;
+      subtitle: string;
       items: { q: string; a: string }[];
+    };
+    download: {
+      title: string;
+      subtitle: string;
+      ctaPrimary: string;
+      ctaContact: string;
+    };
+    whyChoose: {
+      title: string;
+      subtitle: string;
+      items: { title: string; desc: string }[];
     };
   };
   clover: {
     hero: {
-      title: string;
       subtitle: string;
       description: string;
-      ctaDemo: string;
-      ctaContact: string;
     };
-    features: {
+    comingSoon: {
       title: string;
-      pos: string;
-      posDesc: string;
-      inventory: string;
-      inventoryDesc: string;
-      products: string;
-      productsDesc: string;
-      barcode: string;
-      barcodeDesc: string;
-      customers: string;
-      customersDesc: string;
-      stores: string;
-      storesDesc: string;
-      offline: string;
-      offlineDesc: string;
-      reports: string;
-      reportsDesc: string;
+      subtitle: string;
+      modulesTitle: string;
+      modulesSubtitle: string;
+      contactTitle: string;
     };
     modules: {
       title: string;
       items: { name: string; desc: string }[];
     };
+    features: { title: string };
     howItWorks: {
       title: string;
       steps: { step: string; title: string; desc: string }[];
     };
     screenshots: string;
-    platforms: {
-      title: string;
-      android: string;
-      web: string;
-    };
-    download: {
-      title: string;
-      android: string;
-      web: string;
-      comingSoon: string;
-    };
-    faq: {
-      title: string;
-      items: { q: string; a: string }[];
-    };
+    platforms: { title: string; android: string; web: string };
+    download: { title: string; android: string; web: string; comingSoon: string };
+    faq: { title: string; items: { q: string; a: string }[] };
   };
   seo: {
     homeTitle: string;

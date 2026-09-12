@@ -1,14 +1,17 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Layout } from '@/components/layout/Layout';
 import { Section, Container, Input, Textarea, Button } from '@/components/ui';
 import { siteConfig } from '@/config/site';
 import { useI18n } from '@/i18n';
 import { pageSEO } from '@/config/seo';
+import { useLocation } from 'react-router-dom';
+import { Reveal, RevealStagger } from '@/components/ui/Reveal';
 
 export function Contact() {
   const { t, locale } = useI18n();
   const seo = locale === 'ar' ? pageSEO.contact : pageSEO.contactEn;
+  const location = useLocation();
   
   const [formData, setFormData] = useState({
     name: '',
@@ -20,43 +23,118 @@ export function Contact() {
   });
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
+  const [touched, setTouched] = useState<Record<string, boolean>>({});
 
-  const validate = () => {
-    const newErrors: Record<string, string> = {};
-    if (!formData.name.trim()) newErrors.name = locale === 'ar' ? 'الاسم مطلوب' : 'Name is required';
-    if (!formData.email.trim()) newErrors.email = locale === 'ar' ? 'البريد الإلكتروني مطلوب' : 'Email is required';
-    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) newErrors.email = locale === 'ar' ? 'بريد إلكتروني غير صحيح' : 'Invalid email';
-    if (!formData.message.trim()) newErrors.message = locale === 'ar' ? 'الرسالة مطلوبة' : 'Message is required';
-    else if (formData.message.trim().length < 20) newErrors.message = locale === 'ar' ? 'الرسالة قصيرة جداً (20 حرف على الأقل)' : 'Message too short (min 20 chars)';
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  };
+  useEffect(() => {
+    if (location.hash === '#form') {
+      const formSection = document.getElementById('contact-form');
+      if (formSection) {
+        formSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+  }, [location.hash]);
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!validate()) return;
-    
-    setStatus('submitting');
-    
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1500));
-    
-    // In production, replace with actual form submission (Formspree, Netlify Forms, etc.)
-    // const formData = new FormData();
-    // formData.append('name', formData.name);
-    // ...
-    // await fetch('https://formspree.io/f/your-id', { method: 'POST', body: formData });
-    
-    setStatus('success');
-    setFormData({ name: '', email: '', phone: '', company: '', subject: '', message: '' });
-    
-    setTimeout(() => setStatus('idle'), 5000);
+  const validateField = (name: string, value: string) => {
+    switch (name) {
+      case 'name':
+        if (!value.trim()) return locale === 'ar' ? 'الاسم مطلوب' : 'Name is required';
+        if (value.trim().length < 2) return locale === 'ar' ? 'الاسم قصير جداً' : 'Name too short';
+        break;
+      case 'email':
+        if (!value.trim()) return locale === 'ar' ? 'البريد الإلكتروني مطلوب' : 'Email is required';
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) return locale === 'ar' ? 'بريد إلكتروني غير صحيح' : 'Invalid email';
+        break;
+      case 'message':
+        if (!value.trim()) return locale === 'ar' ? 'الرسالة مطلوبة' : 'Message is required';
+        if (value.trim().length < 20) return locale === 'ar' ? 'الرسالة قصيرة جداً (20 حرف على الأقل)' : 'Message too short (min 20 chars)';
+        break;
+    }
+    return '';
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
-    if (errors[name]) setErrors(prev => ({ ...prev, [name]: '' }));
+    if (touched[name] && errors[name]) {
+      const error = validateField(name, value);
+      setErrors(prev => ({ ...prev, [name]: error }));
+    }
+  };
+
+  const handleBlur = (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setTouched(prev => ({ ...prev, [name]: true }));
+    const error = validateField(name, value);
+    setErrors(prev => ({ ...prev, [name]: error }));
+  };
+
+  const validate = () => {
+    const newErrors: Record<string, string> = {};
+    let hasErrors = false;
+    
+    Object.keys(formData).forEach(key => {
+      const error = validateField(key, formData[key as keyof typeof formData]);
+      if (error) {
+        newErrors[key] = error;
+        hasErrors = true;
+      }
+    });
+    
+    setErrors(newErrors);
+    setTouched(Object.keys(formData).reduce((acc, key) => ({ ...acc, [key]: true }), {}));
+    return !hasErrors;
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!validate()) return;
+
+    setStatus('submitting');
+
+    try {
+      const response = await fetch(
+        `https://formsubmit.co/ajax/${siteConfig.contact.email}`,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Accept: 'application/json',
+          },
+          body: JSON.stringify({
+            _captcha: 'false',
+            _subject: `[BOTech Website] ${formData.subject || (locale === 'ar' ? 'رسالة جديدة' : 'New message')}`,
+            name: formData.name,
+            email: formData.email,
+            phone: formData.phone,
+            company: formData.company,
+            message: formData.message,
+          }),
+        }
+      );
+
+      const text = await response.text();
+      let data: any = null;
+      try {
+        data = text ? JSON.parse(text) : null;
+      } catch {
+        data = null;
+      }
+
+      const succeeded =
+        response.ok &&
+        (data?.success === 'true' || data?.success === true);
+
+      if (succeeded) {
+        setStatus('success');
+        setFormData({ name: '', email: '', phone: '', company: '', subject: '', message: '' });
+        setTouched({});
+        setTimeout(() => setStatus('idle'), 5000);
+      } else {
+        throw new Error(data?.message || 'send failed');
+      }
+    } catch {
+      setStatus('error');
+    }
   };
 
   return (
@@ -72,131 +150,181 @@ export function Contact() {
         <meta name="twitter:description" content={seo.description} />
       </Helmet>
 
-      {/* Hero */}
-      <section className="pt-32 pb-16 lg:pt-40 lg:pb-24 bg-neutral-50">
-        <Container>
-          <div className="max-w-3xl mx-auto text-center">
-            <h1 className="heading-1 text-neutral-900 mb-6">{t.contact.title}</h1>
-            <p className="body-lg text-neutral-600">{t.contact.subtitle}</p>
-          </div>
-        </Container>
-      </section>
-
       {/* Contact Form & Info */}
-      <Section size="lg" background="white">
+      <Section size="xl" background="white" id="contact-form">
         <Container>
           <div className="grid lg:grid-cols-3 gap-12">
-            {/* Contact Info */}
-            <div className="lg:col-span-1 space-y-8">
-              <div>
-                <h2 className="heading-3 text-neutral-900 mb-4">{t.contact.info.title}</h2>
-                <address className="not-italic space-y-4 text-neutral-600">
-                  <div className="flex items-start gap-3">
-                    <div className="w-10 h-10 rounded-lg bg-primary-100 text-primary-600 flex items-center justify-center flex-shrink-0">
-                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
+            <Reveal delay={0} className="lg:col-span-1">
+              {/* Contact Info */}
+              <div className="space-y-8">
+                <div className="p-6 sm:p-8 bg-neutral-50 rounded-2xl border border-neutral-200">
+                  <h2 className="heading-3 text-neutral-900 mb-4">{t.contact.info.title}</h2>
+                  <address className="not-italic space-y-6 text-neutral-600">
+                    <div className="flex items-start gap-4">
+                      <div className="w-12 h-12 rounded-xl bg-primary-100 text-primary-600 flex items-center justify-center flex-shrink-0">
+                        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
+                      </div>
+                      <div>
+                        <p className="font-medium text-neutral-900">{t.contact.info.email}</p>
+                        <a href={`mailto:${siteConfig.contact.email}`} className="text-primary-600 hover:text-primary-700 transition-colors group flex items-center gap-1">
+                          {siteConfig.contact.email}
+                          <svg className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
+                        </a>
+                      </div>
                     </div>
-                    <div>
-                      <p className="font-medium text-neutral-900">{t.contact.info.email}</p>
-                      <a href={`mailto:${siteConfig.contact.email}`} className="text-primary-600 hover:text-primary-700">{siteConfig.contact.email}</a>
+                    
+                    <div className="flex items-start gap-4">
+                      <div className="w-12 h-12 rounded-xl bg-primary-100 text-primary-600 flex items-center justify-center flex-shrink-0">
+                        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h2.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" /></svg>
+                      </div>
+                      <div>
+                        <p className="font-medium text-neutral-900">{t.contact.info.phone}</p>
+                        <a href={`tel:+${siteConfig.contact.phoneRaw}`} className="text-primary-600 hover:text-primary-700 transition-colors group flex items-center gap-1" dir="ltr">
+                          {siteConfig.contact.phone}
+                          <svg className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
+                        </a>
+                      </div>
                     </div>
-                  </div>
-                  
-                  <div className="flex items-start gap-3">
-                    <div className="w-10 h-10 rounded-lg bg-primary-100 text-primary-600 flex items-center justify-center flex-shrink-0">
-                      <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.864-5.597-5.597l-.012-.012A2.657 2.657 0 0011.053 10c-.575 0-1.098.197-1.54.542l-.462.355-.002-.002a14.466 14.466 0 00-3.08 3.08l-.355.462c-.345.442-.542.965-.542 1.54 0 .994.774 1.792 1.862 1.947.012.012.024.023.037.035l5.597 5.597a.497.497 0 00.702-.005l.007-.01c.2-.194.328-.45.328-.715 0-.455-.313-.845-.75-.922a1.462 1.462 0 00-.263-.308zM12 4.5a5.5 5.5 0 110 11 5.5 5.5 0 010-11z"/></svg>
-                    </div>
-                    <div>
-                      <p className="font-medium text-neutral-900">{t.contact.info.whatsapp}</p>
-                      <a href={siteConfig.contact.whatsapp} target="_blank" rel="noopener noreferrer" className="text-primary-600 hover:text-primary-700">WhatsApp</a>
-                    </div>
-                  </div>
-                </address>
-              </div>
-            </div>
 
-            {/* Form */}
-            <div className="lg:col-span-2">
-              <div className="card-padded">
-                <h2 className="heading-3 text-neutral-900 mb-6">{t.contact.form.title}</h2>
-                
-                {status === 'success' && (
-                  <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-lg text-green-700" role="alert">
-                    <p className="font-medium">{t.contact.form.success}</p>
-                  </div>
-                )}
-                
-                {status === 'error' && (
-                  <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg text-red-700" role="alert">
-                    <p className="font-medium">{t.contact.form.error}</p>
-                  </div>
-                )}
+                    <div className="flex items-start gap-4">
+                      <div className="w-12 h-12 rounded-xl bg-primary-100 text-primary-600 flex items-center justify-center flex-shrink-0">
+                        <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.864-5.597-5.597l-.012-.012A2.657 2.657 0 0011.053 10c-.575 0-1.098.197-1.54.542l-.462.355-.002-.002a14.466 14.466 0 00-3.08 3.08l-.355.462c-.345.442-.542.965-.542 1.54 0 .994.774 1.792 1.862 1.947.012.012.024.023.037.035l5.597 5.597a.497.497 0 00.702-.005l.007-.01c.2-.194.328-.45.328-.715 0-.455-.313-.845-.75-.922a1.462 1.462 0 00-.263-.308zM12 4.5a5.5 5.5 0 110 11 5.5 5.5 0 010-11z"/></svg>
+                      </div>
+                      <div>
+                        <p className="font-medium text-neutral-900">{t.contact.info.whatsapp}</p>
+                        <a href={siteConfig.contact.whatsapp} target="_blank" rel="noopener noreferrer" className="text-primary-600 hover:text-primary-700 transition-colors group flex items-center gap-1" dir="ltr">
+                          {siteConfig.contact.phone}
+                          <svg className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
+                        </a>
+                      </div>
+                    </div>
+                  </address>
+                </div>
 
-                <form onSubmit={handleSubmit} className="space-y-5" noValidate>
-                  <div className="grid sm:grid-cols-2 gap-5">
-                    <Input
-                      name="name"
-                      label={t.common.name}
-                      value={formData.name}
-                      onChange={handleChange}
-                      error={errors.name}
-                      required
-                      placeholder={locale === 'ar' ? 'أحمد محمد' : 'Ahmed Mohammed'}
-                    />
-                    <Input
-                      name="email"
-                      type="email"
-                      label={t.common.email}
-                      value={formData.email}
-                      onChange={handleChange}
-                      error={errors.email}
-                      required
-                      placeholder="ahmed@example.com"
-                    />
+                {/* Quick info cards */}
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="p-4 bg-neutral-50 rounded-xl border border-neutral-200 text-center">
+                    <div className="w-10 h-10 rounded-lg bg-primary-100 text-primary-600 flex items-center justify-center mx-auto mb-2">
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                    </div>
+                    <p className="text-sm font-medium text-neutral-900">9AM - 6PM</p>
+                    <p className="text-xs text-neutral-500">Response Time</p>
                   </div>
-                  
-                  <div className="grid sm:grid-cols-2 gap-5">
-                    <Input
-                      name="phone"
-                      type="tel"
-                      label={t.common.phone}
-                      value={formData.phone}
-                      onChange={handleChange}
-                      placeholder={locale === 'ar' ? '050 123 4567' : '+966 50 123 4567'}
-                    />
-                    <Input
-                      name="company"
-                      label={t.common.company}
-                      value={formData.company}
-                      onChange={handleChange}
-                      placeholder={locale === 'ar' ? 'اسم الشركة (اختياري)' : 'Company name (optional)'}
-                    />
+                  <div className="p-4 bg-neutral-50 rounded-xl border border-neutral-200 text-center">
+                    <div className="w-10 h-10 rounded-lg bg-primary-100 text-primary-600 flex items-center justify-center mx-auto mb-2">
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" /></svg>
+                    </div>
+                    <p className="text-sm font-medium text-neutral-900">{'<' + ' 24h'}</p>
+                    <p className="text-xs text-neutral-500">Typical Reply</p>
                   </div>
-                  
-                  <Input
-                    name="subject"
-                    label={t.common.subject}
-                    value={formData.subject}
-                    onChange={handleChange}
-                    placeholder={locale === 'ar' ? 'موضوع الاستفسار' : 'Inquiry subject'}
-                  />
-                  
-                  <Textarea
-                    name="message"
-                    label={t.common.message}
-                    value={formData.message}
-                    onChange={handleChange}
-                    error={errors.message}
-                    required
-                    rows={5}
-                    placeholder={locale === 'ar' ? 'اكتب رسالتك هنا...' : 'Write your message here...'}
-                  />
-                  
-                  <Button type="submit" fullWidth loading={status === 'submitting'}>
-                    {status === 'submitting' ? t.common.sending : t.common.submit}
-                  </Button>
-                </form>
+                </div>
               </div>
-            </div>
+            </Reveal>
+
+            <Reveal delay={100} className="lg:col-span-2 h-full">
+              {/* Form */}
+              <div className="h-full">
+                <div className="card-padded h-full flex flex-col">
+                  <div className="mb-6">
+                    <h2 className="heading-3 text-neutral-900 mb-2">{t.contact.form.title}</h2>
+                    <p className="body text-neutral-600">{locale === 'ar' ? 'املأ النموذج وسنرد عليك خلال 24 ساعة' : 'Fill out the form and we\'ll get back to you within 24 hours'}</p>
+                  </div>
+                  
+                  {status === 'success' && (
+                    <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-lg text-green-700 flex items-center gap-3 animate-slide-down" role="alert">
+                      <svg className="w-5 h-5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" /></svg>
+                      <p className="font-medium">{t.contact.form.success}</p>
+                    </div>
+                  )}
+                  
+                  {status === 'error' && (
+                    <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg text-red-700 flex items-center gap-3 animate-slide-down" role="alert">
+                      <svg className="w-5 h-5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm-7.707-9.293a1 1 0 00-1.414 1.414L10.586 10l-2.293 2.293a1 1 0 001.414 1.414l2.293-2.293 2.293 2.293a1 1 0 001.414-1.414L11.414 10l2.293-2.293a1 1 0 00-1.414-1.414L10 8.586l-2.293-2.293z" clipRule="evenodd" /></svg>
+                      <p className="font-medium">{t.contact.form.error}</p>
+                    </div>
+                  )}
+
+                  <form onSubmit={handleSubmit} className="space-y-5 flex-1 flex flex-col" noValidate>
+                    <RevealStagger direction="up" delayStep={50}>
+                      <div className="grid sm:grid-cols-2 gap-5">
+                        <Input
+                          name="name"
+                          label={t.common.name}
+                          value={formData.name}
+                          onChange={handleChange}
+                          onBlur={handleBlur}
+                          error={touched.name ? errors.name : undefined}
+                          required
+                          placeholder={locale === 'ar' ? 'أحمد محمد' : 'Ahmed Mohammed'}
+                          hint={locale === 'ar' ? 'اسمك الكامل' : 'Your full name'}
+                        />
+                        <Input
+                          name="email"
+                          type="email"
+                          label={t.common.email}
+                          value={formData.email}
+                          onChange={handleChange}
+                          onBlur={handleBlur}
+                          error={touched.email ? errors.email : undefined}
+                          required
+                          placeholder="ahmed@example.com"
+                          hint={locale === 'ar' ? 'بريدك الإلكتروني للتواصل' : 'Your email for reply'}
+                        />
+                      </div>
+                      
+                      <div className="grid sm:grid-cols-2 gap-5">
+                        <Input
+                          name="phone"
+                          type="tel"
+                          label={t.common.phone}
+                          value={formData.phone}
+                          onChange={handleChange}
+                          onBlur={handleBlur}
+                          placeholder={locale === 'ar' ? '050 123 4567' : '+966 50 123 4567'}
+                          hint={locale === 'ar' ? 'اختياري' : 'Optional'}
+                        />
+                        <Input
+                          name="company"
+                          label={t.common.company}
+                          value={formData.company}
+                          onChange={handleChange}
+                          onBlur={handleBlur}
+                          placeholder={locale === 'ar' ? 'اسم الشركة (اختياري)' : 'Company name (optional)'}
+                          hint={locale === 'ar' ? 'اختياري' : 'Optional'}
+                        />
+                      </div>
+                      
+                      <Input
+                        name="subject"
+                        label={t.common.subject}
+                        value={formData.subject}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        placeholder={locale === 'ar' ? 'موضوع الاستفسار' : 'Inquiry subject'}
+                        hint={locale === 'ar' ? 'موضوع رسالتك' : 'Subject of your message'}
+                      />
+                      
+                      <Textarea
+                        name="message"
+                        label={t.common.message}
+                        value={formData.message}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        error={touched.message ? errors.message : undefined}
+                        required
+                        rows={5}
+                        placeholder={locale === 'ar' ? 'اكتب رسالتك هنا...' : 'Write your message here...'}
+                        hint={locale === 'ar' ? '20 حرف على الأقل' : 'Minimum 20 characters'}
+                      />
+                    </RevealStagger>
+                    
+                    <Button type="submit" fullWidth loading={status === 'submitting'} className="mt-auto pt-4">
+                      {status === 'submitting' ? t.common.sending : t.common.submit}
+                    </Button>
+                  </form>
+                </div>
+              </div>
+            </Reveal>
           </div>
         </Container>
       </Section>

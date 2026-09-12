@@ -1,4 +1,4 @@
-import { forwardRef, ImgHTMLAttributes } from 'react';
+import { useState, forwardRef, ImgHTMLAttributes } from 'react';
 
 interface ImageProps extends ImgHTMLAttributes<HTMLImageElement> {
   priority?: boolean;
@@ -44,5 +44,3 @@ export const Image = forwardRef<HTMLImageElement, ImageProps>(
 );
 
 Image.displayName = 'Image';
-
-import { useState } from 'react';

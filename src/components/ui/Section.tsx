@@ -2,8 +2,9 @@ import { HTMLAttributes, forwardRef } from 'react';
 
 interface SectionProps extends HTMLAttributes<HTMLElement> {
   size?: 'sm' | 'md' | 'lg' | 'xl';
-  background?: 'white' | 'neutral' | 'primary' | 'transparent';
+  background?: 'white' | 'neutral' | 'primary' | 'transparent' | 'gradient';
   noPadding?: boolean;
+  className?: string;
 }
 
 export const Section = forwardRef<HTMLElement, SectionProps>(
@@ -20,6 +21,7 @@ export const Section = forwardRef<HTMLElement, SectionProps>(
       neutral: 'bg-neutral-50',
       primary: 'bg-primary-900 text-white',
       transparent: 'bg-transparent',
+      gradient: 'bg-gradient-to-b from-neutral-50 to-white',
     };
 
     const paddingStyles = noPadding ? '' : sizeStyles[size];
@@ -43,13 +45,15 @@ export const SectionHeader = ({
   title, 
   subtitle, 
   align = 'center',
-  className = '' 
+  className = '',
+  divider = false,
 }: { 
   badge?: string; 
   title: string; 
   subtitle?: string; 
   align?: 'left' | 'center' | 'right';
   className?: string;
+  divider?: boolean;
 }) => {
   const alignStyles = {
     left: 'text-left',
@@ -57,16 +61,25 @@ export const SectionHeader = ({
     right: 'text-right',
   };
 
+  const marginStyles = {
+    left: 'mx-0',
+    center: 'mx-auto',
+    right: 'mx-auto mr-0',
+  };
+
   return (
-    <div className={`max-w-3xl mx-auto ${alignStyles[align]} ${className}`}>
+    <div className={`max-w-3xl ${alignStyles[align]} ${marginStyles[align]} ${className}`}>
       {badge && (
-        <span className="inline-block px-3 py-1 text-sm font-medium bg-primary-100 text-primary-700 rounded-full mb-4">
+        <span className="inline-block px-3 py-1 text-sm font-medium bg-primary-100 text-primary-700 rounded-full mb-4 animate-fade-in delay-1">
           {badge}
         </span>
       )}
-      <h2 className="heading-2 text-neutral-900 mb-4">{title}</h2>
+      <h2 className="heading-2 text-neutral-900 mb-4 animate-fade-in delay-2">{title}</h2>
       {subtitle && (
-        <p className="body-lg text-neutral-600">{subtitle}</p>
+        <p className="body-lg text-neutral-600 animate-fade-in delay-3">{subtitle}</p>
+      )}
+      {divider && (
+        <div className="section-divider mt-6 animate-scale-in delay-4" aria-hidden="true" />
       )}
     </div>
   );

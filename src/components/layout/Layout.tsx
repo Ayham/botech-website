@@ -4,6 +4,8 @@ import { Header } from './Header';
 import { Footer } from './Footer';
 import { useI18n } from '../../i18n';
 import { siteConfig } from '../../config/site';
+import { BackToTop } from '../ui/BackToTop';
+import { ScrollProgress } from '../ui/ScrollProgress';
 
 interface LayoutProps {
   children: ReactNode;
@@ -62,12 +64,14 @@ export function Layout({
         <meta name="twitter:image" content={pageOgImage} />
       </Helmet>
 
+      <ScrollProgress />
       <div className="min-h-screen flex flex-col">
         <Header />
         <main id="main-content" className="flex-grow pt-16 lg:pt-20" role="main">
           {children}
         </main>
         <Footer />
+        <BackToTop />
       </div>
     </>
   );

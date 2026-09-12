@@ -6,3 +6,8 @@ export * from './Image';
 export * from './Badge';
 export * from './Container';
 export * from './Section';
+export * from './Reveal';
+export * from './ScrollToTop';
+export * from './ScrollProgress';
+export * from './BackToTop';
+export * from './Skeleton';

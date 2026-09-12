@@ -1,6 +1,7 @@
 import { useI18n } from '../../i18n';
 import { Container } from '../ui/Container';
 import { Section } from '../ui/Section';
+import { RevealStagger } from '../ui/Reveal';
 
 interface ProductFAQProps {
   productKey: 'raseed' | 'clover';
@@ -19,10 +20,10 @@ export function ProductFAQ({ productKey }: ProductFAQProps) {
           <h2 className="heading-2 text-neutral-900 mb-4">{faq.title}</h2>
         </div>
 
-        <div className="max-w-3xl mx-auto space-y-4">
+        <RevealStagger direction="up" delayStep={50} className="max-w-3xl mx-auto space-y-4">
           {faq.items.map((item, index) => (
             <details key={index} className="group bg-white rounded-xl border border-neutral-200 overflow-hidden">
-              <summary className="flex items-center justify-between p-6 cursor-pointer list-none">
+              <summary className="flex items-center justify-between p-6 cursor-pointer list-none group-hover:bg-neutral-50 transition-colors">
                 <h3 className="heading-4 text-neutral-900 pr-4">
                   {item.q}
                 </h3>
@@ -30,14 +31,14 @@ export function ProductFAQ({ productKey }: ProductFAQProps) {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                 </svg>
               </summary>
-              <div className="px-6 pb-6 border-t border-neutral-200 animate-fade-in">
-                <p className="body text-neutral-600">
+              <div className="px-6 pb-6 border-t border-neutral-200 animate-slide-down">
+                <p className="body text-neutral-600 leading-relaxed">
                   {item.a}
                 </p>
               </div>
             </details>
           ))}
-        </div>
+        </RevealStagger>
       </Container>
     </Section>
   );

@@ -23,18 +23,8 @@ export function WorkPage() {
         <meta name="twitter:description" content={seo.description} />
       </Helmet>
 
-      {/* Hero */}
-      <section className="pt-32 pb-16 lg:pt-40 lg:pb-24 bg-neutral-50">
-        <Container>
-          <div className="max-w-3xl mx-auto text-center">
-            <h1 className="heading-1 text-neutral-900 mb-6">{t.work.title}</h1>
-            <p className="body-lg text-neutral-600">{t.work.subtitle}</p>
-          </div>
-        </Container>
-      </section>
-
       {/* Work Grid */}
-      <Work />
+      <Work showHeader={false} />
 
       {/* Additional Projects Note */}
       <Section size="md" background="neutral">
@@ -46,7 +36,7 @@ export function WorkPage() {
                 : 'More projects in development. Contact us to learn more.'
               }
             </p>
-            <a href="/contact" className="btn btn-primary inline-flex">
+            <a href="/contact#form" className="btn btn-primary inline-flex">
               {t.common.contactUs}
             </a>
           </div>

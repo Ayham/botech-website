@@ -3,6 +3,7 @@ import { siteConfig } from '../../config/site';
 import { Card } from '../ui/Card';
 import { Container } from '../ui/Container';
 import { Section, SectionHeader } from '../ui/Section';
+import { Reveal, RevealStagger } from '../ui/Reveal';
 
 const serviceIcons: Record<string, React.ReactNode> = {
   globe: <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" /></svg>,
@@ -25,40 +26,42 @@ export function Services() {
       <Container>
         <SectionHeader
           badge={t.services.title}
-          title={t.services.title}
-          subtitle={t.services.subtitle}
+          title={t.services.subtitle}
+          subtitle={t.services.viewAll}
+          divider
         />
         
-        <div className="mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <RevealStagger direction="up" delayStep={80} className="mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {siteConfig.services.map((service, index) => (
-            <Card 
-              key={service.key} 
-              variant="padded" 
-              hover 
-              className="group animate-fade-in"
-              style={{ animationDelay: `${index * 100}ms` }}
-            >
-              <div className="w-12 h-12 rounded-xl bg-primary-100 text-primary-600 flex items-center justify-center mb-5 group-hover:bg-primary-600 group-hover:text-white transition-colors duration-200">
-                {serviceIcons[service.icon] || serviceIcons.globe}
-              </div>
-              <h3 className="heading-4 text-neutral-900 mb-3">
-                {locale === 'ar' ? service.title.ar : service.title.en}
-              </h3>
-              <p className="body text-neutral-600">
-                {locale === 'ar' ? service.description.ar : service.description.en}
-              </p>
-            </Card>
+            <Reveal key={service.key} delay={index * 80}>
+              <Card 
+                variant="padded" 
+                hover 
+                interactive
+                className="group"
+              >
+                <div className="w-12 h-12 rounded-xl bg-primary-100 text-primary-600 flex items-center justify-center mb-5 group-hover:bg-primary-600 group-hover:text-white transition-all duration-300 group-hover:scale-110 group-hover:rotate-3">
+                  {serviceIcons[service.icon] || serviceIcons.globe}
+                </div>
+                <h3 className="heading-4 text-neutral-900 mb-3 group-hover:text-primary-600 transition-colors duration-200">
+                  {locale === 'ar' ? service.title.ar : service.title.en}
+                </h3>
+                <p className="body text-neutral-600 leading-relaxed">
+                  {locale === 'ar' ? service.description.ar : service.description.en}
+                </p>
+              </Card>
+            </Reveal>
           ))}
-        </div>
+        </RevealStagger>
 
-        <div className="mt-12 text-center">
-          <a href="/services" className="btn btn-outline inline-flex">
+        <Reveal delay={400} className="mt-12 text-center">
+          <a href="/services" className="btn btn-outline inline-flex items-center gap-2 group">
             {t.services.viewAll}
-            <svg className="w-4 h-4 rtl-flip" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <svg className="w-4 h-4 rtl-flip transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
             </svg>
           </a>
-        </div>
+        </Reveal>
       </Container>
     </Section>
   );
