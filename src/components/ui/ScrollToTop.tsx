@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { useLocation, Outlet } from 'react-router-dom';
+import { RouteLoader } from './RouteLoader';
 
 export function ScrollToTopWrapper() {
   const { pathname, hash } = useLocation();
@@ -15,5 +16,10 @@ export function ScrollToTopWrapper() {
     }
   }, [pathname, hash]);
 
-  return <Outlet />;
+  return (
+    <>
+      <RouteLoader />
+      <Outlet />
+    </>
+  );
 }

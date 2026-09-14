@@ -254,6 +254,10 @@ export const translations = {
         subtitle: 'جرّب رصيد مجاناً. حمّل التطبيق، جرّب النسخة المجانية، واطلب التفعيل من داخل التطبيق.',
         ctaPrimary: 'تواصل عبر واتساب',
         ctaContact: 'أرسل رسالة',
+        downloadApk: 'تحميل مباشر',
+        apkPure: 'تحميل من APKPure',
+        googlePlay: 'تحميل من Google Play',
+        comingSoon: 'قريباً',
       },
       whyChoose: {
         title: 'لماذا محلات الرصيد تختار رصيد؟',
@@ -574,6 +578,10 @@ export const translations = {
         subtitle: 'Try Raseed for free. Download the app, start the free trial, and request activation from inside the app when you are ready.',
         ctaPrimary: 'WhatsApp',
         ctaContact: 'Send a Message',
+        downloadApk: 'Direct Download',
+        apkPure: 'Download from APKPure',
+        googlePlay: 'Download from Google Play',
+        comingSoon: 'Coming Soon',
       },
       whyChoose: {
         title: 'Why Mobile Shops Choose Raseed',
@@ -833,6 +841,10 @@ export type Translations = {
       subtitle: string;
       ctaPrimary: string;
       ctaContact: string;
+      downloadApk: string;
+      apkPure: string;
+      googlePlay: string;
+      comingSoon: string;
     };
     whyChoose: {
       title: string;

@@ -103,13 +103,33 @@ export function Footer() {
             <div className="space-y-3">
               <h3 className="font-semibold text-white mb-4 text-base">{t.contact.info.title}</h3>
               <address className="not-italic space-y-3">
-                <div className="flex items-center gap-3">
+                <div className="flex items-start gap-3">
                   <div className="w-10 h-10 rounded-lg bg-neutral-800 text-neutral-300 flex items-center justify-center flex-shrink-0">
                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
                   </div>
-                  <div>
-                    <p className="font-medium text-white text-sm">{t.contact.info.email}</p>
-                    <a href={`mailto:${siteConfig.contact.email}`} className="text-primary-400 hover:text-primary-300 text-sm transition-colors">{siteConfig.contact.email}</a>
+                  <div className="min-w-0">
+                    <p className="font-medium text-white text-sm">{locale === 'ar' ? 'التواصل العام' : 'General Contact'}</p>
+                    <a href={`mailto:${siteConfig.contact.emails.contact}`} className="text-primary-400 hover:text-primary-300 text-sm transition-colors break-all" dir="ltr">{siteConfig.contact.emails.contact}</a>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-3">
+                  <div className="w-10 h-10 rounded-lg bg-neutral-800 text-neutral-300 flex items-center justify-center flex-shrink-0">
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                  </div>
+                  <div className="min-w-0">
+                    <p className="font-medium text-white text-sm">{locale === 'ar' ? 'المعلومات والاستفسارات' : 'Information & Inquiries'}</p>
+                    <a href={`mailto:${siteConfig.contact.emails.info}`} className="text-primary-400 hover:text-primary-300 text-sm transition-colors break-all" dir="ltr">{siteConfig.contact.emails.info}</a>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-3">
+                  <div className="w-10 h-10 rounded-lg bg-neutral-800 text-neutral-300 flex items-center justify-center flex-shrink-0">
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18.364 5.636a9 9 0 010 12.728m-2.829-9.899a5 5 0 010 7.07m-2.828-4.243a1 1 0 010 1.414M12 12l-3 3m0-3a1 1 0 11-2 0 1 1 0 012 0zm3-3a1 1 0 11-2 0 1 1 0 012 0z" /></svg>
+                  </div>
+                  <div className="min-w-0">
+                    <p className="font-medium text-white text-sm">{locale === 'ar' ? 'الدعم الفني' : 'Technical Support'}</p>
+                    <a href={`mailto:${siteConfig.contact.emails.support}`} className="text-primary-400 hover:text-primary-300 text-sm transition-colors break-all" dir="ltr">{siteConfig.contact.emails.support}</a>
                   </div>
                 </div>
                 

@@ -461,6 +461,10 @@
     transform: none !important;
     transition: none !important;
   }
+
+  .route-loader-overlay {
+    display: none;
+  }
 }
 
 /* ==========================================================
@@ -712,6 +716,109 @@
   .page-loader {
     display: none;
   }
+}
+
+/* ==========================================================
+   Route change loader (appears on every page navigation)
+   ========================================================== */
+
+.route-progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  z-index: 120;
+  background: transparent;
+  pointer-events: none;
+}
+
+.route-progress-bar__fill {
+  height: 100%;
+  background: linear-gradient(90deg, #1c4a7f, #3b82f6);
+  border-radius: 0 2px 2px 0;
+  box-shadow: 0 0 8px rgba(59, 130, 246, 0.6);
+  transition: width 0.3s ease;
+}
+
+.route-loader-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 110;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(248, 250, 252, 0.72);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: opacity 0.35s ease, visibility 0.35s ease;
+}
+
+.route-loader-overlay--fade-out {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.route-loader-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  animation: route-loader-in 0.3s ease both;
+}
+
+@keyframes route-loader-in {
+  from { opacity: 0; transform: scale(0.94); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.route-loader-spinner {
+  position: relative;
+  width: 88px;
+  height: 88px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.route-loader-ring {
+  position: absolute;
+  border: 2px solid rgba(28, 74, 127, 0.25);
+  border-radius: 9999px;
+}
+
+.route-loader-ring--outer {
+  width: 88px;
+  height: 88px;
+  border-right-color: #1c4a7f;
+  animation: loader-rotate 1.1s linear infinite;
+}
+
+.route-loader-ring--inner {
+  width: 60px;
+  height: 60px;
+  border-top-color: #1c4a7f;
+  border-bottom-color: transparent;
+  animation: loader-rotate 0.8s linear infinite reverse;
+}
+
+.route-loader-logo {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  border-radius: 10px;
+}
+
+.route-loader-text {
+  margin-top: 12px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: #1c4a7f;
+  text-align: center;
+  white-space: nowrap;
+  animation: animate-fade-in 0.5s 0.1s ease both;
 }
 
 /* Custom scrollbar */

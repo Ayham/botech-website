@@ -28,7 +28,15 @@ export const siteConfig = {
     },
   },
   contact: {
-    email: 'aslive@live.com',
+    email: 'contact@botech-live.com',
+    emails: {
+      info: 'info@botech-live.com',
+      contact: 'contact@botech-live.com',
+      support: 'support@botech-live.com',
+      raseed: 'raseed@botech-live.com',
+      clover: 'clover@botech-live.com',
+      founder: 'ayham@botech-live.com',
+    },
     formEndpoint: 'https://script.google.com/macros/s/AKfycbxY-4Ap6dVDpUup4js46EqtMY4v64HChn7uJL-YfKZREz9PEbdqjIFL6crLT-v_bMmS/exec',
     recaptchaSiteKey: '6Lduj7ctAAAAAM9Md-zQzBNgqQoHuTjyn-BXihGX',
     phone: '+963 940 716 331',
@@ -137,6 +145,8 @@ export const siteConfig = {
       downloadLinks: {
         android: '',
         apk: '',
+        apkPure: 'https://apkpure.com/p/com.BlueOrbitTechnologies.Raseed',
+        googlePlay: '',
       },
       social: {
         facebook: 'https://www.facebook.com/RaseedApp',

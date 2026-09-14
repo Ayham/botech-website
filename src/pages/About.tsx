@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { Layout } from '@/components/layout/Layout';
 import { Section, SectionHeader } from '@/components/ui/Section';
@@ -9,6 +10,7 @@ import { Reveal, RevealStagger } from '@/components/ui/Reveal';
 import { OrbitBackground } from '@/components/ui/OrbitBackground';
 
 export function About() {
+  const navigate = useNavigate();
   const { t, locale } = useI18n();
   const seo = locale === 'ar' ? pageSEO.about : pageSEO.aboutEn;
   const founder = siteConfig.founder;
@@ -148,8 +150,17 @@ export function About() {
                         <h4 className="heading-4 text-neutral-900 mb-1">{founder.name[locale]}</h4>
                         <p className="text-primary-600 font-medium mb-4">{founder.title[locale]}</p>
                         <p className="body-sm text-neutral-500 mb-6">{founder.experience} {locale === 'ar' ? 'في هندسة البرمجيات' : 'in software engineering'}</p>
-                        <div className="border-t border-neutral-200 pt-4">
+                        <div className="border-t border-neutral-200 pt-4 space-y-3">
                           <p className="body-sm text-neutral-600">{locale === 'ar' ? 'قيادة تقنية شاملة' : 'Full-cycle technical leadership'}</p>
+                          <a
+                            href={`mailto:${siteConfig.contact.emails.founder}`}
+                            className="inline-flex items-center gap-2 text-sm font-medium text-primary-600 hover:text-primary-700 transition-colors"
+                            aria-label={t.contact.info.email}
+                            dir="ltr"
+                          >
+                            <svg className="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
+                            <span>{siteConfig.contact.emails.founder}</span>
+                          </a>
                         </div>
                       </div>
                     </Card>
@@ -210,7 +221,7 @@ export function About() {
               <p className="body-lg text-primary-100 mb-8">{t.contact.ctaDesc}</p>
             </Reveal>
             <Reveal delay={200}>
-              <Button variant="secondary" size="lg" onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })} className="group">
+              <Button variant="secondary" size="lg" onClick={() => navigate('/contact')} className="group">
                 {t.contact.form.title}
                 <svg className="w-5 h-5 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />

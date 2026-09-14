@@ -11,7 +11,7 @@ const navigation = [
   { key: 'services', href: '/services', labelKey: 'nav.services' },
   { key: 'products', href: '/products', labelKey: 'nav.products', children: [
     { key: 'all', href: '/products', labelKey: 'common.allProducts' },
-    { key: 'raseed', href: '/raseed', labelKey: 'nav.raseid' },
+    { key: 'raseed', href: '/raseed', labelKey: 'nav.raseed' },
     { key: 'clover', href: '/clover', labelKey: 'nav.clover' },
   ]},
   { key: 'work', href: '/work', labelKey: 'nav.work' },

@@ -123,6 +123,16 @@ export function CloverPage() {
                 {locale === 'ar' ? 'واتساب' : 'WhatsApp'}
               </a>
             </div>
+            <div className="mt-6">
+              <a
+                href={`mailto:${siteConfig.contact.emails.clover}`}
+                className="inline-flex items-center gap-2 text-sm text-primary-100 hover:text-white underline-offset-4 hover:underline transition-colors"
+                dir="ltr"
+              >
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
+                <span>{siteConfig.contact.emails.contact}</span>
+              </a>
+            </div>
           </div>
         </Container>
       </Section>
