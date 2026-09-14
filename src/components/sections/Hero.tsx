@@ -66,21 +66,21 @@ export function Hero() {
           </Reveal>
 
           <Reveal delay={400} direction="scale">
-            <div className="flex items-center justify-center gap-8 mt-12 text-sm text-neutral-500">
+            <div className="flex flex-col sm:flex-row sm:flex-wrap sm:items-center sm:justify-center sm:gap-x-6 gap-y-3 mt-12 text-sm text-neutral-500">
               <div className="flex items-center gap-2">
                 <svg className="w-5 h-5 text-primary-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
                 <span>12+ years experience</span>
               </div>
-              <div className="w-px h-6 bg-neutral-200" />
+              <div className="hidden sm:block w-px h-6 bg-neutral-200" />
               <div className="flex items-center gap-2">
                 <svg className="w-5 h-5 text-primary-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
                 </svg>
                 <span>Full-cycle development</span>
               </div>
-              <div className="w-px h-6 bg-neutral-200" />
+              <div className="hidden sm:block w-px h-6 bg-neutral-200" />
               <div className="flex items-center gap-2">
                 <svg className="w-5 h-5 text-primary-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z" />

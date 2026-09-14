@@ -70,6 +70,8 @@
     font-family: var(--font-latin);
     font-size: var(--text-base);
     line-height: 1.6;
+    overflow-x: clip;
+    overflow-wrap: break-word;
   }
 
   [dir="rtl"] body {

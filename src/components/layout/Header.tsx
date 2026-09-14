@@ -86,10 +86,9 @@ export function Header() {
 
   return (
     <header 
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed left-0 right-0 z-50 transition-all duration-300 ${
         scrolled ? 'bg-white/95 backdrop-blur-sm shadow-sm' : 'bg-white'
-      } ${headerVisible ? 'translate-y-0' : '-translate-y-full'}`}
-      style={{ willChange: 'transform' }}
+      } ${headerVisible ? 'top-0' : '-top-16 lg:-top-20'}`}
     >
       <nav className="relative" aria-label="Main navigation" ref={dropdownRef}>
         <Container>
