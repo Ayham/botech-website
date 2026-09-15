@@ -131,4 +131,14 @@ export const pageSEO = {
     description: 'Terms of use for the BOTech website and services.',
     canonical: '/en/terms',
   }),
+  notFound: generateSEO({
+    title: `الصفحة غير موجودة | ${siteConfig.name}`,
+    description: 'عذراً، الصفحة التي تبحث عنها غير موجودة. يمكنك العودة إلى الصفحة الرئيسية للبحث عن ما تريد.',
+    canonical: '/404',
+  }),
+  notFoundEn: generateSEO({
+    title: `Page Not Found | ${siteConfig.name}`,
+    description: "Sorry, the page you're looking for doesn't exist. You can go back to the homepage to find what you need.",
+    canonical: '/en/404',
+  }),
 };

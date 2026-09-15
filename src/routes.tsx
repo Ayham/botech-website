@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { createBrowserRouter, RouterProvider, Navigate, useLocation } from 'react-router-dom';
+import { createBrowserRouter, RouterProvider, useLocation } from 'react-router-dom';
 import { I18nProvider, useI18n } from './i18n';
 import { Home } from './pages/Home';
 import { About } from './pages/About';
@@ -11,6 +11,7 @@ import { PrivacyPage } from './pages/Privacy';
 import { TermsPage } from './pages/Terms';
 import { RaseedPage } from './pages/Raseed';
 import { CloverPage } from './pages/Clover';
+import { NotFound } from './pages/NotFound';
 import { ScrollToTopWrapper } from './components/ui/ScrollToTop';
 import { PageLoader } from './components/ui/PageLoader';
 
@@ -58,7 +59,7 @@ const router = createBrowserRouter([
   },
   {
     path: '*',
-    element: <Navigate to="/" replace />,
+    element: <NotFound />,
   },
 ]);
 
