@@ -1,5 +1,5 @@
 import { useI18n } from '../../i18n';
-import { siteConfig } from '../../config/site';
+import { useSite } from '../../hooks/useSite';
 import { Card } from '../ui/Card';
 import { Container } from '../ui/Container';
 import { Section, SectionHeader } from '../ui/Section';
@@ -16,6 +16,7 @@ const whyIcons: Record<string, React.ReactNode> = {
 
 export function WhyBOTech() {
   const { t, locale } = useI18n();
+  const { site } = useSite();
 
   return (
     <Section size="lg" background="white" className="relative overflow-hidden">
@@ -28,7 +29,7 @@ export function WhyBOTech() {
         />
 
         <RevealStagger direction="up" delayStep={80} className="mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {siteConfig.whyBotech.map((item, index) => (
+          {site.whyBotech.map((item, index) => (
             <Reveal key={item.key} delay={index * 80}>
               <Card variant="padded" hover interactive className="group h-full">
                 <div className="w-10 h-10 rounded-xl bg-primary-100 text-primary-600 flex items-center justify-center mb-4 group-hover:bg-primary-600 group-hover:text-white group-hover:scale-110 group-hover:rotate-3 transition-all duration-300">

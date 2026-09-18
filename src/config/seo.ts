@@ -131,6 +131,16 @@ export const pageSEO = {
     description: 'Terms of use for the BOTech website and services.',
     canonical: '/en/terms',
   }),
+  deleteAccount: generateSEO({
+    title: `حذف حساب Raseed | ${siteConfig.name}`,
+    description: 'اطلب حذف حسابك من تطبيق Raseed، أو أرسل طلب الحذف من هذه الصفحة بعد التحقق من ملكية البريد الإلكتروني.',
+    canonical: '/delete-account',
+  }),
+  deleteAccountEn: generateSEO({
+    title: `Delete Raseed Account | ${siteConfig.name}`,
+    description: 'Request deletion of your Raseed account, or send a deletion request from this page after verifying ownership of the account email.',
+    canonical: '/en/delete-account',
+  }),
   notFound: generateSEO({
     title: `الصفحة غير موجودة | ${siteConfig.name}`,
     description: 'عذراً، الصفحة التي تبحث عنها غير موجودة. يمكنك العودة إلى الصفحة الرئيسية للبحث عن ما تريد.',

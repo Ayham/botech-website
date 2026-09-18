@@ -1,5 +1,5 @@
 import { useI18n } from '../../i18n';
-import { siteConfig } from '../../config/site';
+import { useSite } from '../../hooks/useSite';
 import { Card } from '../ui/Card';
 import { Container } from '../ui/Container';
 import { Section, SectionHeader } from '../ui/Section';
@@ -21,6 +21,7 @@ const serviceIcons: Record<string, React.ReactNode> = {
 
 export function Services() {
   const { t, locale } = useI18n();
+  const { site } = useSite();
 
   return (
     <Section id="services" size="lg" background="neutral" className="relative overflow-hidden">
@@ -34,7 +35,7 @@ export function Services() {
         />
         
         <RevealStagger direction="up" delayStep={80} className="mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {siteConfig.services.map((service, index) => (
+          {site.services.map((service, index) => (
             <Reveal key={service.key} delay={index * 80}>
               <Card 
                 variant="padded" 

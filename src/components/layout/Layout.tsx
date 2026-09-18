@@ -3,7 +3,7 @@ import { Helmet } from 'react-helmet-async';
 import { Header } from './Header';
 import { Footer } from './Footer';
 import { useI18n } from '../../i18n';
-import { siteConfig } from '../../config/site';
+import { useSite } from '../../hooks/useSite';
 import { BackToTop } from '../ui/BackToTop';
 import { ScrollProgress } from '../ui/ScrollProgress';
 import { ParallaxDriver } from '../../hooks/useParallax';
@@ -26,10 +26,11 @@ export function Layout({
   noIndex = false 
 }: LayoutProps) {
   const { locale, dir } = useI18n();
-  const pageTitle = title || siteConfig.name;
-  const pageDescription = description || siteConfig.description[locale];
-  const pageCanonical = canonical ? `${siteConfig.url}${canonical}` : siteConfig.url;
-  const pageOgImage = ogImage ? `${siteConfig.url}${ogImage}` : siteConfig.ogImage;
+  const { site } = useSite();
+  const pageTitle = title || site.name;
+  const pageDescription = description || site.description[locale];
+  const pageCanonical = canonical ? `${site.url}${canonical}` : site.url;
+  const pageOgImage = ogImage ? `${site.url}${ogImage}` : site.ogImage;
   const alternateLocale = locale === 'ar' ? 'en' : 'ar';
   const alternateHref = locale === 'ar' 
     ? canonical?.replace(/^\//, '/en') || '/en'
@@ -44,8 +45,8 @@ export function Layout({
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="theme-color" content="#375378" />
         <link rel="canonical" href={pageCanonical} />
-        <link rel="alternate" hrefLang={alternateLocale} href={`${siteConfig.url}${alternateHref}`} />
-        <link rel="alternate" hrefLang="x-default" href={siteConfig.url} />
+        <link rel="alternate" hrefLang={alternateLocale} href={`${site.url}${alternateHref}`} />
+        <link rel="alternate" hrefLang="x-default" href={site.url} />
         
         {noIndex && <meta name="robots" content="noindex, nofollow" />}
         
@@ -56,7 +57,7 @@ export function Layout({
         <meta property="og:description" content={pageDescription} />
         <meta property="og:image" content={pageOgImage} />
         <meta property="og:locale" content={locale === 'ar' ? 'ar_SA' : 'en_US'} />
-        <meta property="og:site_name" content={siteConfig.name} />
+        <meta property="og:site_name" content={site.name} />
         
         {/* Twitter */}
         <meta name="twitter:card" content="summary_large_image" />

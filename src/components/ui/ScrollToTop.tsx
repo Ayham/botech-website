@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useLocation, Outlet } from 'react-router-dom';
 import { RouteLoader } from './RouteLoader';
+import { AnalyticsBeacon } from '../AnalyticsBeacon';
 
 export function ScrollToTopWrapper() {
   const { pathname, hash } = useLocation();
@@ -19,6 +20,7 @@ export function ScrollToTopWrapper() {
   return (
     <>
       <RouteLoader />
+      <AnalyticsBeacon />
       <Outlet />
     </>
   );

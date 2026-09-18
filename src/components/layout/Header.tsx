@@ -3,8 +3,8 @@ import { NavLink, useLocation } from 'react-router-dom';
 import { Container } from '../ui/Container';
 import { Button } from '../ui/Button';
 import { useI18n } from '../../i18n';
+import { useSite } from '../../hooks/useSite';
 import { localeNames } from '../../i18n/config';
-import { siteConfig } from '../../config/site';
 
 const navigation = [
   { key: 'home', href: '/', labelKey: 'nav.home' },
@@ -21,6 +21,7 @@ const navigation = [
 
 export function Header() {
   const { t, locale, toggleLocale } = useI18n();
+  const { site } = useSite();
   const location = useLocation();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -95,7 +96,7 @@ export function Header() {
           <div className="flex items-center justify-between h-16 lg:h-20">
             <NavLink to="/" className="flex items-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 rounded-lg" aria-label={t.common.backToHome}>
               <img 
-                src={siteConfig.logo} 
+                src={site.logo} 
                 alt="BOTech" 
                 className="h-14 sm:h-16 w-auto transition-transform duration-200 hover:scale-105"
                 width="48"

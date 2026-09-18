@@ -1,5 +1,5 @@
 import { useI18n } from '../../i18n';
-import { siteConfig } from '../../config/site';
+import { useSite } from '../../hooks/useSite';
 import { Card } from '../ui/Card';
 import { Badge } from '../ui/Badge';
 import { Container } from '../ui/Container';
@@ -9,6 +9,7 @@ import { Reveal, RevealStagger } from '../ui/Reveal';
 
 export function Work({ showHeader = true }: { showHeader?: boolean }) {
   const { t, locale } = useI18n();
+  const { site } = useSite();
 
   return (
     <Section id="work" size="lg" background="white">
@@ -22,7 +23,7 @@ export function Work({ showHeader = true }: { showHeader?: boolean }) {
         )}
 
         <RevealStagger direction="up" delayStep={120} className={`mt-16 grid grid-cols-1 lg:grid-cols-2 gap-8 ${showHeader ? '' : 'mt-0'}`}>
-          {siteConfig.work.map((project, index) => (
+          {site.work.map((project, index) => (
             <Reveal key={project.key} delay={index * 120}>
               <Card key={project.key} variant="elevated" hover interactive className="overflow-hidden flex flex-col group">
                 <div className="relative aspect-video bg-neutral-100 overflow-hidden image-reveal flex items-center justify-center">

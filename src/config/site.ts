@@ -21,7 +21,7 @@ export const siteConfig = {
       ar: 'مؤسس',
       en: 'Founder',
     },
-    experience: '12+ سنة',
+    experience: '12+ Years',
     bio: {
       ar: 'يتمتع بخبرة تزيد عن 12 عامًا في هندسة البرمجيات، هندسة الحلول، تطوير الأنظمة، القيادة التقنية، البنية التحتية، وقواعد البيانات، مع خبرة عملية في بناء وإدارة البرمجيات من تحليل المتطلبات وتصميم الحلول إلى التطوير والاختبار والنشر والتشغيل والدعم المستمر.',
       en: 'With over 12 years of experience in software engineering, solution architecture, system development, technical leadership, infrastructure, DevOps, and databases—hands-on across the full software lifecycle from requirements analysis and solution design through development, testing, deployment, operations, and continuous support.',
@@ -65,6 +65,7 @@ export const siteConfig = {
         { key: 'services', href: '/services', label: { ar: 'خدماتنا', en: 'Services' } },
         { key: 'work', href: '/work', label: { ar: 'أعمالنا', en: 'Work' } },
         { key: 'contact', href: '/contact', label: { ar: 'تواصل معنا', en: 'Contact' } },
+        { key: 'delete-account', href: '/delete-account', label: { ar: 'حذف حساب Raseed', en: 'Delete Raseed Account' } },
       ],
       products: [
         { key: 'raseed', href: '/raseed', label: { ar: 'Raseed', en: 'Raseed' } },

@@ -49,6 +49,7 @@ export const translations = {
       contact: 'تواصل معنا',
       raseed: 'Raseed — رصيد',
       clover: 'Clover Flow',
+      deleteAccount: 'حذف حساب Raseed',
     },
     hero: {
       title: 'نحوّل الأفكار إلى حلول تقنية عملية',
@@ -322,6 +323,65 @@ export const translations = {
       raseedDesc: 'تطبيق Raseed لإدارة تحويلات الرصيد اليومية لنقاط بيع الرصيد في سوريا.',
       cloverTitle: 'Clover Flow | إدارة نقاط البيع والأعمال — قريباً',
       cloverDesc: 'منصة لإدارة نقاط البيع والأعمال، مصممة لتبسيط عمليات البيع والمخزون وإدارة العمل.',
+      deleteAccountTitle: 'حذف حساب Raseed | Blue Orbit Technologies',
+      deleteAccountDesc: 'اطلب حذف حسابك من تطبيق Raseed، أو أرسل طلب الحذف من هذه الصفحة بعد التحقق من ملكية البريد الإلكتروني.',
+    },
+    deleteAccount: {
+      title: 'حذف حساب Raseed',
+      subtitle: 'هذه الصفحة مخصصة لطلب حذف حسابك من تطبيق Raseed.',
+      badge: 'طلب حذف الحساب',
+      whatsDeletedTitle: 'ما الذي سيتم حذفه؟',
+      whatsDeleted: [
+        'ملف الحساب والبريد الإلكتروني المرتبط فيه',
+        'الأجهزة المرتبطة بالحساب',
+        'التراخيص والاشتراكات النشطة',
+        'سجل التحويلات والمدفوعات والإشعارات',
+      ],
+      irreversibleTitle: 'إجراء نهائي',
+      irreversible: 'حذف الحساب إجراء نهائي ولا يمكن التراجع عنه بعد اكتماله. لا يمكن استعادة الحساب أو بياناته بأي شكل.',
+      inAppTitle: 'من داخل التطبيق',
+      inAppDesc: 'يمكنك حذف حسابك مباشرة من إعدادات الحساب داخل تطبيق Raseed دون الحاجة لهذه الصفحة.',
+      webTitle: 'من هذه الصفحة',
+      webDesc: 'أدخل البريد الإلكتروني المرتبط بحسابك. سنرسل رمز تحقق إلى بريدك لتأكيد ملكية الحساب قبل تنفيذ الحذف، ولن يتم حذف أي شيء قبل التحقق.',
+      optionsTitle: 'كيف تريد حذف حسابك؟',
+      formTitle: 'طلب حذف الحساب',
+      emailLabel: 'البريد الإلكتروني المرتبط بحساب Raseed',
+      emailPlaceholder: 'name@example.com',
+      emailHint: 'أدخل نفس البريد المستخدم عند تفعيل الحساب',
+      requestBtn: 'طلب حذف الحساب',
+      codeTitle: 'أدخل رمز التحقق',
+      codeSent: 'تم إرسال رمز التحقق إلى بريدك الإلكتروني:',
+      codeLabel: 'رمز التحقق من 6 أرقام',
+      codePlaceholder: '000000',
+      codeHint: 'الرمز صالح لمدة قصيرة، وعادة يصل خلال دقائق. تحقق من مجلد الرسائل غير المرغوب فيها (Spam).',
+      confirmBtn: 'تأكيد حذف الحساب',
+      backBtn: 'تعديل البريد الإلكتروني',
+      doneTitle: 'تم حذف الحساب',
+      doneSubtitle: 'تم حذف حساب Raseed والبيانات المرتبطة به تنفيذاً لطلبك.',
+      doneExtra: 'إذا بقي التطبيق مثبتاً على جهازك، سجّل الدخول بحساب جديد عند الحاجة. لأي استفسار، تواصل معنا عبر ',
+      supportEmail: 'الدعم الفني',
+      deleteAnother: 'إرسال طلب آخر',
+      invalidEmail: 'يرجى إدخال بريد إلكتروني صحيح',
+      emailRequired: 'البريد الإلكتروني مطلوب',
+      codeRequired: 'يرجى إدخال رمز التحقق',
+      errorTitle: 'لم يتم تنفيذ الطلب',
+      errors: {
+        invalid_input: 'إدخال غير صحيح، يرجى التحقق من البيانات.',
+        account_not_found: 'لم يتم العثور على حساب Raseed مرتبط بهذا البريد الإلكتروني. إذا كنت متأكداً من البريد، استخدم خيار الحذف من داخل التطبيق أو تواصل مع الدعم الفني.',
+        rate_limited: 'تم إرسال رمز تحقق مؤخراً لهذا البريد. انتظر دقيقة ثم حاول مرة أخرى.',
+        email_send_failed: 'تعذر إرسال رمز التحقق إلى هذا البريد حالياً. حاول لاحقاً، أو استخدم خيار الحذف من داخل التطبيق.',
+        invalid_code: 'رمز التحقق غير صحيح أو منتهي الصلاحية. تحقق من البريد وحاول مرة أخرى.',
+        too_many_attempts: 'تجاوزت عدد المحاولات المسموح بها. اطلب رمزاً جديداً من البداية.',
+        verify_failed: 'تعذر تأكيد ملكية الحساب. أعد المحاولة أو تواصل مع الدعم الفني.',
+        deletion_not_configured: 'خدمة حذف الحساب غير مهيأة حالياً. استخدم خيار الحذف من داخل التطبيق أو تواصل مع الدعم الفني.',
+        deletion_failed: 'فشل تنفيذ الحذف. لم يتم حذف بيانات الحساب، تواصل مع الدعم الفني.',
+        not_found: 'إجراء غير معروف، يرجى إعادة تحميل الصفحة.',
+        method_not_allowed: 'إجراء غير مدعوم.',
+        network: 'تعذر الاتصال بالخادم. تحقق من اتصالك بالإنترنت وحاول مرة أخرى.',
+        not_configured: 'خدمة حذف الحساب غير متاحة حالياً من هذه الصفحة. استخدم خيار الحذف من داخل التطبيق.',
+      },
+      securityNote: 'أمانك أولاً: لن يُحذف الحساب أبداً بسبب إدخال البريد الإلكتروني وحده. الحذف يتم فقط بعد تأكيد رمز التحقق المرسل إلى بريدك الإلكتروني.',
+      appDeleteNote: 'الحذف من داخل التطبيق الأولوية الأسرع والأكثر أماناً، لأنه يتحقق من جلستك مباشرة.',
     },
   },
 
@@ -373,6 +433,7 @@ export const translations = {
       contact: 'Contact',
       raseed: 'Raseed',
       clover: 'Clover Flow',
+      deleteAccount: 'Delete Raseed Account',
     },
     hero: {
       title: 'Turning ideas into practical technology solutions',
@@ -646,6 +707,65 @@ export const translations = {
       raseedDesc: 'Raseed helps mobile phone shops in Syria manage daily balance transfers with fewer mistakes and clear daily reports.',
       cloverTitle: 'Clover Flow | POS & Business Management — Coming Soon',
       cloverDesc: 'A platform for POS and business management, designed to simplify sales, inventory, and operations. Coming soon.',
+      deleteAccountTitle: 'Delete Raseed Account | Blue Orbit Technologies',
+      deleteAccountDesc: 'Request deletion of your Raseed account, or send a deletion request from this page after verifying ownership of the account email.',
+    },
+    deleteAccount: {
+      title: 'Delete Raseed Account',
+      subtitle: 'This page is for requesting deletion of your Raseed account.',
+      badge: 'Account deletion request',
+      whatsDeletedTitle: 'What gets deleted?',
+      whatsDeleted: [
+        'The account profile and the linked email address',
+        'Devices linked to the account',
+        'Active licenses and subscriptions',
+        'Transfer history, payments, and notifications',
+      ],
+      irreversibleTitle: 'Final action',
+      irreversible: 'Account deletion is permanent and cannot be undone. The account and its data cannot be recovered in any way.',
+      inAppTitle: 'From inside the app',
+      inAppDesc: 'You can delete your account directly from the account settings inside the Raseed app, without using this page.',
+      webTitle: 'From this page',
+      webDesc: 'Enter the email linked to your account. We will send a verification code to your email to confirm you own the account before deletion. Nothing is deleted before verification.',
+      optionsTitle: 'How would you like to delete your account?',
+      formTitle: 'Account deletion request',
+      emailLabel: 'Email linked to your Raseed account',
+      emailPlaceholder: 'name@example.com',
+      emailHint: 'Use the same email you used when activating the account',
+      requestBtn: 'Request account deletion',
+      codeTitle: 'Enter the verification code',
+      codeSent: 'A verification code was sent to your email:',
+      codeLabel: '6-digit verification code',
+      codePlaceholder: '000000',
+      codeHint: 'The code is valid for a short time and usually arrives within minutes. Check your spam folder if needed.',
+      confirmBtn: 'Confirm account deletion',
+      backBtn: 'Change email address',
+      doneTitle: 'Account deleted',
+      doneSubtitle: 'Your Raseed account and linked data have been deleted as requested.',
+      doneExtra: 'If the app is still installed on your device, sign in with a new account whenever needed. For any questions, contact us at ',
+      supportEmail: 'technical support',
+      deleteAnother: 'Submit another request',
+      invalidEmail: 'Please enter a valid email address',
+      emailRequired: 'Email is required',
+      codeRequired: 'Please enter the verification code',
+      errorTitle: 'Request not processed',
+      errors: {
+        invalid_input: 'Invalid input, please check the entered data.',
+        account_not_found: 'No Raseed account linked to this email was found. If you are sure about the email, use the delete option inside the app or contact support.',
+        rate_limited: 'A verification code was recently sent to this email. Wait a minute and try again.',
+        email_send_failed: 'We could not send a verification code to this email right now. Try again later, or use the delete option inside the app.',
+        invalid_code: 'The verification code is incorrect or expired. Check your email and try again.',
+        too_many_attempts: 'Too many attempts. Please request a new code from the start.',
+        verify_failed: 'Could not confirm account ownership. Try again or contact support.',
+        deletion_not_configured: 'The account deletion service is not configured yet. Use the delete option inside the app or contact support.',
+        deletion_failed: 'Deletion failed. No account data was removed. Please contact support.',
+        not_found: 'Unknown action, please reload the page.',
+        method_not_allowed: 'Unsupported action.',
+        network: 'Could not reach the server. Check your internet connection and try again.',
+        not_configured: 'Account deletion is not available from this page right now. Use the delete option inside the app.',
+      },
+      securityNote: 'Your security comes first: the account is never deleted from the email alone. Deletion happens only after confirming the verification code sent to your email.',
+      appDeleteNote: 'Deleting from inside the app is the fastest and safest option, since it verifies your session directly.',
     },
   },
 } satisfies Record<Locale, Translations>;
@@ -698,6 +818,7 @@ export type Translations = {
     contact: string;
     raseed: string;
     clover: string;
+    deleteAccount: string;
   };
   hero: {
     title: string;
@@ -893,6 +1014,60 @@ export type Translations = {
     raseedDesc: string;
     cloverTitle: string;
     cloverDesc: string;
+    deleteAccountTitle: string;
+    deleteAccountDesc: string;
+  };
+  deleteAccount: {
+    title: string;
+    subtitle: string;
+    badge: string;
+    whatsDeletedTitle: string;
+    whatsDeleted: string[];
+    irreversibleTitle: string;
+    irreversible: string;
+    inAppTitle: string;
+    inAppDesc: string;
+    webTitle: string;
+    webDesc: string;
+    optionsTitle: string;
+    formTitle: string;
+    emailLabel: string;
+    emailPlaceholder: string;
+    emailHint: string;
+    requestBtn: string;
+    codeTitle: string;
+    codeSent: string;
+    codeLabel: string;
+    codePlaceholder: string;
+    codeHint: string;
+    confirmBtn: string;
+    backBtn: string;
+    doneTitle: string;
+    doneSubtitle: string;
+    doneExtra: string;
+    supportEmail: string;
+    deleteAnother: string;
+    invalidEmail: string;
+    emailRequired: string;
+    codeRequired: string;
+    errorTitle: string;
+    errors: {
+      invalid_input: string;
+      account_not_found: string;
+      rate_limited: string;
+      email_send_failed: string;
+      invalid_code: string;
+      too_many_attempts: string;
+      verify_failed: string;
+      deletion_not_configured: string;
+      deletion_failed: string;
+      not_found: string;
+      method_not_allowed: string;
+      network: string;
+      not_configured: string;
+    };
+    securityNote: string;
+    appDeleteNote: string;
   };
 };
 

@@ -1,4 +1,6 @@
 import { useI18n } from '../../i18n';
+import { useSite } from '../../hooks/useSite';
+import type { CMSOverrides } from '../../lib/site-content';
 import { Button } from '../ui/Button';
 import { Container } from '../ui/Container';
 import { Section } from '../ui/Section';
@@ -6,7 +8,17 @@ import { Reveal, RevealStagger } from '../ui/Reveal';
 import { OrbitBackground } from '../ui/OrbitBackground';
 
 export function Hero() {
-  const { t } = useI18n();
+  const { t, locale } = useI18n();
+  const { site } = useSite();
+
+  // CMS overrides: hero.badge / hero.title / hero.subtitle (each {ar,en}),
+  // falling back to the built-in translations when not present.
+  const cmsHero = (site as unknown as CMSOverrides).hero;
+  const pick = (v: string | { ar: string; en: string } | undefined, fallback: string): string =>
+    v ? (typeof v === 'string' ? v : v[locale] || fallback) : fallback;
+  const heroBadge = pick(cmsHero?.badge, t.hero.title);
+  const heroTitle = pick(cmsHero?.title, t.hero.title);
+  const heroSubtitle = pick(cmsHero?.subtitle, t.hero.subtitle);
 
   return (
     <Section size="xl" background="gradient" className="relative overflow-hidden">
@@ -26,20 +38,20 @@ export function Hero() {
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
               </svg>
-              {t.hero.title}
+              {heroBadge}
             </span>
           </Reveal>
           
           <Reveal delay={100}>
             <h1 className="text-2xl sm:text-4xl md:text-5xl font-bold text-neutral-950 mb-6 gradient-text">             
-              {t.hero.subtitle.split(' ').slice(0, 3).join(' ')} <br />
-              <span className="text-neutral-900">{t.hero.subtitle.split(' ').slice(3).join(' ')}</span>
+              {heroTitle.split(' ').slice(0, 3).join(' ')} <br />
+              <span className="text-neutral-900">{heroTitle.split(' ').slice(3).join(' ')}</span>
             </h1>
           </Reveal>
           
           <Reveal delay={200}>
             <p className="text-xs sm:text-sm leading-relaxed text-neutral-600 mb-10 max-w-3xl mx-auto text-balance">
-              {t.hero.subtitle}
+              {heroSubtitle}
             </p>
           </Reveal>
           

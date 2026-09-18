@@ -1,5 +1,5 @@
 import { useI18n } from '../../i18n';
-import { siteConfig } from '../../config/site';
+import { useSite } from '../../hooks/useSite';
 import { Card } from '../ui/Card';
 import { Button } from '../ui/Button';
 import { Badge } from '../ui/Badge';
@@ -11,6 +11,7 @@ import { OrbitBackground } from '../ui/OrbitBackground';
 
 export function Products() {
   const { t, locale } = useI18n();
+  const { site } = useSite();
 
   return (
     <Section id="products" size="lg" background="white" className="relative overflow-hidden">
@@ -23,7 +24,7 @@ export function Products() {
         />
 
         <RevealStagger direction="up" delayStep={120} className="mt-16 grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {Object.entries(siteConfig.products).map(([key, product], index) => {
+          {Object.entries(site.products).map(([key, product], index) => {
             const available = product.status === 'available';
             return (
               <Reveal key={key} delay={index * 120}>

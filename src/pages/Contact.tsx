@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet-async';
 import { Layout } from '@/components/layout/Layout';
 import { Section, Container, Input, Textarea, Button } from '@/components/ui';
 import { siteConfig } from '@/config/site';
+import { useSite } from '@/hooks/useSite';
 import { useI18n } from '@/i18n';
 import { pageSEO } from '@/config/seo';
 import { useLocation } from 'react-router-dom';
@@ -25,6 +26,7 @@ declare global {
 
 export function Contact() {
   const { t, locale } = useI18n();
+  const { site } = useSite();
   const seo = locale === 'ar' ? pageSEO.contact : pageSEO.contactEn;
   const location = useLocation();
   
@@ -245,8 +247,8 @@ export function Contact() {
                       </div>
                       <div>
                         <p className="font-medium text-neutral-900">{t.contact.info.email}</p>
-                        <a href={`mailto:${siteConfig.contact.email}`} className="text-primary-600 hover:text-primary-700 transition-colors group flex items-center gap-1">
-                          {siteConfig.contact.email}
+                        <a href={`mailto:${site.contact.email}`} className="text-primary-600 hover:text-primary-700 transition-colors group flex items-center gap-1">
+                          {site.contact.email}
                           <svg className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
                         </a>
                       </div>
@@ -258,8 +260,8 @@ export function Contact() {
                       </div>
                       <div>
                         <p className="font-medium text-neutral-900">{t.contact.info.phone}</p>
-                        <a href={`tel:+${siteConfig.contact.phoneRaw}`} className="text-primary-600 hover:text-primary-700 transition-colors group flex items-center gap-1" dir="ltr">
-                          {siteConfig.contact.phone}
+                        <a href={`tel:+${site.contact.phoneRaw}`} className="text-primary-600 hover:text-primary-700 transition-colors group flex items-center gap-1" dir="ltr">
+                          {site.contact.phone}
                           <svg className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
                         </a>
                       </div>
@@ -271,8 +273,8 @@ export function Contact() {
                       </div>
                       <div>
                         <p className="font-medium text-neutral-900">{t.contact.info.whatsapp}</p>
-                        <a href={siteConfig.contact.whatsapp} target="_blank" rel="noopener noreferrer" className="text-primary-600 hover:text-primary-700 transition-colors group flex items-center gap-1" dir="ltr">
-                          {siteConfig.contact.phone}
+                        <a href={site.contact.whatsapp} target="_blank" rel="noopener noreferrer" className="text-primary-600 hover:text-primary-700 transition-colors group flex items-center gap-1" dir="ltr">
+                          {site.contact.phone}
                           <svg className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
                         </a>
                       </div>

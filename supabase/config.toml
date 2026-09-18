@@ -1,0 +1,10 @@
+project_id = "mxkechnqkcyxbgbwvriz"
+
+[functions.admin-gateway]
+verify_jwt = true
+
+[functions.site-content]
+verify_jwt = false
+
+[functions.raseed-deletion]
+verify_jwt = false
