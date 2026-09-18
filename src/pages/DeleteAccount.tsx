@@ -88,7 +88,7 @@ export default function DeleteAccount() {
   }
 
   return (
-    <Layout title={seo.title} description={seo.description} canonical={seo.canonical}>
+    <Layout title={seo.title} description={seo.description} canonical={seo.canonical} noIndex={seo.noIndex}>
       <Helmet>
         <meta property="og:title" content={seo.title} />
         <meta property="og:description" content={seo.description} />
