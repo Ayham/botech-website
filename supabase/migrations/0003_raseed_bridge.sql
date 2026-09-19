@@ -76,14 +76,15 @@ begin
       using errcode = '42501';
   end if;
 
-  -- 4. Impersonate: set JWT claims so _require_admin() sees auth.uid() = admin
+  -- 4. Impersonate: set JWT claims (transaction-local) so auth.uid()/auth.role()
+  --    resolve to the acting admin inside the admin_* RPCs. DB role switching is
+  --    NOT performed: set_config('role', ...) is forbidden inside SECURITY DEFINER.
   v_uid := v_admin_id;
   perform set_config('request.jwt.claims', json_build_object(
     'sub', v_uid::text,
     'role', 'authenticated',
     'aud', 'authenticated'
-  )::text, false);
-  perform set_config('role', 'authenticated', false);
+  )::text, true);
 
   -- 5. Allowlist dispatch — each action maps to an existing admin_* RPC
   --    with properly typed arguments extracted from p_args.
@@ -268,14 +269,14 @@ begin
           using errcode = '22023';
     end case;
 
-    -- Reset role to service_role after impersonation
-    perform set_config('role', 'service_role', false);
+    -- Reset the JWT claims so they don't leak to sibling statements
+    perform set_config('request.jwt.claims', '{}'::text, true);
 
     return jsonb_build_object('ok', true, 'data', v_result);
 
   exception when others then
-    -- Always reset role even on error
-    perform set_config('role', 'service_role', false);
+    -- Always reset claims even on error
+    perform set_config('request.jwt.claims', '{}'::text, true);
     raise;
   end;
 end;

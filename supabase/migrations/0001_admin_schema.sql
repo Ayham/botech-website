@@ -130,7 +130,7 @@ values
    'Raseed app: users, devices, licenses, payments, transfers, notifications.',
    'تطبيق رصيد: المستخدمون، الأجهزة، التراخيص، المدفوعات، التحويلات، الإشعارات.',
    'unknown', 2),
-  ('clover',  'Clover Flow',  'كلوفر فلو',     'https://heamecscymivebbnzzda.supabase.co',  'heamecscymivebbnzzda',  'production',
+  ('clover',  'Clover Flow',  'كلوفر فلو',     'https://ewnvrchcemjpuqrnbcrt.supabase.co', 'ewnvrchcemjpuqrnbcrt', 'production',
    'Clover POS: businesses, stores, products, sales, payments, licenses.',
    'كلوفر: شركات، متاجر، منتجات، مبيعات، مدفوعات، تراخيص.',
    'unknown', 3)

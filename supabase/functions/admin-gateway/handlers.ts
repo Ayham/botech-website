@@ -129,8 +129,8 @@ route('botech', 'dashboard', 'stats', async (identity) => {
     rc.from('profiles').select('id', { count: 'exact', head: true }),
     rc.from('licenses').select('id, status'),
     rc.from('transfers').select('id, amount, status'),
-    cc?.from('stores').select('id', { count: 'exact', head: true }),
-    cc?.from('sales').select('id, total'),
+cc?.from('business_settings').select('id', { count: 'exact', head: true }),
+    cc?.from('sales').select('id, total_syp'),
   ]);
 
   const customerCount = custRes.status === 'fulfilled' ? (custRes.value.count ?? 0) : null;
@@ -156,7 +156,7 @@ route('botech', 'dashboard', 'stats', async (identity) => {
     clover: {
       stores: clStoreRes?.status === 'fulfilled' && clStoreRes.value && 'count' in clStoreRes.value ? ((clStoreRes.value as { count: number }).count ?? 0) : null,
       totalSales: clSalesRes?.status === 'fulfilled' ? (clSalesRes.value.data ?? []).length : null,
-      revenue: clSalesRes?.status === 'fulfilled' ? ((clSalesRes.value.data ?? []) as { total?: number }[]).reduce((s: number, v) => s + Number(v.total ?? 0), 0) : null,
+      revenue: clSalesRes?.status === 'fulfilled' ? ((clSalesRes.value.data ?? []) as { total_syp?: number }[]).reduce((s: number, v) => s + Number(v.total_syp ?? 0), 0) : null,
     },
   };
 });
@@ -292,14 +292,14 @@ route('raseed', 'transfers', 'list', async (identity, _conn, params) => {
 route('clover', 'dashboard', 'stats', async (identity) => {
   requirePerm(identity, 'clover', 'read');
   const client = cloverClient();
-  if (!client) return { connected: false, stores: null, customers: null, products: null, sales: null, licenses: null };
+  if (!client) return { connected: false, stores: null, customers: null, products: null, totalSales: null, revenue: null, licenses: null };
 
   const [stores, customers, products, sales, licenses] = await Promise.allSettled([
-    client.from('stores').select('id', { count: 'exact', head: true }),
-    client.from('customers').select('id', { count: 'exact', head: true }),
-    client.from('products').select('id', { count: 'exact', head: true }),
-    client.from('sales').select('id, total, status, created_at'),
-    client.from('licenses').select('id, status'),
+    client.from('devices').select('id', { count: 'exact', head: true }),
+    client.from('customers').select('id', { count: 'exact', head: true }).is('deleted_at', null),
+    client.from('products').select('id', { count: 'exact', head: true }).is('deleted_at', null),
+    client.from('sales').select('id, total_usd').is('deleted_at', null),
+    client.from('license_settings').select('id, first_launch'),
   ]);
 
   return {
@@ -308,37 +308,80 @@ route('clover', 'dashboard', 'stats', async (identity) => {
     customers: customers.status === 'fulfilled' && customers.value && 'count' in customers.value ? (customers.value.count ?? 0) : null,
     products: products.status === 'fulfilled' && products.value && 'count' in products.value ? (products.value.count ?? 0) : null,
     totalSales: sales.status === 'fulfilled' ? (sales.value.data ?? []).length : null,
-    revenue: sales.status === 'fulfilled' ? (sales.value.data ?? []).reduce((s: number, v: { total?: number }) => s + Number(v.total ?? 0), 0) : null,
+    revenue: sales.status === 'fulfilled' ? (sales.value.data ?? []).reduce((s: number, v: { total_usd?: number }) => s + Number(v.total_usd ?? 0), 0) : null,
     licenses: licenses.status === 'fulfilled' && licenses.value.data ? {
       total: licenses.value.data.length,
-      active: licenses.value.data.filter((l: { status: string }) => l.status === 'active').length,
-      expired: licenses.value.data.filter((l: { status: string }) => l.status === 'expired').length,
+      active: licenses.value.data.filter((l: { first_launch: string | null }) => !!l.first_launch).length,
+      expired: 0,
     } : null,
   };
 });
 
-const cloverList = (tableName: string, columns: string) => async (identity: AdminIdentity, _conn: ConnectionConfig, params: Record<string, unknown>) => {
-  requirePerm(identity, 'clover', 'read');
-  const client = cloverClient();
-  if (!client) return { data: [], total: 0, readOnly: true };
-  const page = Math.max(1, Number(params.page) || 1);
-  const pageSize = Math.min(Math.max(1, Number(params.pageSize) || 20), 100);
-  const offset = (page - 1) * pageSize;
-  const order = (params.order as string) || 'created_at';
-  let query = client.from(tableName as never).select(columns).order(order as never, { ascending: false }).range(offset, offset + pageSize - 1);
-  const status = (params.status as string) || null;
-  if (status) query = query.eq('status', status);
-  const { data, error } = await query;
-  if (error) throw error;
-  return { data: data ?? [], total: (data ?? []).length, page, pageSize, readOnly: true };
-};
+const cloverList = (tableName: string, columns: string, map?: (row: Record<string, unknown>) => Record<string, unknown>) =>
+  async (identity: AdminIdentity, _conn: ConnectionConfig, params: Record<string, unknown>) => {
+    requirePerm(identity, 'clover', 'read');
+    const client = cloverClient();
+    if (!client) return { data: [], total: 0, readOnly: true };
+    const page = Math.max(1, Number(params.page) || 1);
+    const pageSize = Math.min(Math.max(1, Number(params.pageSize) || 20), 100);
+    const offset = (page - 1) * pageSize;
+    const order = (params.order as string) || 'created_at';
+    let query = client.from(tableName as never).select(columns).order(order as never, { ascending: false }).range(offset, offset + pageSize - 1);
+    const status = (params.status as string) || null;
+    if (status) query = query.eq('status', status);
+    const { data, error } = await query;
+    if (error) throw error;
+    return { data: (data ?? []).map((r) => (map ? map(r as Record<string, unknown>) : r)), total: (data ?? []).length, page, pageSize, readOnly: true };
+  };
 
-route('clover', 'businesses', 'list', cloverList('businesses', 'id, name, commercial_register, phone, address, status, created_at'));
-route('clover', 'stores', 'list', cloverList('stores', 'id, business_id, name, address, phone, is_main, created_at'));
-route('clover', 'customers', 'list', cloverList('customers', 'id, business_id, name, phone, address, credit_limit, currency, created_at'));
-route('clover', 'products', 'list', cloverList('products', 'id, business_id, name, sku, category_id, cost_price, selling_price, is_active, created_at'));
-route('clover', 'sales', 'list', cloverList('sales', 'id, business_id, store_id, customer_id, sale_number, status, total, currency, created_at'));
-route('clover', 'licenses', 'list', cloverList('licenses', 'id, business_id, plan_id, license_key, status, activated_at, expires_at, created_at'));
+route('clover', 'businesses', 'list', cloverList('business_settings', 'id, owner_id, business_name, created_at', (r) => ({
+  id: String(r.id),
+  name: r.business_name ?? null,
+  business_id: r.owner_id ?? null,
+  commercial_register: null,
+  phone: null,
+  address: null,
+  status: 'active',
+  created_at: r.created_at ?? null,
+})));
+route('clover', 'stores', 'list', cloverList('devices', 'id, device_name, owner_id, last_seen, created_at', (r) => ({
+  id: String(r.id),
+  name: r.device_name ?? null,
+  business_id: r.owner_id ?? null,
+  is_active: !!r.last_seen,
+  created_at: r.created_at ?? null,
+})));
+route('clover', 'customers', 'list', cloverList('customers', 'id, name, phone, email, created_at', (r) => ({
+  id: String(r.id),
+  name: r.name ?? null,
+  phone: r.phone ?? null,
+  email: r.email ?? null,
+  created_at: r.created_at ?? null,
+})));
+route('clover', 'products', 'list', cloverList('products', 'id, name, barcode, price_usd, deleted_at, created_at', (r) => ({
+  id: String(r.id),
+  name: r.name ?? null,
+  sku: r.barcode ?? null,
+  price: r.price_usd ?? 0,
+  is_active: r.deleted_at === null,
+  created_at: r.created_at ?? null,
+})));
+route('clover', 'sales', 'list', cloverList('sales', 'id, device_id, total_syp, payment_method, payment_currency, created_at', (r) => ({
+  id: String(r.id),
+  store_id: r.device_id ?? null,
+  total: r.total_syp ?? 0,
+  status: r.payment_method ?? null,
+  currency: r.payment_currency ?? null,
+  created_at: r.created_at ?? null,
+})));
+route('clover', 'licenses', 'list', cloverList('license_settings', 'id, license_key, first_launch, created_at', (r) => ({
+  id: String(r.id),
+  license_key: r.license_key ?? null,
+  status: r.first_launch ? 'active' : 'trial',
+  activated_at: r.first_launch ?? null,
+  expires_at: null,
+  created_at: r.created_at ?? null,
+})));
 
 // ===== BOTech CRM =====
 

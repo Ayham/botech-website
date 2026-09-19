@@ -66,7 +66,7 @@ export function getConnections(): ConnectionConfig[] {
       name: 'Clover Flow',
       nameAr: 'كلوفر فلو',
       url: getOptionalEnv('CLOVER_URL') ?? '',
-      projectRef: 'heamecscymivebbnzzda',
+      projectRef: 'ewnvrchcemjpuqrnbcrt',
       environment: 'production',
       description: 'Clover POS database: businesses, stores, products, sales, payments, licenses.',
       descriptionAr: 'قاعدة بيانات كلوفر: شركات، متاجر، منتجات، مبيعات، مدفوعات، تراخيص.',
