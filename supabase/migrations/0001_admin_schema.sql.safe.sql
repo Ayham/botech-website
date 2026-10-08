@@ -5,7 +5,7 @@
 -- ============================================================
 
 -- 1. Admin roles (RBAC)
-create table public.admin_roles (
+create table if not exists public.admin_roles (
   id         uuid primary key default gen_random_uuid(),
   code       text unique not null,       -- super_admin | admin | manager | viewer
   name       text not null,
@@ -19,7 +19,7 @@ comment on table  public.admin_roles is 'BOTech admin console roles with permiss
 comment on column public.admin_roles.permissions is 'JSONB permission map. Use {"__all":true} for unrestricted or {"crm":["read","write"],...} per scope.';
 
 -- 2. Admin users (linked to auth.users)
-create table public.admin_users (
+create table if not exists public.admin_users (
   id           uuid primary key references auth.users(id) on delete cascade,
   display_name text,
   email        text not null,
@@ -35,7 +35,7 @@ create unique index admin_users_email_idx on public.admin_users (lower(email));
 comment on table public.admin_users is 'Users authorized to access the BOTech Central Admin Console.';
 
 -- 3. Audit logs
-create table public.audit_logs (
+create table if not exists public.audit_logs (
   id          uuid primary key default gen_random_uuid(),
   admin_id    uuid references auth.users(id) on delete set null,
   admin_email text,
@@ -58,7 +58,7 @@ create index audit_logs_action_idx on public.audit_logs (action);
 comment on table public.audit_logs is 'Administrative audit trail — WHO did WHAT on which connection at WHAT time with WHAT result.';
 
 -- 4. Backend connections (metadata only, NO secrets stored here)
-create table public.backend_connections (
+create table if not exists public.backend_connections (
   id          text primary key,    -- botech | raseed | clover
   name        text not null,
   name_ar     text not null,
@@ -79,7 +79,7 @@ create table public.backend_connections (
 comment on table public.backend_connections is 'Metadata for external Supabase projects managed from this console. NEVER store actual service-role keys or access tokens here.';
 
 -- 5. Company settings
-create table public.company_settings (
+create table if not exists public.company_settings (
   id         uuid primary key default gen_random_uuid(),
   key        text unique not null,
   value      jsonb,

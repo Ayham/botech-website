@@ -9,9 +9,9 @@ interface ProductFAQProps {
 
 export function ProductFAQ({ productKey }: ProductFAQProps) {
   const { t } = useI18n();
-  const faq = t[productKey].faq;
+  const faq = (t[productKey] as any).faq;
 
-  if (!faq || !faq.items.length) return null;
+  if (!faq || !faq.items?.length) return null;
 
   return (
     <Section id="faq" size="lg" background="neutral">
@@ -21,7 +21,7 @@ export function ProductFAQ({ productKey }: ProductFAQProps) {
         </div>
 
         <RevealStagger direction="up" delayStep={50} className="max-w-3xl mx-auto space-y-4">
-          {faq.items.map((item, index) => (
+          {faq.items.map((item: any, index: number) => (
             <details key={index} className="group bg-white rounded-xl border border-neutral-200 overflow-hidden">
               <summary className="flex items-center justify-between p-6 cursor-pointer list-none group-hover:bg-neutral-50 transition-colors">
                 <h3 className="heading-4 text-neutral-900 pr-4">

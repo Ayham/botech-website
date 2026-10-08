@@ -1,7 +1,7 @@
 import { forwardRef, ButtonHTMLAttributes } from 'react';
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: 'primary' | 'secondary' | 'outline' | 'ghost' | 'danger';
+  variant?: 'primary' | 'secondary' | 'outline' | 'ghost' | 'danger' | 'light';
   size?: 'sm' | 'md' | 'lg';
   loading?: boolean;
   fullWidth?: boolean;
@@ -17,6 +17,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       outline: 'border-2 border-primary-600 text-primary-600 hover:bg-primary-50 focus-visible:ring-primary-500 active:bg-primary-100',
       ghost: 'text-neutral-600 hover:text-neutral-900 hover:bg-neutral-100 focus-visible:ring-neutral-500 active:bg-neutral-200',
       danger: 'bg-red-600 text-white hover:bg-red-700 focus-visible:ring-red-500 active:bg-red-800',
+      light: 'bg-white text-primary-700 hover:bg-primary-50 focus-visible:ring-primary-500 active:bg-primary-100 shadow-lg hover:shadow-xl',
     };
 
     const sizeStyles = {
@@ -32,7 +33,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       const button = e.currentTarget;
       const rect = button.getBoundingClientRect();
       const ripple = document.createElement('span');
-      ripple.className = 'absolute bg-white/30 rounded-full pointer-events-none';
+      ripple.className = `absolute ${variant === 'light' ? 'bg-primary-600/20' : 'bg-white/30'} rounded-full pointer-events-none`;
       ripple.style.cssText = `
         width: 100px;
         height: 100px;

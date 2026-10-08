@@ -117,16 +117,16 @@ export const pageSEO = {
     ogImage: '/assets/raseed/Raseed%20app%20Logo.png',
   }),
   clover: generateSEO({
-    title: `Clover Flow | إدارة نقاط البيع والأعمال – قريباً | BOTech`,
+    title: `Clover Flow | نظام نقاط بيع وإدارة متجر | BOTech`,
     description:
-      'منصة من BOTech لإدارة نقاط البيع والأعمال، مصممة لتبسيط عمليات البيع والمخزون وإدارة العمل. متاحة قريباً.',
+      'نظام نقاط بيع وإدارة متجر لمختلف أنواع المتاجر السورية. مبيعات أسرع، مخزون، عملاء، ديون ودعم الدولار والليرة السورية، ويعمل بدون إنترنت.',
     canonical: '/clover',
     ogImage: '/assets/clover/clover-logo-512.png',
   }),
   cloverEn: generateSEO({
-    title: `Clover Flow | POS & Business Management – Coming Soon | BOTech`,
+    title: `Clover Flow | POS & Store Management for Syrian Stores | BOTech`,
     description:
-      'A BOTech platform for POS and business management, designed to simplify sales, inventory, and operations. Coming soon.',
+      'A POS and store management system for Syrian shops. Faster sales, inventory, customers, debts, USD/SYP support, and offline-first.',
     canonical: '/clover',
     ogImage: '/assets/clover/clover-logo-512.png',
   }),

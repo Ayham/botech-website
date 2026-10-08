@@ -277,36 +277,105 @@ export const translations = {
     },
     clover: {
       hero: {
-        subtitle: 'قريباً',
-        description: 'منصة لإدارة نقاط البيع والأعمال، مصممة لتبسيط عمليات البيع والمخزون وإدارة العمل. نعمل حالياً على بناء Clover Flow.',
+        badge: 'عرض الإطلاق 🎁',
+        title: 'Clover Flow POS',
+        subtitle: 'نظام نقاط بيع وإدارة متجر مصمم ليجعل يومك أسهل.',
+        description: 'نظّم مبيعاتك ومخزونك وعملاءك وحساباتك من مكان واحد.',
+        ctaPrimary: 'ابدأ الآن',
+        ctaSecondary: 'جرّب Clover',
+        trialNote: 'نسخة تجريبية مجانية لمدة 30 يوماً',
+        previewCaption: 'من واجهة Clover',
       },
-      comingSoon: {
-        title: 'Clover Flow قريباً',
-        subtitle: 'نحن بصدد تطوير منصة متكاملة لإدارة نقاط البيع والأعمال. تابعونا لمعرفة موعد الإطلاق.',
-        modulesTitle: 'ما نعمل عليه',
-        modulesSubtitle: 'وهيكل النظام الأساسي',
-        contactTitle: 'هذا ما نبنيه حالياً',
+      launch: {
+        badge: 'عرض الإطلاق 🎁',
+        title: 'باقة البداية السنوية',
+        subtitle: 'كل ما تحتاجه لبدء البيع، بسعر واحد.',
+        includes: 'ما تشمله الباقة',
+        terms: 'مدة الاشتراك',
+        priceNote: 'دفعة واحدة تشمل الأجهزة والاشتراك',
+        compare: 'اشتراك السنة بمفرده',
+        oldPrice: '150',
+        price: '150',
+        savings: 'تشمل قارئ الباركود والطابعة مجاناً — بنفس سعر الاشتراك السنوي لوحده',
+        cta: 'احصل على عرض البداية',
+        ctaSecondary: 'تواصل عبر واتساب',
       },
-      modules: {
-        title: 'وحدات النظام',
-        items: [
-          { name: 'المبيعات', desc: 'نقطة البيع، الفواتير، المرتجعات' },
-          { name: 'المخزون', desc: 'المنتجات، التحويلات، الجرد' },
-          { name: 'العملاء', desc: 'الملفات، الولاء، الحسابات' },
-          { name: 'الفروع', desc: 'المستخدمون، الصلاحيات، الإعدادات' },
-          { name: 'التقارير', desc: 'لوحة تحكم، تصدير، مجدولة' },
-          { name: 'الإعدادات', desc: 'الضرائب، الطابعات، النسخ الاحتياطي' },
+      why: {
+        title: 'كل ما يحتاجه متجرك في مكان واحد',
+        subtitle: 'ستّ فوائد عملية بدل عدة برامج ودفاتر.',
+      },
+      forYou: {
+        title: 'مهما كان نوع متجرك، Clover يساعدك على إدارته بسهولة.',
+        subtitle: 'من البقالة إلى الإلكترونيات — نفس النظام يناسبك.',
+      },
+      how: {
+        title: 'كيف يعمل؟',
+        subtitle: 'ثلاث خطوات وتبدأ البيع.',
+        steps: [
+          { title: 'أضف منتجاتك', desc: 'أدخل منتجاتك وكمياتها بالباركود أو يدوياً.' },
+          { title: 'ابدأ البيع', desc: 'افتح شاشة البيع، مرّر الباركود، واطبع الفاتورة.' },
+          { title: 'تابع متجرك وتقاريرك', desc: 'راقب المبيعات والمخزون والديون من التقارير.' },
         ],
       },
-      features: { title: 'المميزات الرئيسية' },
-      howItWorks: {
-        title: 'كيف يعمل',
-        steps: [],
+      offline: {
+        title: 'لا توقف البيع بسبب الإنترنت.',
+        subtitle: 'يستمر Clover بالعمل عند انقطاع الاتصال. تُحفظ العمليات محلياً على جهازك، ثم تُزامَن تلقائياً عند عودة الإنترنت.',
+        badge: 'يعمل بدون إنترنت',
+        steps: [
+          { title: 'ينقطع الاتصال', desc: 'تابع البيع كالمعتاد.' },
+          { title: 'يُحفظ محلياً', desc: 'العمليات تُحفظ على جهازك بأمان.' },
+          { title: 'يُزامَن تلقائياً', desc: 'عند عودة الاتصال تُزامَن كل العمليات.' },
+        ],
       },
-      screenshots: 'لقطات الشاشة',
-      platforms: { title: 'المنصات', android: '', web: '' },
-      download: { title: '', android: '', web: '', comingSoon: '' },
-      faq: { title: 'الأسئلة الشائعة', items: [] },
+      screenshots: {
+        title: 'لقطات الشاشة',
+        subtitle: 'شاشات حقيقية من النظام.',
+        items: ['نقطة البيع', 'المخزون', 'العملاء', 'التقارير'],
+      },
+      pricing: {
+        title: 'اختر اشتراكك',
+        subtitle: 'الدفعة الأولى تغطي المدة كاملة، ويبدأ التجديد بـ $20 سنوياً بعد انتهاء الاشتراك. اختر المدة التي تناسب متجرك.',
+        currency: 'دولار',
+        recommended: 'الخيار الأكثر اختياراً',
+        cta: 'ابدأ الآن',
+        customCta: 'تواصل معنا',
+        renewal: 'ثم $20 سنوياً بعد انتهاء المدة',
+        note: 'جميع الأسعار بالدولار الأمريكي وتشمل التحديثات والمزامنة السحابية. التجديد السنوي بـ $20 بعد انتهاء كل فترة.',
+        plans: [
+          {
+            name: 'باقة سنوية',
+            duration: 'لمدة سنة (12 شهراً)',
+            price: '150',
+            description: 'مناسبة للمتاجر الصغيرة والمتوسطة.',
+            recommended: true,
+          },
+          {
+            name: 'باقة سنتين',
+            duration: 'لمدة سنتين (24 شهراً)',
+            price: '160',
+            description: 'فعّل Clover لمدة سنتين واحصل على توفير مقبول لمدة سنتين، وبعد السنتين التجديد بـ $20.',
+          },
+          {
+            name: 'باقة ثلاث سنوات',
+            duration: 'لمدة ثلاث سنوات (36 شهراً)',
+            price: '180',
+            description: 'فعّل Clover لمدة ثلاث سنوات واحصل على توفير مقبول، وبعد الثلاث سنوات التجديد بـ $20.',
+          },
+          {
+            name: 'ترخيص مخصص',
+            duration: 'مدة محددة حسب الطلب',
+            price: 'تواصل معنا',
+            description: 'يرجى التواصل معنا وإخبارنا بطلبك.',
+          },
+        ],
+      },
+      finalCta: {
+        title: 'جاهز لإدارة متجرك بطريقة أبسط؟',
+        subtitle: 'ابدأ مع Clover Flow POS واجعل المبيعات والمخزون وحسابات متجرك في مكان واحد.',
+        cta: 'ابدأ الآن',
+        ctaSecondary: 'جرّب Clover مجاناً',
+      },
+      backToProducts: 'العودة للمنتجات',
     },
     seo: {
       homeTitle: 'Blue Orbit Technologies | حلول تقنية وبرمجية',
@@ -661,36 +730,84 @@ export const translations = {
     },
     clover: {
       hero: {
-        subtitle: 'Coming Soon',
-        description: 'A platform for POS and business management, designed to simplify sales, inventory, and operations. We are currently building Clover Flow.',
+        badge: 'Launch Offer 🎁',
+        title: 'Clover Flow POS',
+        subtitle: 'POS and store management system built to make your day easier.',
+        description: 'Run your sales, inventory, customers, and accounts from one place.',
+        ctaPrimary: 'Get Started',
+        ctaSecondary: 'Try Clover',
+        trialNote: 'Free 30-day trial',
+        previewCaption: 'Clover interface',
       },
-      comingSoon: {
-        title: 'Clover Flow Coming Soon',
-        subtitle: 'We are building an integrated platform for POS and business management. Stay tuned for launch.',
-        modulesTitle: "What we're building",
-        modulesSubtitle: 'The core system architecture',
-        contactTitle: 'This is what we are building now',
+      launch: {
+        badge: 'Launch Offer 🎁',
+        title: 'Starter Year Bundle',
+        subtitle: 'Everything you need to start selling, in one bundle.',
+        includes: 'Bundle includes',
+        terms: 'Subscription term',
+        priceNote: 'One-time payment covers hardware and subscription',
+        compare: 'One-year subscription alone',
+        oldPrice: '150',
+        price: '150',
+        savings: 'Barcode reader and thermal printer included free — same price as the one-year subscription alone',
+        cta: 'Get Launch Offer',
+        ctaSecondary: 'WhatsApp',
       },
-      modules: {
-        title: 'System Modules',
-        items: [
-          { name: 'Sales', desc: 'POS, invoices, returns' },
-          { name: 'Inventory', desc: 'Products, transfers, stock counts' },
-          { name: 'Customers', desc: 'Profiles, loyalty, accounts' },
-          { name: 'Branches', desc: 'Users, permissions, settings' },
-          { name: 'Reports', desc: 'Dashboard, export, scheduled' },
-          { name: 'Settings', desc: 'Taxes, printers, backup' },
+      why: {
+        title: 'Everything your store needs in one place',
+        subtitle: 'Six practical benefits instead of juggling spreadsheets and multiple apps.',
+      },
+      forYou: {
+        title: 'Whatever your store is, Clover helps you run it with ease.',
+        subtitle: 'From groceries to electronics — one system fits you.',
+      },
+      how: {
+        title: 'How it works',
+        subtitle: 'Just three steps to get started.',
+        steps: [
+          { title: 'Add your products', desc: 'Add products and quantities by barcode or manually.' },
+          { title: 'Start selling', desc: 'Open checkout, scan, and print your receipts.' },
+          { title: 'Track your store & reports', desc: 'Keep an eye on sales, inventory, and debts.' },
         ],
       },
-      features: { title: 'Key Features' },
-      howItWorks: {
-        title: 'How It Works',
-        steps: [],
+      offline: {
+        title: 'Don’t stop selling when the internet drops.',
+        subtitle: 'Clover keeps working offline. Transactions are saved locally on your device and sync automatically when the connection returns.',
+        badge: 'Works offline',
+        steps: [
+          { title: 'Internet goes down', desc: 'Just keep selling as usual.' },
+          { title: 'Saved locally', desc: 'Every sale is safely saved on the device.' },
+          { title: 'Auto-sync', desc: 'When back online, everything syncs to the cloud.' },
+        ],
       },
-      screenshots: 'Screenshots',
-      platforms: { title: 'Platforms', android: '', web: '' },
-      download: { title: '', android: '', web: '', comingSoon: '' },
-      faq: { title: 'FAQ', items: [] },
+      screenshots: {
+        title: 'See Clover in action',
+        subtitle: 'Real screenshots from the app.',
+        items: ['Point of Sale', 'Inventory', 'Customers', 'Reports'],
+      },
+      pricing: {
+        title: 'Choose your plan',
+        subtitle: 'The first payment covers the full term, then renewal at $20/year after the term ends. Pick the plan that fits your store.',
+        currency: 'USD',
+        recommended: 'Most popular',
+        cta: 'Get Started',
+        customCta: 'Contact us',
+        renewal: 'Then $20/year after the term ends',
+        note: 'All prices are in USD and include updates and cloud sync. Annual renewal is $20 after each term ends.',
+        plans: [
+          { name: '1-Year Plan', duration: '12 months', price: '150', description: 'Ideal for small and medium stores.', recommended: true },
+          { name: '2-Year Plan', duration: '24 months', price: '160', description: 'Run Clover for two years with solid savings, then renew at $20/year.', recommended: false },
+          { name: '3-Year Plan', duration: '36 months', price: '180', description: 'Run Clover for three years with the best savings, then renew at $20/year.', recommended: false },
+          { name: 'Custom License', duration: 'Custom duration', price: 'Contact us', description: 'Please contact us and tell us your request.', recommended: false },
+        ],
+      },
+      finalCta: {
+        title: 'Ready to run your store the easier way?',
+        subtitle: 'Get started with Clover Flow POS and bring your sales, inventory, and accounts together in one place.',
+        cta: 'Get Started',
+        ctaSecondary: 'Try Clover for free',
+      },
+      backToProducts: 'Back to Products',
     },
     seo: {
       homeTitle: 'Blue Orbit Technologies | Technology Solutions',
@@ -975,29 +1092,61 @@ export type Translations = {
   };
   clover: {
     hero: {
+      badge: string;
+      title: string;
       subtitle: string;
       description: string;
+      ctaPrimary: string;
+      ctaSecondary: string;
+      trialNote: string;
+      previewCaption: string;
     };
-    comingSoon: {
+    launch: {
+      badge: string;
       title: string;
       subtitle: string;
-      modulesTitle: string;
-      modulesSubtitle: string;
-      contactTitle: string;
+      includes: string;
+      terms: string;
+      priceNote: string;
+      compare: string;
+      oldPrice: string;
+      price: string;
+      savings: string;
+      cta: string;
+      ctaSecondary: string;
     };
-    modules: {
+    why: { title: string; subtitle: string };
+    forYou: { title: string; subtitle: string };
+    how: {
       title: string;
-      items: { name: string; desc: string }[];
+      subtitle: string;
+      steps: { title: string; desc: string }[];
     };
-    features: { title: string };
-    howItWorks: {
+    offline: {
       title: string;
-      steps: { step: string; title: string; desc: string }[];
+      subtitle: string;
+      badge: string;
+      steps: { title: string; desc: string }[];
     };
-    screenshots: string;
-    platforms: { title: string; android: string; web: string };
-    download: { title: string; android: string; web: string; comingSoon: string };
-    faq: { title: string; items: { q: string; a: string }[] };
+    screenshots: { title: string; subtitle: string; items: string[] };
+    pricing: {
+      title: string;
+      subtitle: string;
+      currency: string;
+      recommended: string;
+      cta: string;
+      customCta: string;
+      renewal: string;
+      note: string;
+      plans: { name: string; duration: string; price: string; description: string; recommended?: boolean }[];
+    };
+    finalCta: {
+      title: string;
+      subtitle: string;
+      cta: string;
+      ctaSecondary: string;
+    };
+    backToProducts: string;
   };
   seo: {
     homeTitle: string;

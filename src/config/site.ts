@@ -175,24 +175,89 @@ export const siteConfig = {
     },
     clover: {
       name: 'Clover Flow',
-      status: 'coming-soon' as const,
+      status: 'available' as const,
       logo: '/assets/clover/clover-logo-512.png',
       tagline: {
-        ar: 'إدارة نقاط البيع والأعمال',
-        en: 'POS & Business Management',
+        ar: 'نظام نقاط بيع وإدارة متجر',
+        en: 'POS & Store Management',
       },
       description: {
-        ar: 'منصة لإدارة نقاط البيع والأعمال، مصممة لتبسيط عمليات البيع والمخزون وإدارة العمل.',
-        en: 'A platform for POS and business management, designed to simplify sales, inventory, and operations.',
+        ar: 'نظام نقاط بيع وإدارة متجر مصمم ليجعل يومك أسهل. منظّم مبيعاتك ومخزونك وعملاءك وحساباتك من مكان واحد، ويعمل حتى عند انقطاع الإنترنت.',
+        en: 'A POS and store management system built to make your day easier. Run your sales, inventory, customers, and accounts from one place — and keep selling when the internet goes down.',
       },
       shortDescription: {
-        ar: 'منصة متكاملة لإدارة المبيعات والمخزون والعملاء',
-        en: 'Integrated platform for sales, inventory, and customer management',
+        ar: 'نظام نقاط بيع وإدارة متجر للمتاجر السورية: مبيعات، مخزون، عملاء، ديون وتقارير',
+        en: 'A POS and store management system for Syrian stores: sales, inventory, customers, debts, and reports',
       },
-      features: [],
-      platforms: [],
+      // The six commercial benefits shown on the page. Every entry maps to a
+      // screen that exists in the product (POS, inventory, customers+debts,
+      // currencies, reports, sync centre).
+      features: [
+        {
+          key: 'fast-sales',
+          title: { ar: 'مبيعات أسرع وأسهل', en: 'Faster, easier sales' },
+          description: {
+            ar: 'شاشة بيع سريعة بالباركود أو باللمس، مع طباعة الفاتورة وسجل المبيعات في نفس المكان.',
+            en: 'A quick checkout screen with barcode scanning or touch entry, receipt printing, and a sales history in the same place.',
+          },
+        },
+        {
+          key: 'inventory',
+          title: { ar: 'إدارة المخزون والكميات', en: 'Inventory & quantities' },
+          description: {
+            ar: 'تعرف ما متوفر وما يحتاج طلب، وتتابع كميات المشتريات والمبيعات دون أوراق.',
+            en: 'Know what is in stock and what needs reordering, and track quantities from purchases and sales without paperwork.',
+          },
+        },
+        {
+          key: 'customers-debts',
+          title: { ar: 'العملاء والديون والحسابات', en: 'Customers, debts & accounts' },
+          description: {
+            ar: 'ملف لكل زبون مع رصيده وديونه ومدفوعاته، بدل دفتر الحسابات الورقي.',
+            en: 'A file for every customer with their balance, debts, and payments — instead of a paper ledger.',
+          },
+        },
+        {
+          key: 'currencies',
+          title: { ar: 'دعم الدولار والليرة السورية', en: 'USD and Syrian Pound support' },
+          description: {
+            ar: 'تسعّر منتجاتك بالدولار أو الليرة، مع معدل صرف واضح في كل عملية.',
+            en: 'Price your products in USD or SYP, with a clear exchange rate on every transaction.',
+          },
+        },
+        {
+          key: 'reports',
+          title: { ar: 'تقارير ومتابعة أداء المتجر', en: 'Reports and performance tracking' },
+          description: {
+            ar: 'تقارير للمبيعات والأرباح والمصروفات والديون، لترى وضع متجرك بالأرقام.',
+            en: 'Reports on sales, profit, expenses, and debts, so you can see how the shop is really doing.',
+          },
+        },
+        {
+          key: 'offline',
+          title: { ar: 'يعمل حتى عند انقطاع الإنترنت', en: 'Keeps working without internet' },
+          description: {
+            ar: 'يستمر البيع دون اتصال، ويحفظ العمليات محلياً ثم يزامنها عند عودة الإنترنت.',
+            en: 'Keep selling during an outage — work is saved locally and synced once the connection is back.',
+          },
+        },
+      ],
+      storeTypes: [
+        { key: 'grocery', label: { ar: 'بقالة', en: 'Grocery' } },
+        { key: 'supermarket', label: { ar: 'سوبرماركت', en: 'Supermarket' } },
+        { key: 'groceries', label: { ar: 'مواد غذائية', en: 'Groceries' } },
+        { key: 'clothing', label: { ar: 'ملابس', en: 'Clothing' } },
+        { key: 'electronics', label: { ar: 'إلكترونيات', en: 'Electronics' } },
+        { key: 'accessories', label: { ar: 'إكسسوارات', en: 'Accessories' } },
+        { key: 'household', label: { ar: 'أدوات منزلية', en: 'Household goods' } },
+        { key: 'retail', label: { ar: 'متاجر التجزئة', en: 'Retail stores' } },
+      ],
+      platforms: ['android'],
       downloadLinks: {},
+      // Real product screenshots live here (see ASSETS.md). The page renders
+      // the gallery only when the files are present, so no broken images ship.
       screenshots: [],
+      screenshotsThumbs: [],
     },
   },
   services: [
@@ -297,8 +362,8 @@ export const siteConfig = {
     {
       key: 'clover',
       name: 'Clover Flow',
-      type: { ar: 'منتج — منصة POS وإدارة أعمال', en: 'Product — POS & Business Platform' },
-      description: { ar: 'إدارة المبيعات، المخزون، والعملاء — قريباً', en: 'Sales, inventory, and customer management — coming soon' },
+      type: { ar: 'منتج — نظام نقاط بيع وإدارة متجر', en: 'Product — POS & Store Management' },
+      description: { ar: 'إدارة المبيعات والمخزون والعملاء والتقارير من مكان واحد', en: 'Sales, inventory, customers, and reports from one place' },
       image: '/assets/clover/clover-logo-512.png',
       url: '/clover',
     },

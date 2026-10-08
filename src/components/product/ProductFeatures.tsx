@@ -12,13 +12,13 @@ interface ProductFeatureProps {
 export function ProductFeatures({ productKey }: ProductFeatureProps) {
   const { t, locale } = useI18n();
   const product = siteConfig.products[productKey];
-  const features = product.features;
+  const features = (product.features as any[]) || [];
 
   return (
     <Section id="features" size="lg" background="neutral">
       <Container>
         <SectionHeader
-          title={t[productKey].features.title}
+          title={(t[productKey] as any).features?.title || ''}
           divider
         />
         
