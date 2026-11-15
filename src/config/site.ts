@@ -147,7 +147,7 @@ export const siteConfig = {
         android: '',
         apk: '',
         apkPure: 'https://apkpure.com/p/com.BlueOrbitTechnologies.Raseed',
-        googlePlay: '',
+        googlePlay: 'https://play.google.com/store/apps/details?id=com.BlueOrbitTechnologies.Raseed',
       },
       social: {
         facebook: 'https://www.facebook.com/RaseedApp',
