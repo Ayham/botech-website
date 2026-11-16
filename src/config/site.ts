@@ -57,7 +57,7 @@ export const siteConfig = {
     ],
     products: [
       { key: 'raseed', href: '/raseed', label: { ar: 'Raseed — رصيد', en: 'Raseed' }, description: { ar: 'تطبيق تحويل الرصيد لنقاط البيع', en: 'Balance transfer app for POS' } },
-      { key: 'clover', href: '/clover', label: { ar: 'Clover Flow', en: 'Clover Flow' }, description: { ar: 'إدارة نقاط البيع والأعمال', en: 'POS & Business Management' } },
+      { key: 'clover', href: '/clover', label: { ar: 'Clover', en: 'Clover' }, description: { ar: 'منظومة نقاط بيع ومتجر إلكتروني متصل', en: 'Connected POS & online store system' } },
     ],
     footer: {
       company: [
@@ -69,7 +69,7 @@ export const siteConfig = {
       ],
       products: [
         { key: 'raseed', href: '/raseed', label: { ar: 'Raseed', en: 'Raseed' } },
-        { key: 'clover', href: '/clover', label: { ar: 'Clover Flow', en: 'Clover Flow' } },
+        { key: 'clover', href: '/clover', label: { ar: 'Clover', en: 'Clover' } },
       ],
       legal: [
         { key: 'privacy', href: '/privacy', label: { ar: 'سياسة الخصوصية', en: 'Privacy Policy' } },
@@ -174,39 +174,38 @@ export const siteConfig = {
       ],
     },
     clover: {
-      name: 'Clover Flow',
+      name: 'Clover',
       status: 'available' as const,
       logo: '/assets/clover/clover-logo-512.png',
       tagline: {
-        ar: 'نظام نقاط بيع وإدارة متجر',
-        en: 'POS & Store Management',
+        ar: 'منظومة نقاط بيع ومتجر إلكتروني متصل',
+        en: 'Connected POS & online store system',
       },
       description: {
-        ar: 'نظام نقاط بيع وإدارة متجر مصمم ليجعل يومك أسهل. منظّم مبيعاتك ومخزونك وعملاءك وحساباتك من مكان واحد، ويعمل حتى عند انقطاع الإنترنت.',
-        en: 'A POS and store management system built to make your day easier. Run your sales, inventory, customers, and accounts from one place — and keep selling when the internet goes down.',
+        ar: 'Clover منظومة واحدة تجمع Clover Flow POS لإدارة البيع والمخزون والعملاء والحسابات، وClover Market كقناة بيع إلكترونية متصلة. تعمل محليًا عند انقطاع الإنترنت، وتدعم الدولار والليرة، وتناسب المتاجر التي تبيع بالجملة والتجزئة.',
+        en: 'Clover brings Clover Flow POS for sales, inventory, customers, and accounts together with Clover Market as a connected online sales channel. It keeps working locally during outages, supports USD and SYP, and fits stores selling wholesale and retail.',
       },
       shortDescription: {
-        ar: 'نظام نقاط بيع وإدارة متجر للمتاجر السورية: مبيعات، مخزون، عملاء، ديون وتقارير',
-        en: 'A POS and store management system for Syrian stores: sales, inventory, customers, debts, and reports',
+        ar: 'نقطة بيع، مخزون، حسابات، تقارير ومتجر إلكتروني متصل — في منظومة واحدة',
+        en: 'POS, inventory, accounts, reports, and a connected online store — in one system',
       },
-      // The six commercial benefits shown on the page. Every entry maps to a
-      // screen that exists in the product (POS, inventory, customers+debts,
-      // currencies, reports, sync centre).
+      // The commercial benefits shown on product surfaces. Every entry maps
+      // to a capability that exists in Clover Flow POS or Clover Market.
       features: [
         {
           key: 'fast-sales',
           title: { ar: 'مبيعات أسرع وأسهل', en: 'Faster, easier sales' },
           description: {
-            ar: 'شاشة بيع سريعة بالباركود أو باللمس، مع طباعة الفاتورة وسجل المبيعات في نفس المكان.',
-            en: 'A quick checkout screen with barcode scanning or touch entry, receipt printing, and a sales history in the same place.',
+            ar: 'شاشة بيع سريعة بالباركود أو باللمس، مع الإجماليات والخصومات والضرائب وطرق الدفع وطباعة الفاتورة.',
+            en: 'A quick checkout screen with barcode or touch entry, totals, discounts, taxes, payment methods, and receipt printing.',
           },
         },
         {
           key: 'inventory',
           title: { ar: 'إدارة المخزون والكميات', en: 'Inventory & quantities' },
           description: {
-            ar: 'تعرف ما متوفر وما يحتاج طلب، وتتابع كميات المشتريات والمبيعات دون أوراق.',
-            en: 'Know what is in stock and what needs reordering, and track quantities from purchases and sales without paperwork.',
+            ar: 'منتجات وأسعار وكميات وتصنيفات، مع تنبيهات نقص وحركة مخزون مرتبطة بالمبيعات والمشتريات.',
+            en: 'Products, prices, quantities, and categories, with low-stock alerts and stock movement tied to sales and purchases.',
           },
         },
         {
@@ -221,24 +220,32 @@ export const siteConfig = {
           key: 'currencies',
           title: { ar: 'دعم الدولار والليرة السورية', en: 'USD and Syrian Pound support' },
           description: {
-            ar: 'تسعّر منتجاتك بالدولار أو الليرة، مع معدل صرف واضح في كل عملية.',
-            en: 'Price your products in USD or SYP, with a clear exchange rate on every transaction.',
+            ar: 'سعّر بالدولار أو الليرة، مع معدل صرف تلقائي أو يدوي، وتقريب مستقل لكل عملة.',
+            en: 'Price in USD or SYP with an automatic or manual exchange rate and independent rounding per currency.',
           },
         },
         {
           key: 'reports',
           title: { ar: 'تقارير ومتابعة أداء المتجر', en: 'Reports and performance tracking' },
           description: {
-            ar: 'تقارير للمبيعات والأرباح والمصروفات والديون، لترى وضع متجرك بالأرقام.',
-            en: 'Reports on sales, profit, expenses, and debts, so you can see how the shop is really doing.',
+            ar: 'تقارير للمبيعات والمخزون والعملاء والديون والمصروفات، مع الأرباح والخسائر والتدفق النقدي.',
+            en: 'Reports for sales, inventory, customers, debts, and expenses, plus profit and loss and cash flow.',
           },
         },
         {
           key: 'offline',
           title: { ar: 'يعمل حتى عند انقطاع الإنترنت', en: 'Keeps working without internet' },
           description: {
-            ar: 'يستمر البيع دون اتصال، ويحفظ العمليات محلياً ثم يزامنها عند عودة الإنترنت.',
-            en: 'Keep selling during an outage — work is saved locally and synced once the connection is back.',
+            ar: 'يستمر البيع دون اتصال، ويحفظ العمليات محلياً ثم يزامنها تلقائياً عند عودة الإنترنت.',
+            en: 'Keep selling during an outage — work is saved locally and synced automatically once the connection is back.',
+          },
+        },
+        {
+          key: 'market',
+          title: { ar: 'متجر إلكتروني متصل', en: 'A connected online store' },
+          description: {
+            ar: 'Clover Market يفتح قناة بيع إلكترونية إضافية، وطلباته تصل إلى Clover Flow POS كفاتورة.',
+            en: 'Clover Market adds an online sales channel, and its orders arrive in Clover Flow POS as an invoice.',
           },
         },
       ],
@@ -252,7 +259,7 @@ export const siteConfig = {
         { key: 'household', label: { ar: 'أدوات منزلية', en: 'Household goods' } },
         { key: 'retail', label: { ar: 'متاجر التجزئة', en: 'Retail stores' } },
       ],
-      platforms: ['android'],
+      platforms: ['windows', 'android', 'web'],
       downloadLinks: {},
       // Real product screenshots live here (see ASSETS.md). The page renders
       // the gallery only when the files are present, so no broken images ship.
@@ -361,9 +368,9 @@ export const siteConfig = {
     },
     {
       key: 'clover',
-      name: 'Clover Flow',
-      type: { ar: 'منتج — نظام نقاط بيع وإدارة متجر', en: 'Product — POS & Store Management' },
-      description: { ar: 'إدارة المبيعات والمخزون والعملاء والتقارير من مكان واحد', en: 'Sales, inventory, customers, and reports from one place' },
+      name: 'Clover',
+      type: { ar: 'منتج — منظومة نقاط بيع ومتجر إلكتروني متصل', en: 'Product — Connected POS & online store system' },
+      description: { ar: 'نقطة بيع، مخزون، حسابات، تقارير ومتجر إلكتروني متصل من مكان واحد', en: 'POS, inventory, accounts, reports, and a connected online store in one place' },
       image: '/assets/clover/clover-logo-512.png',
       url: '/clover',
     },

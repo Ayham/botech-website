@@ -4,7 +4,7 @@ import { Section } from '../ui/Section';
 import { RevealStagger } from '../ui/Reveal';
 
 interface ProductHowItWorksProps {
-  productKey: 'raseed' | 'clover';
+  productKey: 'raseed';
 }
 
 interface Step {

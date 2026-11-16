@@ -6,7 +6,7 @@ import { Section, SectionHeader } from '../ui/Section';
 import { RevealStagger } from '../ui/Reveal';
 
 interface ProductFeatureProps {
-  productKey: 'raseed' | 'clover';
+  productKey: 'raseed';
 }
 
 export function ProductFeatures({ productKey }: ProductFeatureProps) {

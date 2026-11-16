@@ -4,7 +4,7 @@ import { Section } from '../ui/Section';
 import { RevealStagger } from '../ui/Reveal';
 
 interface ProductFAQProps {
-  productKey: 'raseed' | 'clover';
+  productKey: 'raseed';
 }
 
 export function ProductFAQ({ productKey }: ProductFAQProps) {
