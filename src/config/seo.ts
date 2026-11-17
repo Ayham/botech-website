@@ -69,13 +69,13 @@ export const pageSEO = {
   products: generateSEO({
     title: `منتجاتنا | BOTech – ${siteConfig.name}`,
     description:
-      'نطوّر منتجاتنا البرمجية الخاصة التي تحل مشكلات حقيقية في السوق — Raseed لإدارة تحويلات الرصيد، و Clover Flow لمنصة نقاط البيع.',
+      'نطوّر منتجاتنا البرمجية الخاصة التي تحل مشكلات حقيقية في السوق — Raseed لإدارة تحويلات الرصيد، و Clover لمنظومة نقاط البيع والمتجر الإلكتروني المتصل.',
     canonical: '/products',
   }),
   productsEn: generateSEO({
     title: `Our Products | BOTech – ${siteConfig.name}`,
     description:
-      'We build our own software products that solve real market problems — Raseed for balance transfers, and Clover Flow for POS management.',
+      'We build our own software products that solve real market problems — Raseed for balance transfers, and Clover for connected POS and online store management.',
     canonical: '/products',
   }),
   work: generateSEO({
@@ -117,18 +117,18 @@ export const pageSEO = {
     ogImage: '/assets/raseed/Raseed%20app%20Logo.png',
   }),
   clover: generateSEO({
-    title: `Clover Flow | نظام نقاط بيع وإدارة متجر | BOTech`,
+    title: `Clover | منظومة نقاط بيع ومتجر إلكتروني متصل – BOTech`,
     description:
-      'نظام نقاط بيع وإدارة متجر لمختلف أنواع المتاجر السورية. مبيعات أسرع، مخزون، عملاء، ديون ودعم الدولار والليرة السورية، ويعمل بدون إنترنت.',
+      'Clover تجمع Clover Flow POS لإدارة المبيعات والمخزون والعملاء والديون والتقارير، وClover Market كقناة بيع إلكترونية متصلة. تعمل بدون إنترنت وتدعم الدولار والليرة.',
     canonical: '/clover',
-    ogImage: '/assets/clover/clover-logo-512.png',
+    ogImage: '/assets/clover/generic-hero.svg',
   }),
   cloverEn: generateSEO({
-    title: `Clover Flow | POS & Store Management for Syrian Stores | BOTech`,
+    title: `Clover | Connected POS & Online Store System – BOTech`,
     description:
-      'A POS and store management system for Syrian shops. Faster sales, inventory, customers, debts, USD/SYP support, and offline-first.',
+      'Clover brings Clover Flow POS for sales, inventory, customers, debts, and reports together with Clover Market as a connected online sales channel. Offline-first, with USD and SYP support.',
     canonical: '/clover',
-    ogImage: '/assets/clover/clover-logo-512.png',
+    ogImage: '/assets/clover/generic-hero.svg',
   }),
   privacy: generateSEO({
     title: `سياسة الخصوصية | BOTech – ${siteConfig.name}`,
