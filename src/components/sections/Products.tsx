@@ -8,6 +8,7 @@ import { Section, SectionHeader } from '../ui/Section';
 import { NavLink } from 'react-router-dom';
 import { Reveal, RevealStagger } from '../ui/Reveal';
 import { OrbitBackground } from '../ui/OrbitBackground';
+import { ProductDownloads } from '../product/ProductDownloads';
 
 export function Products() {
   const { t, locale } = useI18n();
@@ -75,7 +76,8 @@ export function Products() {
                       ))}
                     </div>
 
-                    <div className="mt-auto pt-4 border-t border-neutral-200">
+                    <div className="mt-auto space-y-3 border-t border-neutral-200 pt-4">
+                      <ProductDownloads downloadLinks={product.downloadLinks} />
                       <NavLink to={`/${key}`} className="block w-full">
                         <Button variant="primary" fullWidth className="group">
                           {t.products.exploreProduct}

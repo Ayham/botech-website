@@ -260,7 +260,14 @@ export const siteConfig = {
         { key: 'retail', label: { ar: 'متاجر التجزئة', en: 'Retail stores' } },
       ],
       platforms: ['windows', 'android', 'web'],
-      downloadLinks: {},
+      downloadLinks: {
+        cloverFlowPos: 'https://play.google.com/store/apps/details?id=com.clover.cloverflowpos',
+        cloverMarket: 'https://play.google.com/store/apps/details?id=live.botech.clovermarket',
+      },
+      webLinks: {
+        cloverFlowPos: 'https://clover.botech-live.com/',
+        cloverMarket: 'https://market.botech-live.com/',
+      },
       // Real product screenshots live here (see ASSETS.md). The page renders
       // the gallery only when the files are present, so no broken images ship.
       screenshots: [],

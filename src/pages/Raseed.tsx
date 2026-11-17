@@ -79,45 +79,75 @@ export function RaseedPage() {
 
               <p className="body-lg text-neutral-600 mb-8">{text.hero.description}</p>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-8">
-                  <a href={apkUrl} target="_blank" rel="noopener noreferrer">
-                    <span className="btn btn-primary w-full inline-flex items-center justify-center gap-2">
-                      <svg className="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3v12m0 0l-4-4m4 4l4-4M4 17v2a2 2 0 002 2h12a2 2 0 002-2v-2" /></svg>
-                      <span className="text-center leading-snug">{text.download.downloadApk}</span>
-                    </span>
-                  </a>
-                  <a href={downloadLinks.apkPure} target="_blank" rel="noopener noreferrer">
-                    <span className="btn btn-outline w-full inline-flex items-center justify-center gap-2">
-                      <svg className="w-5 h-5 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2c-.7 0-1.4.3-1.9.9L6.4 7h11.2l-3.7-4.1C13.4 2.3 12.7 2 12 2zm-6.9 6h13.8c.4 0 .7.2.9.5.2.3.2.7 0 1l-4.5 8.3c-.3.6-.9.9-1.5.9H9.2c-.6 0-1.2-.3-1.5-.9l-4.5-8.3c-.2-.3-.2-.7 0-1 .2-.3.5-.5.9-.5zm5.4 2.5c-.4 0-.8.2-.9.6h5.8c-.1-.4-.5-.6-.9-.6h-4zm-.9 4.2c0 .4.4.8.9.8s.9-.4.9-.8-.4-.8-.9-.8-.9.4-.9.8zm4.8 0c0 .4.4.8.9.8s.9-.4.9-.8-.4-.8-.9-.8-.9.4-.9.8zM5.2 20l-1 1.8c-.2.4-.7.6-1.1.4-.4-.2-.6-.7-.4-1.1l.8-1.4h12.5l-.2.3h-10.6z"/></svg>
-                      <span className="text-center leading-snug">{text.download.apkPure}</span>
-                    </span>
-                  </a>
-                  {downloadLinks.googlePlay ? (
-                    <a href={downloadLinks.googlePlay} target="_blank" rel="noopener noreferrer">
-                      <span className="btn btn-outline w-full inline-flex items-center justify-center gap-2">
-                        <svg className="w-5 h-5 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M3.6 1.8L13.7 12 3.6 22.2c-.4-.2-.6-.6-.6-1.1V2.9c0-.5.2-.9.6-1.1zm11.6 11.6l-2.2 2.2-10.2-7.4 2.7-2.7 9.7 7.9zm2.1-2.2l-2.7 2.7-2.2-2.2 2.2-2.2 2.7 2.7h.7c.6 0 1.1.2 1.6.6l-2.3.6zM12.9 12l2.2 2.2-9.7 7.9c-.3.2-.6.3-.9.3l8.4-10.4z"/></svg>
-                        <span className="text-center leading-snug">{text.download.googlePlay}</span>
-                      </span>
-                    </a>
-                  ) : (
+              {/* Google Play is the primary download path; the rest are secondary */}
+              <div className="mb-8">
+                {downloadLinks.googlePlay ? (
+                  <a
+                    href={downloadLinks.googlePlay}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group relative inline-flex rounded-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-4"
+                    aria-label={text.download.googlePlay}
+                  >
                     <span
-                      className="btn btn-outline border-2 border-neutral-300 text-neutral-400 cursor-not-allowed w-full inline-flex items-center justify-center gap-2"
-                      aria-disabled="true"
-                      title={text.download.googlePlay}
+                      aria-hidden="true"
+                      className="pointer-events-none absolute -inset-3 rounded-[28px] bg-primary-500/15 blur-2xl transition-colors duration-300 group-hover:bg-primary-500/25"
+                    />
+                    <img
+                      src="/assets/raseed/google-play-badge-en.svg"
+                      alt={text.download.googlePlay}
+                      width="239"
+                      height="71"
+                      className="relative h-16 w-auto rounded-2xl shadow-xl ring-1 ring-black/10 transition-transform duration-200 group-hover:-translate-y-0.5 sm:h-20"
+                    />
+                  </a>
+                ) : (
+                  <span className="relative inline-flex items-center gap-3 rounded-2xl bg-neutral-900 px-5 py-3.5 opacity-80">
+                    <img
+                      src="/assets/raseed/google-play-badge-en.svg"
+                      alt=""
+                      aria-hidden="true"
+                      className="h-11 w-auto opacity-60 grayscale"
+                    />
+                    <span className="text-xs font-semibold bg-white/15 text-white rounded-full px-2 py-0.5">
+                      {text.download.comingSoon}
+                    </span>
+                  </span>
+                )}
+
+                {/* Secondary alternatives */}
+                <div className="mt-6 border-t border-neutral-200 pt-5">
+                  <div className="flex flex-wrap items-center gap-x-5 gap-y-3">
+                    <a
+                      href={apkUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 text-sm font-medium text-neutral-500 transition-colors hover:text-primary-600"
                     >
-                      <svg className="w-5 h-5 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M3.6 1.8L13.7 12 3.6 22.2c-.4-.2-.6-.6-.6-1.1V2.9c0-.5.2-.9.6-1.1zm11.6 11.6l-2.2 2.2-10.2-7.4 2.7-2.7 9.7 7.9zm2.1-2.2l-2.7 2.7-2.2-2.2 2.2-2.2 2.7 2.7h.7c.6 0 1.1.2 1.6.6l-2.3.6zM12.9 12l2.2 2.2-9.7 7.9c-.3.2-.6.3-.9.3l8.4-10.4z"/></svg>
-                      <span className="text-center leading-snug">{text.download.googlePlay}</span>
-                      <span className="text-xs font-semibold bg-neutral-200 text-neutral-500 rounded-full px-2 py-0.5 flex-shrink-0">
-                        {text.download.comingSoon}
-                      </span>
-                    </span>
-                  )}
-                  <NavLink to="/contact#form">
-                    <span className="btn btn-outline w-full inline-flex items-center justify-center gap-2">
-                      <span className="text-center leading-snug">{text.hero.ctaContact}</span>
-                    </span>
-                  </NavLink>
+                      <svg className="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3v12m0 0l-4-4m4 4l4-4M4 17v2a2 2 0 002 2h12a2 2 0 002-2v-2" /></svg>
+                      {text.download.downloadApk}
+                    </a>
+                    <span className="hidden h-4 w-px bg-neutral-200 sm:block" aria-hidden="true" />
+                    <a
+                      href={downloadLinks.apkPure}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 text-sm font-medium text-neutral-500 transition-colors hover:text-primary-600"
+                    >
+                      <svg className="w-4 h-4 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2c-.7 0-1.4.3-1.9.9L6.4 7h11.2l-3.7-4.1C13.4 2.3 12.7 2 12 2zm-6.9 6h13.8c.4 0 .7.2.9.5.2.3.2.7 0 1l-4.5 8.3c-.3.6-.9.9-1.5.9H9.2c-.6 0-1.2-.3-1.5-.9l-4.5-8.3c-.2-.3-.2-.7 0-1 .2-.3.5-.5.9-.5zm5.4 2.5c-.4 0-.8.2-.9.6h5.8c-.1-.4-.5-.6-.9-.6h-4zm-.9 4.2c0 .4.4.8.9.8s.9-.4.9-.8-.4-.8-.9-.8-.9.4-.9.8zm4.8 0c0 .4.4.8.9.8s.9-.4.9-.8-.4-.8-.9-.8-.9.4-.9.8zM5.2 20l-1 1.8c-.2.4-.7.6-1.1.4-.4-.2-.6-.7-.4-1.1l.8-1.4h12.5l-.2.3h-10.6z"/></svg>
+                      {text.download.apkPure}
+                    </a>
+                    <span className="hidden h-4 w-px bg-neutral-200 sm:block" aria-hidden="true" />
+                    <NavLink
+                      to="/contact#form"
+                      className="inline-flex items-center gap-2 text-sm font-medium text-neutral-500 transition-colors hover:text-primary-600"
+                    >
+                      <svg className="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 10h.01M12 10h.01M16 10h.01M21 12c0 4.418-4.03 8-9 8a9.86 9.86 0 01-4-.8L3 20l1.2-3.6A7.9 7.9 0 013 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" /></svg>
+                      {text.hero.ctaContact}
+                    </NavLink>
+                  </div>
                 </div>
+              </div>
 
               <div className="flex items-center gap-4 flex-wrap">
                 <a
@@ -381,53 +411,85 @@ export function RaseedPage() {
             <h2 className="heading-2 text-white mb-4">{text.download.title}</h2>
             <p className="body-lg text-primary-100 mb-8">{text.download.subtitle}</p>
 
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-6">
-              <a href={apkUrl} target="_blank" rel="noopener noreferrer">
-                <span className="btn btn-secondary inline-flex items-center gap-2 bg-white text-primary-600 hover:bg-primary-50">
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3v12m0 0l-4-4m4 4l4-4M4 17v2a2 2 0 002 2h12a2 2 0 002-2v-2" /></svg>
-                  {text.download.downloadApk}
-                </span>
-              </a>
-              <a href={downloadLinks.apkPure} target="_blank" rel="noopener noreferrer">
-                <span className="btn btn-outline border-2 border-white/70 text-white hover:bg-white/10 inline-flex items-center gap-2">
-                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2c-.7 0-1.4.3-1.9.9L6.4 7h11.2l-3.7-4.1C13.4 2.3 12.7 2 12 2zm-6.9 6h13.8c.4 0 .7.2.9.5.2.3.2.7 0 1l-4.5 8.3c-.3.6-.9.9-1.5.9H9.2c-.6 0-1.2-.3-1.5-.9l-4.5-8.3c-.2-.3-.2-.7 0-1 .2-.3.5-.5.9-.5zm5.4 2.5c-.4 0-.8.2-.9.6h5.8c-.1-.4-.5-.6-.9-.6h-4zm-.9 4.2c0 .4.4.8.9.8s.9-.4.9-.8-.4-.8-.9-.8-.9.4-.9.8zm4.8 0c0 .4.4.8.9.8s.9-.4.9-.8-.4-.8-.9-.8-.9.4-.9.8zM5.2 20l-1 1.8c-.2.4-.7.6-1.1.4-.4-.2-.6-.7-.4-1.1l.8-1.4h12.5l-.2.3h-10.6z"/></svg>
-                  {text.download.apkPure}
-                </span>
-              </a>
+            {/* Google Play is the primary download path */}
+            <div className="mb-10 flex justify-center">
               {downloadLinks.googlePlay ? (
-                <a href={downloadLinks.googlePlay} target="_blank" rel="noopener noreferrer">
-                  <span className="btn btn-outline border-2 border-white/70 text-white hover:bg-white/10 inline-flex items-center gap-2">
-                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M3.6 1.8L13.7 12 3.6 22.2c-.4-.2-.6-.6-.6-1.1V2.9c0-.5.2-.9.6-1.1zm11.6 11.6l-2.2 2.2-10.2-7.4 2.7-2.7 9.7 7.9zm2.1-2.2l-2.7 2.7-2.2-2.2 2.2-2.2 2.7 2.7h.7c.6 0 1.1.2 1.6.6l-2.3.6zM12.9 12l2.2 2.2-9.7 7.9c-.3.2-.6.3-.9.3l8.4-10.4z"/></svg>
-                    {text.download.googlePlay}
-                  </span>
+                <a
+                  href={downloadLinks.googlePlay}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group relative inline-flex rounded-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-primary-900"
+                  aria-label={text.download.googlePlay}
+                >
+                  <span
+                    aria-hidden="true"
+                    className="pointer-events-none absolute -inset-4 rounded-[32px] bg-white/20 blur-2xl transition-colors duration-300 group-hover:bg-white/30"
+                  />
+                  <img
+                    src="/assets/raseed/google-play-badge-en.svg"
+                    alt={text.download.googlePlay}
+                    width="239"
+                    height="71"
+                    loading="lazy"
+                    className="relative h-16 w-auto rounded-2xl shadow-2xl ring-1 ring-white/30 transition-transform duration-200 group-hover:-translate-y-0.5 sm:h-20"
+                  />
                 </a>
               ) : (
-                <span
-                  className="btn btn-outline border-2 border-white/40 text-white/60 cursor-not-allowed inline-flex items-center gap-2"
-                  aria-disabled="true"
-                  title={text.download.googlePlay}
-                >
-                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M3.6 1.8L13.7 12 3.6 22.2c-.4-.2-.6-.6-.6-1.1V2.9c0-.5.2-.9.6-1.1zm11.6 11.6l-2.2 2.2-10.2-7.4 2.7-2.7 9.7 7.9zm2.1-2.2l-2.7 2.7-2.2-2.2 2.2-2.2 2.7 2.7h.7c.6 0 1.1.2 1.6.6l-2.3.6zM12.9 12l2.2 2.2-9.7 7.9c-.3.2-.6.3-.9.3l8.4-10.4z"/></svg>
-                  {text.download.googlePlay}
-                  <span className="text-xs font-semibold bg-white/10 text-white/70 rounded-full px-2 py-0.5">
+                <span className="relative inline-flex items-center gap-3 rounded-2xl bg-white/10 px-5 py-3.5">
+                  <img
+                    src="/assets/raseed/google-play-badge-en.svg"
+                    alt=""
+                    aria-hidden="true"
+                    className="h-11 w-auto opacity-60 grayscale"
+                  />
+                  <span className="text-xs font-semibold bg-white/15 text-white rounded-full px-2 py-0.5">
                     {text.download.comingSoon}
                   </span>
                 </span>
               )}
             </div>
 
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <a href={ctaPrimaryHref} target="_blank" rel="noopener noreferrer">
-                <span className="btn btn-outline border-2 border-white/70 text-white hover:bg-white/10 inline-flex items-center gap-2">
-                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.945C.16 5.335 5.495 0 12.05 0a11.82 11.82 0 018.413 3.488 11.82 11.82 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.82 9.82 0 001.51 5.26l-.999 3.648 3.978-1.05zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.867-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.258-.463-2.395-1.478-.886-.784-1.48-1.782-1.653-2.082-.173-.297-.019-.458.13-.606.134-.133.298-.347.446-.521.149-.174.198-.298.298-.497.099-.198.05-.372-.025-.521-.074-.149-.669-1.612-.916-2.207-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.521.074-.793.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.064 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+            {/* Secondary alternatives */}
+            <div className="border-t border-white/15 pt-7">
+              <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-3">
+                <a
+                  href={apkUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 text-sm font-medium text-primary-100 transition-colors hover:text-white"
+                >
+                  <svg className="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3v12m0 0l-4-4m4 4l4-4M4 17v2a2 2 0 002 2h12a2 2 0 002-2v-2" /></svg>
+                  {text.download.downloadApk}
+                </a>
+                <span className="hidden h-4 w-px bg-white/20 sm:block" aria-hidden="true" />
+                <a
+                  href={downloadLinks.apkPure}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 text-sm font-medium text-primary-100 transition-colors hover:text-white"
+                >
+                  <svg className="w-4 h-4 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2c-.7 0-1.4.3-1.9.9L6.4 7h11.2l-3.7-4.1C13.4 2.3 12.7 2 12 2zm-6.9 6h13.8c.4 0 .7.2.9.5.2.3.2.7 0 1l-4.5 8.3c-.3.6-.9.9-1.5.9H9.2c-.6 0-1.2-.3-1.5-.9l-4.5-8.3c-.2-.3-.2-.7 0-1 .2-.3.5-.5.9-.5zm5.4 2.5c-.4 0-.8.2-.9.6h5.8c-.1-.4-.5-.6-.9-.6h-4zm-.9 4.2c0 .4.4.8.9.8s.9-.4.9-.8-.4-.8-.9-.8-.9.4-.9.8zm4.8 0c0 .4.4.8.9.8s.9-.4.9-.8-.4-.8-.9-.8-.9.4-.9.8zM5.2 20l-1 1.8c-.2.4-.7.6-1.1.4-.4-.2-.6-.7-.4-1.1l.8-1.4h12.5l-.2.3h-10.6z"/></svg>
+                  {text.download.apkPure}
+                </a>
+                <span className="hidden h-4 w-px bg-white/20 sm:block" aria-hidden="true" />
+                <a
+                  href={ctaPrimaryHref}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 text-sm font-medium text-primary-100 transition-colors hover:text-white"
+                >
+                  <svg className="w-4 h-4 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.945C.16 5.335 5.495 0 12.05 0a11.82 11.82 0 018.413 3.488 11.82 11.82 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.82 9.82 0 001.51 5.26l-.999 3.648 3.978-1.05zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.867-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.258-.463-2.395-1.478-.886-.784-1.48-1.782-1.653-2.082-.173-.297-.019-.458.13-.606.134-.133.298-.347.446-.521.149-.174.198-.298.298-.497.099-.198.05-.372-.025-.521-.074-.149-.669-1.612-.916-2.207-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.521.074-.793.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.064 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
                   {text.download.ctaPrimary}
-                </span>
-              </a>
-              <NavLink to="/contact#form">
-                <span className="btn btn-outline border-2 border-white/70 text-white hover:bg-white/10">
+                </a>
+                <span className="hidden h-4 w-px bg-white/20 sm:block" aria-hidden="true" />
+                <NavLink
+                  to="/contact#form"
+                  className="inline-flex items-center gap-2 text-sm font-medium text-primary-100 transition-colors hover:text-white"
+                >
+                  <svg className="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 10h.01M12 10h.01M16 10h.01M21 12c0 4.418-4.03 8-9 8a9.86 9.86 0 01-4-.8L3 20l1.2-3.6A7.9 7.9 0 013 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" /></svg>
                   {text.download.ctaContact}
-                </span>
-              </NavLink>
+                </NavLink>
+              </div>
             </div>
           </div>
         </Container>
