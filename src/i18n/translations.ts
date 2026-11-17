@@ -109,6 +109,7 @@ export const translations = {
       features: 'المميزات',
       platforms: 'المنصات المدعومة',
       download: 'تحميل التطبيق',
+      downloadOnGooglePlay: 'تحميل من Google Play',
       screenshots: 'لقطات من التطبيق',
       comingSoon: 'قريباً',
       available: 'متاح الآن',
@@ -460,6 +461,7 @@ export const translations = {
       features: 'Features',
       platforms: 'Supported Platforms',
       download: 'Download App',
+      downloadOnGooglePlay: 'Get it on Google Play',
       screenshots: 'App Screenshots',
       comingSoon: 'Coming Soon',
       available: 'Available Now',
@@ -797,6 +799,7 @@ export type Translations = {
     features: string;
     platforms: string;
     download: string;
+    downloadOnGooglePlay: string;
     screenshots: string;
     comingSoon: string;
     available: string;

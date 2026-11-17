@@ -190,6 +190,21 @@ export interface CloverPageContent {
     sypLabel: string;
     note: string;
   };
+  downloads: {
+    eyebrow: string;
+    title: string;
+    subtitle: string;
+    apps: {
+      key: 'flow' | 'market';
+      name: string;
+      tagline: string;
+      badgeAlt: string;
+    }[];
+    note: string;
+    webCta: string;
+    whatsappCta: string;
+    contactCta: string;
+  };
   finalCta: {
     title: string;
     subtitle: string;
@@ -624,6 +639,29 @@ export const cloverContent: Record<Locale, CloverPageContent> = {
       sypLabel: 'ليرة سورية',
       note: 'اختر عملة البيع، واعرض المقابل وفق المعدل المعتمد.',
     },
+    downloads: {
+      eyebrow: 'تحميل التطبيقات',
+      title: 'حمّل Clover على جهازك.',
+      subtitle: 'التطبيقان متاحان على Google Play. اختر ما يناسب متجرك وابدأ من هناك.',
+      apps: [
+        {
+          key: 'flow',
+          name: 'Clover Flow POS',
+          tagline: 'نقطة البيع لإدارة المبيعات والمخزون والحسابات.',
+          badgeAlt: 'تحميل Clover Flow POS من Google Play',
+        },
+        {
+          key: 'market',
+          name: 'Clover Market',
+          tagline: 'المتجر الإلكتروني المتصل بـ Clover Flow POS.',
+          badgeAlt: 'تحميل Clover Market من Google Play',
+        },
+      ],
+      note: 'التطبيقان يحتاجان إلى حساب وتفعيل من فريقنا قبل الاستخدام.',
+      webCta: 'فتح على الويب',
+      whatsappCta: 'استفسر عبر واتساب',
+      contactCta: 'صفحة التواصل',
+    },
     finalCta: {
       title: 'جاهز ترى Clover على متجرك؟',
       subtitle: 'احكِ لنا عن متجرك، وسنوضح لك كيف تعمل المنظومة مع احتياجك.',
@@ -1055,6 +1093,29 @@ export const cloverContent: Record<Locale, CloverPageContent> = {
       usdLabel: 'US Dollar',
       sypLabel: 'Syrian Pound',
       note: 'Choose the sale currency and show the equivalent at the approved rate.',
+    },
+    downloads: {
+      eyebrow: 'Download the apps',
+      title: 'Get Clover on your device.',
+      subtitle: 'Both apps are on Google Play. Pick the one that fits your store and start there.',
+      apps: [
+        {
+          key: 'flow',
+          name: 'Clover Flow POS',
+          tagline: 'The point of sale for sales, inventory, and accounts.',
+          badgeAlt: 'Get Clover Flow POS on Google Play',
+        },
+        {
+          key: 'market',
+          name: 'Clover Market',
+          tagline: 'The online store connected to Clover Flow POS.',
+          badgeAlt: 'Get Clover Market on Google Play',
+        },
+      ],
+      note: 'Both apps need an account and activation from our team before use.',
+      webCta: 'Open on the web',
+      whatsappCta: 'Ask on WhatsApp',
+      contactCta: 'Contact page',
     },
     finalCta: {
       title: 'Ready to see Clover in your store?',

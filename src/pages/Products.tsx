@@ -7,6 +7,7 @@ import { NavLink } from 'react-router-dom';
 import { OrbitBackground } from '@/components/ui/OrbitBackground';
 import { JsonLd } from '@/components/ui/JsonLd';
 import { breadcrumbJsonLd } from '@/config/structured-data';
+import { ProductDownloads } from '@/components/product/ProductDownloads';
 
 export function ProductsPage() {
   const { t, locale } = useI18n();
@@ -89,7 +90,8 @@ export function ProductsPage() {
                     ))}
                   </div>
 
-                  <div className="flex flex-col gap-3 mt-auto pt-4 border-t border-neutral-200">
+                  <div className="flex flex-col gap-4 mt-auto pt-4 border-t border-neutral-200">
+                    <ProductDownloads downloadLinks={product.downloadLinks} />
                     <NavLink to={`/${key}`}>
                       <span className="btn btn-primary w-full text-center">{t.products.exploreProduct}</span>
                     </NavLink>

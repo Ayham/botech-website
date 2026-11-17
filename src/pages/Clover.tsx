@@ -53,6 +53,12 @@ export function CloverPage() {
       : 'Hi, I would like to talk about running Clover in my store.'
   );
 
+  const downloadsWhatsApp = whatsappLink(
+    locale === 'ar'
+      ? 'مرحبًا، أريد المساعدة في تحميل تطبيقات Clover.'
+      : 'Hi, I would like help downloading the Clover apps.'
+  );
+
   return (
     <Layout
       title={seo.title}
@@ -580,6 +586,118 @@ export function CloverPage() {
               </Reveal>
             ))}
           </div>
+        </Container>
+      </Section>
+
+      {/* Download the apps */}
+      <Section size="lg" background="white" id="download">
+        <Container>
+          <Reveal className="mx-auto max-w-3xl text-center">
+            <div className="flex justify-center">
+              <Eyebrow>{content.downloads.eyebrow}</Eyebrow>
+            </div>
+            <h2 className="heading-2 mt-4 text-neutral-900">{content.downloads.title}</h2>
+            <p className="body-lg mt-4 text-neutral-600">{content.downloads.subtitle}</p>
+          </Reveal>
+
+          <div className="mx-auto mt-12 grid max-w-3xl gap-6 sm:grid-cols-2">
+            {content.downloads.apps.map((app, index) => {
+              const href =
+                app.key === 'flow'
+                  ? product.downloadLinks.cloverFlowPos
+                  : product.downloadLinks.cloverMarket;
+              const webHref =
+                app.key === 'flow'
+                  ? product.webLinks.cloverFlowPos
+                  : product.webLinks.cloverMarket;
+
+              return (
+                <Reveal key={app.key} delay={index * 90} className="h-full">
+                  <div className="group flex h-full flex-col items-center rounded-3xl border border-neutral-200 bg-white p-6 text-center shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-clover-200 hover:shadow-xl sm:p-8">
+                    <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-clover-50 text-clover-700 ring-1 ring-clover-100">
+                      <CloverIcon name={app.key === 'flow' ? 'pos' : 'store'} className="h-6 w-6" />
+                    </span>
+                    <h3 className="heading-4 mt-4 text-neutral-900">{app.name}</h3>
+                    <p className="body-sm mt-2 text-neutral-600">{app.tagline}</p>
+
+                    <div className="mt-6 flex flex-1 flex-col items-center justify-end gap-3">
+                      {href ? (
+                        <a
+                          href={href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="relative inline-flex rounded-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-clover-500 focus-visible:ring-offset-4"
+                          aria-label={app.badgeAlt}
+                        >
+                          <span
+                            aria-hidden="true"
+                            className="pointer-events-none absolute -inset-3 rounded-[28px] bg-clover-500/15 blur-2xl transition-colors duration-300 group-hover:bg-clover-500/25"
+                          />
+                          <img
+                            src="/assets/clover/google-play-badge-en.svg"
+                            alt={app.badgeAlt}
+                            width="239"
+                            height="71"
+                            loading="lazy"
+                            className="relative h-16 w-auto rounded-2xl shadow-xl ring-1 ring-black/10 transition-transform duration-200 group-hover:-translate-y-0.5 sm:h-20"
+                          />
+                        </a>
+                      ) : (
+                        <span className="relative inline-flex items-center gap-3 rounded-2xl bg-neutral-900 px-5 py-3.5 opacity-80">
+                          <img
+                            src="/assets/clover/google-play-badge-en.svg"
+                            alt=""
+                            aria-hidden="true"
+                            className="h-11 w-auto opacity-60 grayscale"
+                          />
+                        </span>
+                      )}
+
+                      {webHref && (
+                        <a
+                          href={webHref}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          aria-label={`${content.downloads.webCta} — ${app.name}`}
+                          className="inline-flex items-center gap-1.5 rounded text-sm font-medium text-clover-700 transition-colors hover:text-clover-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-clover-500 focus-visible:ring-offset-2"
+                        >
+                          {content.downloads.webCta}
+                          <svg className="h-3.5 w-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                          </svg>
+                        </a>
+                      )}
+                    </div>
+                  </div>
+                </Reveal>
+              );
+            })}
+          </div>
+
+          <Reveal delay={120}>
+            <div className="mx-auto mt-10 max-w-3xl border-t border-neutral-200 pt-6">
+              <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-3">
+                <a
+                  href={downloadsWhatsApp}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 text-sm font-medium text-neutral-500 transition-colors hover:text-clover-700"
+                >
+                  <CloverIcon name="whatsapp" className="h-4 w-4 flex-shrink-0" />
+                  {content.downloads.whatsappCta}
+                </a>
+                <span className="hidden h-4 w-px bg-neutral-200 sm:block" aria-hidden="true" />
+                <NavLink
+                  to="/contact#form"
+                  className="inline-flex items-center gap-2 text-sm font-medium text-neutral-500 transition-colors hover:text-clover-700"
+                >
+                  <svg className="h-4 w-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 10h.01M12 10h.01M16 10h.01M21 12c0 4.418-4.03 8-9 8a9.86 9.86 0 01-4-.8L3 20l1.2-3.6A7.9 7.9 0 013 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" /></svg>
+                  {content.downloads.contactCta}
+                </NavLink>
+              </div>
+              <p className="mt-4 text-center text-xs text-neutral-500">{content.downloads.note}</p>
+            </div>
+          </Reveal>
         </Container>
       </Section>
 
