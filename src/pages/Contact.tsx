@@ -52,11 +52,18 @@ export function Contact() {
   useEffect(() => {
     if (!RECAPTCHA_SITE_KEY || captchaRenderedRef.current) return;
 
+    let pollTimer: number | undefined;
+    let giveUpTimer: number | undefined;
+    let cancelled = false;
+
+    // Renders the widget and reports whether it is in the DOM.
     const renderWidget = () => {
-      if (captchaRenderedRef.current || !window.grecaptcha) return;
+      if (cancelled || captchaRenderedRef.current) return true;
+      const grecaptcha = window.grecaptcha;
+      if (!grecaptcha || typeof grecaptcha.render !== 'function') return false;
       const container = document.getElementById('recaptcha-container');
-      if (!container) return;
-      window.grecaptcha.render('recaptcha-container', {
+      if (!container) return false;
+      grecaptcha.render('recaptcha-container', {
         sitekey: RECAPTCHA_SITE_KEY,
         hl: locale === 'ar' ? 'ar' : 'en',
         callback: () => {
@@ -68,31 +75,50 @@ export function Contact() {
       });
       captchaRenderedRef.current = true;
       setCaptchaRendered(true);
+      return true;
     };
 
-    if (window.grecaptcha) {
-      renderWidget();
-      return;
+    const stopPolling = () => {
+      if (pollTimer !== undefined) {
+        window.clearInterval(pollTimer);
+        pollTimer = undefined;
+      }
+      if (giveUpTimer !== undefined) {
+        window.clearTimeout(giveUpTimer);
+        giveUpTimer = undefined;
+      }
+    };
+
+    // `window.grecaptcha` may still be missing (or lack `render`) when api.js
+    // fires `load`, so keep polling until it is ready instead of rendering once.
+    const pollUntilReady = () => {
+      if (pollTimer !== undefined) return;
+      pollTimer = window.setInterval(() => {
+        if (renderWidget()) stopPolling();
+      }, 250);
+      giveUpTimer = window.setTimeout(stopPolling, 20000);
+    };
+
+    if (renderWidget()) return;
+
+    if (document.querySelector('script[src*="recaptcha/api.js"]')) {
+      pollUntilReady();
+    } else {
+      const script = document.createElement('script');
+      script.src = `https://www.google.com/recaptcha/api.js?render=explicit&hl=${locale === 'ar' ? 'ar' : 'en'}`;
+      script.async = true;
+      script.defer = true;
+      script.onload = () => {
+        if (!renderWidget()) pollUntilReady();
+      };
+      script.onerror = pollUntilReady;
+      document.head.appendChild(script);
     }
 
-    const existing = document.querySelector<HTMLScriptElement>('script[src*="recaptcha/api.js"]');
-    if (existing) {
-      const timer = window.setInterval(() => {
-        if (window.grecaptcha) {
-          window.clearInterval(timer);
-          renderWidget();
-        }
-      }, 300);
-      window.setTimeout(() => window.clearInterval(timer), 15000);
-      return;
-    }
-
-    const script = document.createElement('script');
-    script.src = `https://www.google.com/recaptcha/api.js?render=explicit&hl=${locale === 'ar' ? 'ar' : 'en'}`;
-    script.async = true;
-    script.defer = true;
-    script.onload = renderWidget;
-    document.head.appendChild(script);
+    return () => {
+      cancelled = true;
+      stopPolling();
+    };
   }, [locale]);
 
   useEffect(() => {
