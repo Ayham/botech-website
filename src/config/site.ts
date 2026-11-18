@@ -84,8 +84,8 @@ export const siteConfig = {
       status: 'available' as const,
       logo: '/assets/raseed/raseed-logo-256.png',
       tagline: {
-        ar: 'اخدم زبائنك أسرع، وأدر تحويلاتك باحتراف',
-        en: 'Serve customers faster, manage transfers professionally',
+        ar: 'التطبيق مخصص لخطوط كازية لشبكتي سيريتل و MTN/Zain',
+        en: 'An app dedicated to Syriatel and MTN/Zain transfer lines',
       },
       description: {
         ar: 'تطبيق لإدارة تحويلات الرصيد اليومية، مصمم لنقاط بيع الرصيد ومراكز خدمة الموبايل في سوريا. يساعدك على التحويل بشكل أسرع، بأخطاء أقل، مع سجل واضح لكل التحويلات اليومية.',
