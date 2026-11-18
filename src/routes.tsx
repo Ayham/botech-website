@@ -39,12 +39,21 @@ function LocaleRedirect() {
 
   useEffect(() => {
     const segments = location.pathname.split('/').filter(Boolean);
-    if (segments[0] === 'en') {
-      setLocale('en');
-    } else {
-      setLocale('ar');
+    const isEn = segments[0] === 'en';
+    const target = '/' + segments.slice(isEn ? 1 : 0).join('/');
+
+    // Persist the choice *before* the redirect. The redirect is a full reload,
+    // so the provider's own effect never gets to save it in time and the page
+    // would come back in the previously stored language.
+    try {
+      localStorage.setItem('botech-locale', isEn ? 'en' : 'ar');
+    } catch {
+      // Storage can be unavailable (private mode / disabled cookies); the
+      // in-page language switcher still works, only deep links lose the hint.
     }
-    const target = '/' + segments.slice(segments[0] === 'en' ? 1 : 0).join('/');
+
+    setLocale(isEn ? 'en' : 'ar');
+
     if (location.pathname !== target) {
       window.location.replace(target);
     }
